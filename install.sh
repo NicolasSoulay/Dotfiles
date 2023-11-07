@@ -1,8 +1,10 @@
-!/usr/bin/bash
+#!/usr/bin/bash
 cd ~
 
 sudo apt update
 sudo apt upgrade
+
+mkdir ~/.local/state/bash
 
 # Ajout des bash alias
 sudo ln -sf ~/Dotfiles/bash/.bashrc ~/.bashrc
@@ -24,4 +26,4 @@ sudo ln -sf ~/Dotfiles/bin ~/.local/bin
 sudo ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
 fc-cache -f -v
 
-sudo su - $USER -c 'bash install-app.sh'
+sudo su - $USER -c 'bash ~/Dotfiles/install-app.sh'

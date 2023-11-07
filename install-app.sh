@@ -1,4 +1,4 @@
-!/usr/bin/bash
+#!/usr/bin/bash
 cd ~
 
 sudo apt update
@@ -88,6 +88,16 @@ sudo apt purge hexchat hypnotix sticky seahorse thingy timeshift transmission tr
 sudo rm -R ~/.config/hexchat
 sudo rm -R ~/.config/sticky
 sudo rm -R ~/.config/transmission
+
+# Clean du dossier home
+mkdir ~/.config/git
+mv ~/.gitconfig ~/.config/git/config
+
+mkdir ~/.config/gtk-2.0
+mv ~/.gtkrc-2.0 ~/.config/gtk-2.0/gtkrc
+mv ~/.gtkrc-xfce ~/.config/gtk-2.0/.gtkrc-xfce
+
+sudo rm ~/.bash_history
 
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
 sudo apt update

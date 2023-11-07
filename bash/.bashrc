@@ -17,5 +17,23 @@ if [ -f ~/.bash_env ]; then
    . ~/.bash_env
 fi
 
+# Don't put duplicate lines in the history
+export HISTCONTROL=ignoredups
+#... and ignore same successive entries
+export HISTCONTROL=ignoreboth
+
+# Make sure all terminals save history
+shopt -s histappend
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# Increase history size
+export HISTSIZE=1000
+export HISTFILESIZE=1000
+
 # I don't remember why, but I need this
 shopt -s globstar
+. "/home/lacerca/.local/share/cargo/env"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
