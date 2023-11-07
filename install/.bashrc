@@ -33,9 +33,7 @@ export HISTFILESIZE=1000
 # I don't remember why, but I need this
 shopt -s globstar
 
-
-
-. "/home/lacerca/.local/share/cargo/env"
+. "/home/lacerda/.local/share/cargo/env"
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
