@@ -4,7 +4,7 @@ local awful            = require("awful")
 
 -- Wibox handling library
 local wibox            = require("wibox")
-
+local beautiful        = require("beautiful")
 -- Custom Local Library: Common Functional Decoration
 local boxes            = {
     taglist  = require("boxes.taglist"),
@@ -51,6 +51,20 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = tasklist_buttons
     }
 
+    -- Create a menu widget
+    s.mainmenu = wibox.widget {
+        {
+            image = beautiful.debian_icon,
+            resize = true,
+            forced_height = 20,
+            widget = wibox.widget.imagebox,
+        },
+        top = 2, bottom = 2, left = 8,
+        widget = wibox.container.margin,
+    }
+
+    s.mainmenu:connect_signal("button::press", function() awful.util.spawn("xfce4-popup-whiskermenu -p") end)
+
     -- Create the bottom  wibox
     s.mywibox = wibox({
         screen = s,
@@ -58,7 +72,7 @@ awful.screen.connect_for_each_screen(function(s)
         opacity = 1,
         width = 250,
         y = sgeo.height - 40,
-        x = sgeo.width - sgeo.width / 1.75,
+        x = sgeo.width - sgeo.width / 2 - 125, -- width of screen/2 - half the wibox width
         ontop = true,
     })
     s.mywibox.visible = true
@@ -93,9 +107,13 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         expand = 'outside',
+        shape = function(cr, width, height)
+            gears.shape.rounded_rect(cr, width, height, 5)
+        end,
+
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            RC.launcher,
+            s.mainmenu,
         },
         {
             s.mytaglist,
