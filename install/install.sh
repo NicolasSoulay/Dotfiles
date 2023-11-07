@@ -9,9 +9,11 @@ mkdir ~/.local/state/bash
 mkdir ~/.config/nvm
 
 # Ajout des bash alias
-sudo ln -sf ~/Dotfiles/bash/.bashrc ~/.bashrc
-sudo ln -sf ~/Dotfiles/bash/.bash_aliases ~/.bash_aliases
-sudo ln -sf ~/Dotfiles/bash/.bash_env ~/.bash_env
+rm ~/.bashrc
+rm ~/.bash_aliases
+sudo cp ~/Dotfiles/install/.bashrc ~/.bashrc
+sudo cp ~/Dotfiles/install/.bash_aliases ~/.bash_aliases
+sudo cp ~/Dotfiles/install/.bash_env ~/.bash_env
 
 # Tous les fichier de config + les wallpapers
 sudo ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
