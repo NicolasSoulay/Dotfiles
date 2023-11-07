@@ -18,8 +18,7 @@ ln -s ~/Dotfiles/config/zathura ~/.config/zathura
 ln -s ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
 
 # On fais les liens pour les scripts
-mkdir ~/.local/bin/
-ln -s ~/Dotfiles/scripts/* ~/.local/bin/
+ln -s ~/Dotfiles/bin ~/.local/bin
 
 # On recupere les fonts et on met a jour le cache
 ln -s ~/Dotfiles/fonts/* ~/.local/share/fonts/
