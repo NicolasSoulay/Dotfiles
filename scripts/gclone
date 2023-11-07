@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+if [ -n "$1"  ] 
+then
+    git clone https://github.com/"$1"
+else
+    echo "you must enter a user and a repository name."
+    echo "ex: User/reponame.git"
+fi

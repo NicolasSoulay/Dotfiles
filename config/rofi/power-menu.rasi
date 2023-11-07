@@ -1,0 +1,19 @@
+inputbar {
+  enabled: false;
+}
+
+listview {
+	lines: 1;
+  columns: 3;
+  scrollbar: false;
+}
+
+element-text {
+  position: center;
+}
+
+window {
+  font: "JetBrains Mono 50";
+  border: 0px 0px 0px 0px;
+  width: 10em;
+}

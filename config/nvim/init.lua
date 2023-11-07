@@ -1,0 +1,5 @@
+require "core.options"
+require "core.keymaps"
+require "core.statusline"
+require "core.lazy"
+require "core.colorscheme"

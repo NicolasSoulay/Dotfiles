@@ -1,0 +1,47 @@
+# Zathura configuration file
+
+# zathurarc-dark
+
+
+
+
+set font "JetBrains Mono 15"
+
+set completion-group-fg         "#22201E"
+set completion-group-bg         "#3C945D"
+set completion-bg               "#43413C"
+set completion-fg               "#A6A495"
+set completion-highlight-fg     "#22201E"
+set completion-highlight-bg     "#3C945D"
+
+set notification-error-bg       "#933737"
+set notification-error-fg       "#22201E"
+set notification-warning-bg     "#933737"
+set notification-warning-fg     "#22201E"
+set notification-bg             "#3C945D"
+set notification-fg             "#22201E"
+
+set index-bg
+set index-fg
+set index-active-bg
+set index-active-fg
+
+set inputbar-bg                 "#151515"
+set inputbar-fg                 "#C7C7b6"
+
+set statusbar-fg                "#C7C7B6"
+set statusbar-bg                "#22201E"
+
+set highlight-color             "#CE9D43"
+set highlight-active-color      "#708F99"
+
+set default-bg                  "#22201E" #bg
+set default-fg                  "#C7C7B6" #fg
+set recolor-lightcolor          "#22201E" 
+set recolor-darkcolor           "#A6A495" 
+
+
+set recolor "true"
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+map i recolor

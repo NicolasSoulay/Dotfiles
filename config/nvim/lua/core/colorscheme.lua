@@ -1,0 +1,5 @@
+vim.cmd.colorscheme("gruvbox-material")
+vim.api.nvim_set_hl(0, 'NvimTreeNormalFloat', { fg = "#d4be98", bg = "#282828" })
+vim.api.nvim_set_hl(0, 'NvimTreeNormal', { fg = "#d4be98", bg = "#282828" })
+vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { fg = "#d4be98", bg = "#282828" })
+vim.api.nvim_set_hl(0, 'FloatBorder', { fg = "#d4be98", bg = "#282828" })

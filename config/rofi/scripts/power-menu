@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+choice=$(printf "\n \n" | rofi -dmenu -i  -theme-str '@import "power-menu.rasi"')
+
+case "$choice" in
+  "") loginctl terminate-session ${XDG_SESSION_ID-} ;;
+  "") loginctl poweroff ;;
+  "") loginctl reboot ;;
+  *) exit 1 ;;
+esac
