@@ -5,23 +5,23 @@ sudo apt update
 sudo apt upgrade
 
 # Ajout des bash alias
-ln -s ~/Dotfiles/bash/.bashrc ~/.bashrc
-ln -s ~/Dotfiles/bash/.bash_aliases ~/.bash_aliases
-ln -s ~/Dotfiles/bash/.bash_env ~/.bash_env
+sudo ln -sf ~/Dotfiles/bash/.bashrc ~/.bashrc
+sudo ln -sf ~/Dotfiles/bash/.bash_aliases ~/.bash_aliases
+sudo ln -sf ~/Dotfiles/bash/.bash_env ~/.bash_env
 
 # Tous les fichier de config + les wallpapers
-ln -s ~/Dotfiles/config/awesome ~/.config/awesome
-ln -s ~/Dotfiles/config/kitty ~/.config/kitty
-ln -s ~/Dotfiles/config/nvim ~/.config/nvim
-ln -s ~/Dotfiles/config/rofi ~/.config/rofi
-ln -s ~/Dotfiles/config/zathura ~/.config/zathura
-ln -s ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
+sudo ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
+sudo ln -sf ~/Dotfiles/config/kitty ~/.config/kitty
+sudo ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
+sudo ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
+sudo ln -sf ~/Dotfiles/config/zathura ~/.config/zathura
+sudo ln -sf ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
 
 # On fais les liens pour les scripts
-ln -s ~/Dotfiles/bin ~/.local/bin
+sudo ln -sf ~/Dotfiles/bin ~/.local/bin
 
 # On recupere les fonts et on met a jour le cache
-ln -s ~/Dotfiles/fonts/* ~/.local/share/fonts/
+sudo ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
 fc-cache -f -v
 
 sudo su - $USER -c 'bash install-app.sh'
