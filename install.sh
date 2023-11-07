@@ -15,7 +15,6 @@ ln -s ~/Dotfiles/config/kitty ~/.config/kitty
 ln -s ~/Dotfiles/config/nvim ~/.config/nvim
 ln -s ~/Dotfiles/config/rofi ~/.config/rofi
 ln -s ~/Dotfiles/config/zathura ~/.config/zathura
-mkdir ~/Pictures/Wallpapers/
 ln -s ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
 
 # On fais les liens pour les scripts
