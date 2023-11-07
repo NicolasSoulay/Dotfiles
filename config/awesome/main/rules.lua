@@ -18,7 +18,7 @@ function _M.get(clientkeys, clientbuttons)
             rule = {},
             properties = {
                 border_width = 2,
-                border_color = '#22201e',
+                border_color = '#282828',
                 focus        = awful.client.focus.filter,
                 raise        = true,
                 keys         = clientkeys,

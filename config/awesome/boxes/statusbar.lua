@@ -26,6 +26,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
 
+    local sgeo = s.geometry
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -55,10 +56,10 @@ awful.screen.connect_for_each_screen(function(s)
         screen = s,
         height = 30,
         opacity = 1,
-        width = 500,
-        y = 1405,
-        x = 1450,
-        ontop = false,
+        width = 250,
+        y = sgeo.height - 40,
+        x = sgeo.width - sgeo.width / 1.75,
+        ontop = true,
     })
     s.mywibox.visible = true
 
@@ -74,8 +75,8 @@ awful.screen.connect_for_each_screen(function(s)
         expand = 'outside',
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            RC.launcher,
-            s.mytaglist,
+            -- RC.launcher,
+            -- s.mytaglist,
         },
         -- s.mytasklist, -- Middle widget
         {
@@ -101,7 +102,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.flex.horizontal,
         },
         { -- Right widgets
-            s.mylayoutbox,
+            wibox.container.place(s.mylayoutbox, "right", "center"),
             layout = wibox.layout.flex.horizontal,
         },
     }
