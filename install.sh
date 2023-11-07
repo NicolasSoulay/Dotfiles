@@ -28,4 +28,4 @@ sudo ln -sf ~/Dotfiles/bin ~/.local/bin
 sudo ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
 fc-cache -f -v
 
-sudo su - $USER -c 'bash ~/Dotfiles/install-app.sh'
+

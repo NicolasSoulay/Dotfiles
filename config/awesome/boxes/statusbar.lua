@@ -65,7 +65,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.myinvisiblewibar = awful.wibar({ screen = s, height = 35, opacity = 0, position = "bottom" })
 
     -- Create the top wibar
-    s.mywibar = awful.wibar({ screen = s, height = 30, opacity = 0.8, position = "top" })
+    s.mywibar = awful.wibar({ screen = s, height = 30, opacity = 1, position = "top" })
 
 
     -- Add widgets to the wibar

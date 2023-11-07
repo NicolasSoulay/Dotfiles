@@ -98,6 +98,8 @@ mv ~/.gtkrc-2.0 ~/.config/gtk-2.0/gtkrc
 mv ~/.gtkrc-xfce ~/.config/gtk-2.0/.gtkrc-xfce
 
 sudo rm ~/.bash_history
+sudo rm ~/.wget-hsts
+sudo rm ~/.ICEauthority
 
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
 sudo apt update
