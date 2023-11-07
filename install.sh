@@ -4,7 +4,9 @@ cd ~
 sudo apt update
 sudo apt upgrade
 
+mkdir ~/.local/state/
 mkdir ~/.local/state/bash
+mkdir ~/.config/nvm
 
 # Ajout des bash alias
 sudo ln -sf ~/Dotfiles/bash/.bashrc ~/.bashrc
