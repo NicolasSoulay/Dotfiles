@@ -73,7 +73,7 @@ awful.screen.connect_for_each_screen(function(s)
         width = 250,
         y = sgeo.height - 40,
         x = sgeo.width - sgeo.width / 2 - 125, -- width of screen/2 - half the wibox width
-        ontop = true,
+        ontop = false,
     })
     s.mywibox.visible = true
 
