@@ -29,11 +29,10 @@ sudo apt install gcc g++
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Config apache2
-sudo a2enmod userdir
-sudo systemctl restart apache2
-mkdir ~/public_html
-chmod 751 ~/public_html
-sudo usermod -g www-data $USER
+mkdir ~/Dev/localhost
+chmod -R 0755 ~/Dev/localhost
+sudo rm -r /var/www/html
+sudo ln -s ~/Dev/localhost /var/www/html
 
 # Discord
 wget "https://discord.com/api/download?platform=linux&format=deb" -O discord.deb
