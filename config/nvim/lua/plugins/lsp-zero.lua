@@ -222,7 +222,7 @@ return {
                 ensure_installed = { "lua_ls", "phpactor", "intelephense", "cssls", "cssmodules_ls",
                     "emmet_language_server", "html",
                     "tsserver", "angularls", "bashls", "jsonls",
-                    "rust_analyzer", "clangd" },
+                    "rust_analyzer", "clangd", "marksman" },
                 handlers = {
                     lsp_zero.default_setup,
                     lua_ls = function()
