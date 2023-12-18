@@ -25,6 +25,9 @@ sudo apt install python3 python3-pip python3-venv python3-pynvim
 # C++
 sudo apt install gcc g++
 
+# C# 
+sudo apt install dotnet-sdk-7.0
+
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
