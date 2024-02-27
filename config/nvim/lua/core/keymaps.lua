@@ -45,7 +45,7 @@ keymap("n", "<Leader>q", "<C-w>q", opts)
 keymap("n", "<Leader>o", "<C-w><C-o>", opts)
 
 -- Replace all on current word and ask confirmation
-keymap("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left>]], opts)
+keymap("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left><Left>]], opts)
 
 -- Replace all on current word
 keymap("n", "<Leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
