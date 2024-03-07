@@ -18,6 +18,9 @@ keymap("n", "<leader>tsp", ":TSPlaygroundToggle<CR>", opts)
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
 keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
 
+-- Zen-mode
+keymap("n", "<leader>z", ":ZenMode<CR>", opts)
+
 -- NORMAL --
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
