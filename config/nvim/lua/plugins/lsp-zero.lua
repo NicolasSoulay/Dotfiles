@@ -98,35 +98,7 @@ return {
                     },
                     -- Accept currently selected item. If none selected, `select` first item.
                     -- Set `select` to `false` to only confirm explicitly selected items.
-                    ["<CR>"] = cmp.mapping.confirm { select = true },
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item()
-                        elseif luasnip.expandable() then
-                            luasnip.expand()
-                        elseif luasnip.expand_or_jumpable() then
-                            luasnip.expand_or_jump()
-                        elseif check_backspace() then
-                            fallback()
-                        else
-                            fallback()
-                        end
-                    end, {
-                        "i",
-                        "s",
-                    }),
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item()
-                        elseif luasnip.jumpable(-1) then
-                            luasnip.jump(-1)
-                        else
-                            fallback()
-                        end
-                    end, {
-                        "i",
-                        "s",
-                    }),
+                    ["<CR>"] = cmp.mapping.confirm { select = false },
                 },
                 formatting = {
                     fields = { "kind", "abbr", "menu" },
@@ -187,30 +159,6 @@ return {
                 vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = bufnr })
             end)
 
-            -- FORMAT ON SAVE: choose one or the other, first use all lsp client, second one allow to control which lsp format what type of file
-
-            -- Use all
-            -- lsp_zero.on_attach(function(client, bufnr)
-            --     lsp_zero.default_keymaps({ buffer = bufnr })
-            --     lsp_zero.buffer_autoformat()
-            -- end)
-
-            -- Explicit setup
-            -- lsp_zero.on_attach(function(client, bufnr)
-            --     lsp_zero.default_keymaps({ buffer = bufnr })
-            -- end)
-            --
-            -- lsp_zero.format_on_save({
-            --     format_opts = {
-            --         async = false,
-            --         timeout_ms = 10000,
-            --     },
-            --     servers = {
-            --         ['tsserver'] = { 'javascript', 'typescript' },
-            --         ['rust_analyzer'] = { 'rust' },
-            --     }
-            -- })
-
             lsp_zero.set_sign_icons({
                 error = '',
                 warn = '',
@@ -232,16 +180,6 @@ return {
                     end,
                 }
             })
-
-            -- LSP configuration for different servers
-
-            -- require('lspconfig').tsserver.setup({
-            --     cmd = { "typescript-language-server", "--stdio" },
-            --     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact",
-            --         "typescript.tsx" },
-            --     init_options = { hostInfo = "neovim" },
-            --     single_file_support = true
-            -- })
 
             -- PHPACTOR
             require('lspconfig').phpactor.setup({
