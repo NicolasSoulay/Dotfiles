@@ -149,11 +149,15 @@ return {
         config = function()
             -- This is where all the LSP shenanigans will live
             local lsp_zero = require('lsp-zero')
+            local lspconfig = require('lspconfig')
             lsp_zero.extend_lspconfig()
 
             lsp_zero.on_attach(function(client, bufnr)
                 -- see :help lsp-zero-keybindings
                 -- to learn the available actions
+                --
+                -- TODO: use with nightly
+                -- vim.lsp.inlay_hint.enable(bufnr)
                 lsp_zero.buffer_autoformat()
                 lsp_zero.default_keymaps({ buffer = bufnr })
                 vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = bufnr })
@@ -182,7 +186,7 @@ return {
             })
 
             -- PHPACTOR
-            require('lspconfig').phpactor.setup({
+            lspconfig.phpactor.setup({
                 cmd = { 'phpactor', 'language-server' },
                 filetypes = { 'php' },
                 root_dir = function(pattern)
@@ -194,6 +198,28 @@ return {
                     return util.path.is_descendant(cwd, root) and cwd or root
                 end,
                 single_file_support = true,
+            })
+
+            -- RUST ANALYZER
+            lspconfig.rust_analyzer.setup({
+                settings = {
+                    ["rust-analyzer"] = {
+                        imports = {
+                            granularity = {
+                                group = "module",
+                            },
+                            prefix = "self",
+                        },
+                        cargo = {
+                            buildScripts = {
+                                enable = true,
+                            },
+                        },
+                        procMacro = {
+                            enable = true
+                        },
+                    }
+                }
             })
         end
     }
