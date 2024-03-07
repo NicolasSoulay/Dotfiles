@@ -155,9 +155,7 @@ return {
             lsp_zero.on_attach(function(client, bufnr)
                 -- see :help lsp-zero-keybindings
                 -- to learn the available actions
-                --
-                -- TODO: use with nightly
-                -- vim.lsp.inlay_hint.enable(bufnr)
+                vim.lsp.inlay_hint.enable(bufnr)
                 lsp_zero.buffer_autoformat()
                 lsp_zero.default_keymaps({ buffer = bufnr })
                 vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = bufnr })
