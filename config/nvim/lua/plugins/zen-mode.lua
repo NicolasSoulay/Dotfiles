@@ -13,7 +13,7 @@ local M = {
             -- uncomment any of the options below, or add other vim.wo options you want to apply
             options = {
                 -- signcolumn = "no", -- disable signcolumn
-                -- number = false, -- disable number column
+                number = false, -- disable number column
                 -- relativenumber = false, -- disable relative numbers
                 -- cursorline = false, -- disable cursorline
                 -- cursorcolumn = false, -- disable cursor column
