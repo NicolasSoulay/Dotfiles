@@ -169,7 +169,7 @@ return {
             })
 
             require('mason-lspconfig').setup({
-                ensure_installed = { "lua_ls", "phpactor", "intelephense", "cssls", "cssmodules_ls",
+                ensure_installed = { "lua_ls", "phpactor", --[[  "intelephense", ]] "cssls", "cssmodules_ls",
                     "emmet_language_server", "html",
                     "tsserver", "angularls", "bashls", "jsonls",
                     "rust_analyzer", "clangd", "marksman", "csharp_ls" },

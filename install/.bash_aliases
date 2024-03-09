@@ -1,6 +1,6 @@
 # ls with exa
 alias ls='exa -lah --icons --group-directories-first --sort=ext'
-alias lst='exa -a --tree --icons --group-directories-first --sort=ext --ignore-glob=".git|vendor|var|config|bin|migrations"'
+alias lst='exa -a --tree --icons --group-directories-first --sort=ext'
 alias lsd='exa -lah --icons --sort=mod' 
 alias lss='exa -lah --icons --sort=size'
 
