@@ -31,6 +31,9 @@ sudo apt install dotnet-sdk-7.0
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# On crée un dossier Dev
+mkdir Dev
+
 # Config apache2
 mkdir ~/Dev/localhost
 chmod -R 0755 ~/Dev/localhost
@@ -54,19 +57,15 @@ git config --global credential.credentialStore plaintext
 git-credential-manager configure
 sudo rm gcm.deb
 
-# On crée un dossier Dev
-mkdir Dev
-
 # Compte default git
 git config --global user.email "soulaynicolas@gmail.com"
 git config --global user.name "NicolasSoulay"
 git config --global init.defaultBranch main
 
-
-# Install de neovim 0.9 depuis les sources
+# Install de neovim nightly depuis les sources
 git clone https://github.com/neovim/neovim.git
 cd neovim
-git checkout release-0.9
+git checkout nightly
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 cd ..
