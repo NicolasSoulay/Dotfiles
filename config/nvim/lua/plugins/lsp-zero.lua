@@ -47,10 +47,17 @@ return {
             local cmp = require('cmp')
             local luasnip = require "luasnip"
             local cmp_action = lsp_zero.cmp_action()
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
             local check_backspace = function()
                 local col = vim.fn.col "." - 1
                 return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
             end
+
+            cmp.event:on(
+                'confirm_done',
+                cmp_autopairs.on_confirm_done()
+            )
 
             local kind_icons = {
                 Text = "",
@@ -158,7 +165,7 @@ return {
                 vim.lsp.inlay_hint.enable(bufnr)
                 lsp_zero.buffer_autoformat()
                 lsp_zero.default_keymaps({ buffer = bufnr })
-                vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = bufnr })
+                -- vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = bufnr })
             end)
 
             lsp_zero.set_sign_icons({
@@ -169,7 +176,8 @@ return {
             })
 
             require('mason-lspconfig').setup({
-                ensure_installed = { "lua_ls", "phpactor", --[[  "intelephense", ]] "cssls", "cssmodules_ls",
+                ensure_installed = { "lua_ls", "phpactor", "twiggy_language_server", --[[  "intelephense", ]] "cssls",
+                    "cssmodules_ls",
                     "emmet_language_server", "html",
                     "tsserver", "angularls", "bashls", "jsonls",
                     "rust_analyzer", "clangd", "marksman", "csharp_ls" },
