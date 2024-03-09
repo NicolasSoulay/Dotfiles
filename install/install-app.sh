@@ -31,6 +31,9 @@ sudo apt install dotnet-sdk-7.0
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# Librairie SDL
+sudo apt-get install libsdl2-dev
+
 # On crée un dossier Dev
 mkdir Dev
 
