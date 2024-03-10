@@ -29,5 +29,3 @@ sudo ln -sf ~/Dotfiles/bin ~/.local/bin
 # On recupere les fonts et on met a jour le cache
 sudo ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
 fc-cache -f -v
-
-
