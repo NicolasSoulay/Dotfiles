@@ -5,9 +5,6 @@ local opts = { silent = true }
 -- Nvim-tree
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
 
--- Actions preview
-keymap({ "n", "v" }, "<leader>ca", "<cmd>lua require('actions-preview).code_actions<CR>", opts)
-
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
