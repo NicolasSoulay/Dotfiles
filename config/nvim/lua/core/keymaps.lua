@@ -17,6 +17,9 @@ keymap("n", "<leader>tsp", ":TSPlaygroundToggle<CR>", opts)
 -- Action preview
 -- keymap("n", "<leader>ca", "<cmd>lua require('actions-preview').code_actions<CR>", opts)
 
+-- Vim Fugitive
+keymap("n", "<leader>gs", ":Git<CR>", opts)
+
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
 keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
