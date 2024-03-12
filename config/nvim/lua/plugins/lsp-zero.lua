@@ -20,11 +20,30 @@ return {
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-cmdline" },
-            { "saadparwaiz1/cmp_luasnip" },
+            {
+                "hrsh7th/cmp-nvim-lsp",
+                event = "InsertEnter",
+            },
+            {
+                "hrsh7th/cmp-emoji",
+                event = "InsertEnter",
+            },
+            {
+                "hrsh7th/cmp-buffer",
+                event = "InsertEnter",
+            },
+            {
+                "hrsh7th/cmp-path",
+                event = "InsertEnter",
+            },
+            {
+                "hrsh7th/cmp-cmdline",
+                event = "InsertEnter",
+            },
+            {
+                "saadparwaiz1/cmp_luasnip",
+                event = "InsertEnter",
+            },
             {
                 "L3MON4D3/LuaSnip",
                 event = "InsertEnter",
@@ -32,10 +51,8 @@ return {
                     "rafamadriz/friendly-snippets",
                 },
             },
-            { "hrsh7th/cmp-nvim-lua" },
-            event = {
-                "InsertEnter",
-                "CmdlineEnter",
+            {
+                "hrsh7th/cmp-nvim-lua",
             },
         },
         config = function()
@@ -48,6 +65,7 @@ return {
             local luasnip = require "luasnip"
             local cmp_action = lsp_zero.cmp_action()
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            local icons = require "core.icons"
 
             local check_backspace = function()
                 local col = vim.fn.col "." - 1
@@ -59,34 +77,6 @@ return {
                 cmp_autopairs.on_confirm_done()
             )
 
-            local kind_icons = {
-                Text = "",
-                Method = "",
-                Function = "",
-                Constructor = "",
-                Field = "",
-                Variable = "",
-                Class = "",
-                Interface = "",
-                Module = "",
-                Property = "",
-                Unit = "",
-                Value = "",
-                Enum = "",
-                Keyword = "",
-                Snippet = "",
-                Color = "",
-                File = "",
-                Reference = "",
-                Folder = "",
-                EnumMember = "",
-                Constant = "",
-                Struct = "",
-                Event = "",
-                Operator = "",
-                TypeParameter = "",
-            }
-
             cmp.setup {
                 snippet = {
                     expand = function(args)
@@ -94,8 +84,10 @@ return {
                     end,
                 },
                 mapping = cmp.mapping.preset.insert {
-                    ["<C-k>"] = cmp.mapping.select_prev_item(),
-                    ["<C-j>"] = cmp.mapping.select_next_item(),
+                    ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+                    ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+                    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+                    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
                     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
                     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
                     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -105,12 +97,42 @@ return {
                     },
                     -- Accept currently selected item. If none selected, `select` first item.
                     -- Set `select` to `false` to only confirm explicitly selected items.
-                    ["<CR>"] = cmp.mapping.confirm { select = false },
+                    ["<CR>"] = cmp.mapping.confirm { select = true },
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.expandable() then
+                            luasnip.expand()
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        elseif check_backspace() then
+                            fallback()
+                            -- require("neotab").tabout()
+                        else
+                            fallback()
+                            -- require("neotab").tabout()
+                        end
+                    end, {
+                        "i",
+                        "s",
+                    }),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, {
+                        "i",
+                        "s",
+                    }),
                 },
                 formatting = {
                     fields = { "kind", "abbr", "menu" },
                     format = function(entry, vim_item)
-                        vim_item.kind = kind_icons[vim_item.kind]
+                        vim_item.kind = icons.kind[vim_item.kind]
                         vim_item.menu = ({
                             nvim_lsp = "",
                             nvim_lua = "",
@@ -119,6 +141,17 @@ return {
                             path = "",
                             emoji = "",
                         })[entry.source.name]
+
+                        if entry.source.name == "emoji" then
+                            vim_item.kind = icons.misc.Smiley
+                            vim_item.kind_hl_group = "CmpItemKindEmoji"
+                        end
+
+                        if entry.source.name == "cmp_tabnine" then
+                            vim_item.kind = icons.misc.Robot
+                            vim_item.kind_hl_group = "CmpItemKindTabnine"
+                        end
+
                         return vim_item
                     end,
                 },
@@ -157,29 +190,34 @@ return {
             -- This is where all the LSP shenanigans will live
             local lsp_zero = require('lsp-zero')
             local lspconfig = require('lspconfig')
+            local icons = require "core.icons"
             lsp_zero.extend_lspconfig()
 
             lsp_zero.on_attach(function(client, bufnr)
                 -- see :help lsp-zero-keybindings
                 -- to learn the available actions
-                vim.lsp.inlay_hint.enable(bufnr)
+                if client.supports_method "textDocument/inlayHint" then
+                    vim.lsp.inlay_hint.enable(bufnr, true)
+                end
                 lsp_zero.buffer_autoformat()
                 lsp_zero.default_keymaps({ buffer = bufnr })
                 -- vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = bufnr })
             end)
 
             lsp_zero.set_sign_icons({
-                error = '',
-                warn = '',
-                hint = '',
-                info = ''
+                error = icons.diagnostics.Error,
+                warn = icons.diagnostics.Warning,
+                hint = icons.diagnostics.Hint,
+                info = icons.diagnostics.Information
             })
 
             require('mason-lspconfig').setup({
-                ensure_installed = { "lua_ls", "phpactor", "twiggy_language_server", --[[  "intelephense", ]] "cssls",
+                ensure_installed = { "lua_ls", "phpactor", "twiggy_language_server", --[[  "intelephense", ]]
+                    "cssls",
                     "cssmodules_ls",
                     "emmet_language_server", "html",
                     "tsserver", "angularls", "bashls", "jsonls",
+                    "tailwindcss",
                     "rust_analyzer", "clangd", "marksman", "csharp_ls" },
                 handlers = {
                     lsp_zero.default_setup,
@@ -189,6 +227,33 @@ return {
                         require('lspconfig').lua_ls.setup(lua_opts)
                     end,
                 }
+            })
+
+            -- EMMET
+            lspconfig.emmet_language_server.setup({
+                filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
+                -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
+                -- **Note:** only the options listed in the table are supported.
+                init_options = {
+                    ---@type table<string, string>
+                    includeLanguages = {},
+                    --- @type string[]
+                    excludeLanguages = {},
+                    --- @type string[]
+                    extensionsPath = {},
+                    --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
+                    preferences = {},
+                    --- @type boolean Defaults to `true`
+                    showAbbreviationSuggestions = true,
+                    --- @type "always" | "never" Defaults to `"always"`
+                    showExpandedAbbreviation = "always",
+                    --- @type boolean Defaults to `false`
+                    showSuggestionsAsSnippets = false,
+                    --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
+                    syntaxProfiles = {},
+                    --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
+                    variables = {},
+                },
             })
 
             -- PHPACTOR
