@@ -7,9 +7,12 @@ alias lss='exa -lah --icons --sort=size'
 # neovim
 alias v='nvim'
  
+#zoxide
+alias z='cd'
+ 
 # grep color
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias grep='rg --color=auto'
+alias fgrep='rg -F --color=auto'
 alias egrep='egrep --color=auto'
 
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"

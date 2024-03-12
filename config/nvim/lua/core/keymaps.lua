@@ -14,9 +14,6 @@ keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 -- Treesitter Playground
 keymap("n", "<leader>tsp", ":TSPlaygroundToggle<CR>", opts)
 
--- Action preview
--- keymap("n", "<leader>ca", "<cmd>lua require('actions-preview').code_actions<CR>", opts)
-
 -- Vim Fugitive
 keymap("n", "<leader>gs", ":Git<CR>", opts)
 
