@@ -7,9 +7,6 @@ alias lss='exa -lah --icons --sort=size'
 # neovim
 alias v='nvim'
  
-#zoxide
-alias z='cd'
- 
 # grep color
 alias grep='rg --color=auto'
 alias fgrep='rg -F --color=auto'

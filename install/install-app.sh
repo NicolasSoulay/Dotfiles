@@ -8,7 +8,7 @@ sudo apt upgrade
 sudo apt install gimp steam spotify-client
 
 # Desktop env
-sudo apt install kitty picom nitrogen awesome rofi numlockx exa neofetch zathura zoxide ripgrep
+sudo apt install kitty picom nitrogen awesome rofi numlockx exa neofetch zathura ripgrep
 
 # Utils
 sudo apt install wget git gh fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel 
