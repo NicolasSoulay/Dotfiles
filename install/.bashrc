@@ -33,6 +33,3 @@ export HISTFILESIZE=1000
 # I don't remember why, but I need this
 shopt -s globstar
 
-# initialize zoxide
-eval "$(zoxide init bash)"
-
