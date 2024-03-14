@@ -14,7 +14,7 @@ flatpak install flathub md.obsidian.Obsidian
 sudo apt install gimp
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura mc sway sway-bg swayidle swaylock xdg-desktop-wlr xwayland waybar
+sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidle swaylock xdg-desktop-wlr xwayland waybar
 
 # Utils
 sudo apt install wget gh fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel 
@@ -32,7 +32,7 @@ sudo apt install python3 python3-pip python3-venv python3-pynvim
 sudo apt install gcc g++
 
 # Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sudo curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Librairie SDL
 sudo apt-get install libsdl2-dev

@@ -8,9 +8,9 @@ sudo apt upgrade
 sudo apt install xdg-user-dirs
 xdg-user-dirs-update
 
-mkdir ~/.local/state/
-mkdir ~/.local/state/bash
-mkdir ~/.config/nvm
+mkdir -p ~/.local/state/bash
+mkdir -p ~/.config/nvm
+touch -p ~/.local/state/bash/history
 
 # Ajout des bash alias
 rm ~/.bashrc
