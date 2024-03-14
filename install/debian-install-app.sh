@@ -14,7 +14,7 @@ flatpak install flathub md.obsidian.Obsidian
 sudo apt install gimp
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura xdg-user-dirs mc sway sway-bg swayidle swaylock xdg-desktop-wlr xwayland waybar
+sudo apt install kitty rofi numlockx exa neofetch zathura mc sway sway-bg swayidle swaylock xdg-desktop-wlr xwayland waybar
 
 # Utils
 sudo apt install wget gh fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel 

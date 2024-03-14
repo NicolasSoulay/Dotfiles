@@ -3,6 +3,10 @@ cd ~
 
 sudo apt update
 sudo apt upgrade
+#
+# dossiers utilisateurs
+sudo apt install xdg-user-dirs
+xdg-user-dirs-update
 
 mkdir ~/.local/state/
 mkdir ~/.local/state/bash
