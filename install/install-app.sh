@@ -8,7 +8,7 @@ sudo apt upgrade
 sudo apt install gimp steam spotify-client
 
 # Desktop env
-sudo apt install kitty picom nitrogen awesome rofi numlockx exa neofetch zathura ripgrep
+sudo apt install kitty picom nitrogen awesome rofi numlockx exa neofetch zathura ripgrep mc
 
 # Utils
 sudo apt install wget git gh fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel 
@@ -71,8 +71,7 @@ cd neovim
 git checkout nightly
 make CMAKE_BUILD_TYPE=Release
 sudo make install
-cd ..
-sudo rm -R neovim
+cd 
 
 # Install de symfony
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
