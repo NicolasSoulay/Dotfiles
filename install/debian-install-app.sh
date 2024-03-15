@@ -17,7 +17,7 @@ sudo apt install gimp firefox-esr thunderbird blender libreoffice wine timeshift
 sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar
 
 # Utils
-sudo apt install wget gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel 
+sudo apt install wget gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel pavucontrol playerctl
 
 # MariaDb
 sudo apt install mariadb-server mariadb-client
