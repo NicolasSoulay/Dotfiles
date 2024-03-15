@@ -11,13 +11,13 @@ flatpak install flathub com.discordapp.Discord
 flatpak install flathub md.obsidian.Obsidian
 
 # App
-sudo apt install gimp
+sudo apt install gimp firefox-esr thunderbird blender libreoffice wine timeshift
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidle swaylock xdg-desktop-wlr xwayland waybar
+sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar
 
 # Utils
-sudo apt install wget gh fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel 
+sudo apt install wget gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel 
 
 # MariaDb
 sudo apt install mariadb-server mariadb-client
@@ -32,19 +32,10 @@ sudo apt install python3 python3-pip python3-venv python3-pynvim
 sudo apt install gcc g++
 
 # Rust
-sudo curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Librairie SDL
 sudo apt-get install libsdl2-dev
-
-# On crée un dossier Dev
-mkdir ~/Dev
-
-# Config apache2
-mkdir ~/Dev/localhost
-chmod -R 0755 ~/Dev/localhost
-sudo rm -r /var/www/html
-sudo ln -s ~/Dev/localhost /var/www/html
 
 # Compte default git
 git config --global user.email "soulaynicolas@gmail.com"
@@ -59,7 +50,7 @@ cd neovim
 git checkout nightly
 make CMAKE_BUILD_TYPE=Release
 sudo make install
-cd
+cd ~
 
 # Install de symfony
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
@@ -73,10 +64,6 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 sudo su - $USER -c 'nvm install node'
 sudo su - $USER -c 'nvm install-latest-npm'
 sudo su - $USER -c 'npm install -g @angular/cli neovim sass typescript'
-
-# Clean du dossier home
-sudo rm ~/.bash_history
-sudo rm ~/.wget-hsts
 
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
 sudo apt update
