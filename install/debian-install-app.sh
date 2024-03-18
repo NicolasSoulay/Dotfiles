@@ -14,7 +14,7 @@ flatpak install flathub md.obsidian.Obsidian
 sudo apt install gimp firefox-esr thunderbird blender libreoffice wine timeshift
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar
+sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar greetd
 
 # Utils
 sudo apt install wget gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel pavucontrol playerctl
@@ -23,7 +23,7 @@ sudo apt install wget gh jq findutils fd-find ninja-build gettext cmake unzip cu
 sudo apt install mariadb-server mariadb-client
 
 # PHP
-sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml composer
+sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml composer php-symfony-console
 
 # Python
 sudo apt install python3 python3-pip python3-venv python3-pynvim
@@ -52,9 +52,14 @@ make CMAKE_BUILD_TYPE=Release
 sudo make install
 cd ~
 
+# TUIGreet
+cd Sources/
+git clone https://github.com/apognu/tuigreet && cd tuigreet
+cargo build --release
+sudo mv target/release/tuigreet /usr/local/bin/tuigreet
+
 # Install de symfony
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
-sudo apt install symfony-cli
 
 # Install de NodeJs et NPM
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
