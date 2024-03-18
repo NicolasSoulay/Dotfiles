@@ -17,7 +17,9 @@ touch -p ~/.local/share/wget-hsts
 
 # Config apache2
 mkdir -p ~/Dev/localhost
-chmod -R 0755 ~/Dev/localhost
+sudo chmod -R 0755 ~/Dev/localhost
+sudo chgrp -R www-data ~/Dev/localhost
+sudo chmod 755 ~
 sudo rm -r /var/www/html
 sudo ln -s ~/Dev/localhost /var/www/html
 
@@ -43,6 +45,11 @@ ln -sf ~/Dotfiles/bin ~/.local/bin
 # On recupere les fonts et on met a jour le cache
 ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
 fc-cache -f -v
+
+#pb clavier
+sudo touch /etc/modprobe.d/hid_apple.conf
+sudo echo options hid_apple fnmode=2 >> /etc/modprobe.d/hid_apple.conf
+sudo update-initramfs -u
 
 # Flatpack
 sudo apt install flatpak
