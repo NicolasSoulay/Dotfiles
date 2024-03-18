@@ -9,7 +9,6 @@ sudo apt install xdg-user-dirs
 xdg-user-dirs-update
 
 mkdir -p ~/.local/state/bash
-mkdir -p ~/.local/
 mkdir -p ~/.cache
 mkdir -p ~/.config/nvm
 mkdir -p ~/.local/share
