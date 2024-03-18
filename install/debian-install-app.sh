@@ -4,6 +4,8 @@ cd ~
 sudo apt update
 sudo apt upgrade
 
+source ~/.bashrc
+
 # Flatpak
 flatpak install flathub com.valvesoftware.Steam
 flatpak install flathub com.spotify.Client
@@ -42,6 +44,14 @@ git config --global user.email "soulaynicolas@gmail.com"
 git config --global user.name "NicolasSoulay"
 git config --global init.defaultBranch main
 
+
+# Install et configuration de git credential manager
+wget "https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.1.2/gcm-linux_amd64.2.1.2.deb" -O gcm.deb
+sudo dpkg -i gcm.deb
+git config --global credential.credentialStore plaintext
+git-credential-manager configure
+sudo rm gcm.deb
+
 # Install de neovim nightly depuis les sources
 mkdir ~/Sources
 cd ~/Sources
@@ -57,6 +67,9 @@ cd Sources/
 git clone https://github.com/apognu/tuigreet && cd tuigreet
 cargo build --release
 sudo mv target/release/tuigreet /usr/local/bin/tuigreet
+sudo mkdir /var/cache/tuigreet
+sudo chown _greetd:_greetd /var/cache/tuigreet
+sudo chmod 0755 /var/cache/tuigreet
 
 # Install de symfony
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
