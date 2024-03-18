@@ -9,11 +9,12 @@ sudo apt install xdg-user-dirs
 xdg-user-dirs-update
 
 mkdir -p ~/.local/state/bash
-mkdir -p ~/.local/bin
+mkdir -p ~/.local/
 mkdir -p ~/.cache
 mkdir -p ~/.config/nvm
 mkdir -p ~/.local/share
 touch -p ~/.local/state/bash/history
+touch -p ~/.local/share/wget-hsts
 
 # Config apache2
 mkdir -p ~/Dev/localhost

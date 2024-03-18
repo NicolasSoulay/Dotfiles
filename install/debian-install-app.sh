@@ -44,7 +44,6 @@ git config --global user.email "soulaynicolas@gmail.com"
 git config --global user.name "NicolasSoulay"
 git config --global init.defaultBranch main
 
-
 # Install et configuration de git credential manager
 wget "https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.1.2/gcm-linux_amd64.2.1.2.deb" -O gcm.deb
 sudo dpkg -i gcm.deb
@@ -62,6 +61,8 @@ make CMAKE_BUILD_TYPE=Release
 sudo make install
 cd ~
 
+source ~/.bashrc
+
 # TUIGreet
 cd Sources/
 git clone https://github.com/apognu/tuigreet && cd tuigreet
@@ -70,6 +71,7 @@ sudo mv target/release/tuigreet /usr/local/bin/tuigreet
 sudo mkdir /var/cache/tuigreet
 sudo chown _greetd:_greetd /var/cache/tuigreet
 sudo chmod 0755 /var/cache/tuigreet
+cd ~
 
 # Install de symfony
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
