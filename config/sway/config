@@ -19,6 +19,11 @@ font pango:JetBrainsMono NFM 10
 gaps inner 5px
 gaps outer 5px
 
+corner_radius 8
+shadows on
+shadow_blur_radius 8
+shadow_color #303446
+
 client.focused #a89984 #a89984 #a89984 #a89984 #d4be98
 client.unfocused #282828 #282828 #282828
 
