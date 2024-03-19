@@ -12,8 +12,8 @@ mkdir -p ~/.local/state/bash
 mkdir -p ~/.cache
 mkdir -p ~/.config/nvm
 mkdir -p ~/.local/share
-touch -p ~/.local/state/bash/history
-touch -p ~/.local/share/wget-hsts
+touch  ~/.local/state/bash/history
+touch  ~/.local/share/wget-hsts
 
 # Config apache2
 mkdir -p ~/Dev/localhost
