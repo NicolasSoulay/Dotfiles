@@ -19,7 +19,10 @@ font pango:JetBrainsMono NFM 10
 gaps inner 5px
 gaps outer 5px
 
-default_border pixel 2
+client.focused #a89984 #a89984 #a89984 #a89984 #d4be98
+client.unfocused #282828 #282828 #282828
+
+default_border pixel 1
 default_floating_border none
 
 # Your preferred application launcher
@@ -154,8 +157,7 @@ mode "resize" {
 bindsym $mod+ctrl+r mode "resize"
 
 # Status Bar:
-bar {
-    swaybar_command waybar
-}
+bar swaybar_command waybar
+
 
 include /etc/sway/config.d/*

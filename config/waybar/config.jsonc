@@ -1,42 +1,29 @@
 {
     "height": 30,
     "spacing": 4,
+    "margin-top": 5,
     "modules-left": [
-        "sway/workspaces"
+        "sway/workspaces",
+        "custom/spotify"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
-        "custom/spotify",
         "pulseaudio",
+        "pulseaudio/slider",
         "network",
         "battery",
         "battery#bat2",
         "tray"
     ],
     // Modules configuration
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
-    },
     "tray": {
         "icon-size": 21,
         "spacing": 10
     },
     "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "battery": {
         "states": {
@@ -76,8 +63,8 @@
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        // "format-source": "{volume}% ",
+        // "format-source-muted": "",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -93,11 +80,31 @@
         },
         "on-click": "pavucontrol"
     },
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal"
+    },
     "custom/spotify": {
         "format": " {}",
         "max-length": 40,
         "interval": 30, // Remove this if your script is endless and write in loop
         "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
         "exec-if": "pgrep spotify"
+    },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
     }
 }
