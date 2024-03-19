@@ -11,9 +11,11 @@ flatpak install flathub com.valvesoftware.Steam
 flatpak install flathub com.spotify.Client
 flatpak install flathub com.discordapp.Discord
 flatpak install flathub md.obsidian.Obsidian
+flatpak install flathub io.dbeaver.DBeaverCommunity
 
 # App
-sudo apt install gimp firefox-esr thunderbird blender libreoffice wine timeshift
+sudo dpkg --add-architecture i386 && sudo apt update
+sudo apt install gimp firefox-esr thunderbird blender libreoffice wine wine32 timeshift
 
 # Desktop env
 sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar greetd
