@@ -17,8 +17,8 @@ touch  ~/.local/share/wget-hsts
 
 # Config apache2
 mkdir -p ~/Dev/localhost
-sudo chmod -R 0755 ~/Dev/localhost
-sudo chgrp -R www-data ~/Dev/localhost
+sudo chmod 0755 ~/Dev/localhost
+sudo chgrp www-data ~/Dev/localhost
 sudo chmod 755 ~
 sudo rm -r /var/www/html
 sudo ln -s ~/Dev/localhost /var/www/html
