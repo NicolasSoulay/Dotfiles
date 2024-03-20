@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
+    font-family: JetBrainsMono NFM;
+    font-size: 18px;
 }
 
 window#waybar {
@@ -40,7 +40,6 @@ window#waybar.hidden {
     background-color: rgba(40, 40, 40, 0.85);
     border-radius: 10px;
     padding: 0 8px;
-    padding-top: 5px;
 }
 
 #pulseaudio-slider slider {
@@ -138,15 +137,30 @@ label:focus {
     background-color: #ffa000;
 }
 
-#tray {
-    background-color: #2980b9;
+#tray,
+#pulseaudio,
+#network {
+    background-color: transparent;
+    color: #d4be98;
 }
 
 #tray>.passive {
     -gtk-icon-effect: dim;
+    color: #d4be98;
 }
 
 #tray>.needs-attention {
     -gtk-icon-effect: highlight;
     background-color: #eb4d4b;
+}
+
+#network {
+    font-size: 30px;
+}
+
+.modules-right {
+    background-color: rgba(40, 40, 40, 0.85);
+    border-radius: 10px;
+    color: #d4be98;
+    padding: 0 8px;
 }

@@ -19,7 +19,7 @@
     ],
     // Modules configuration
     "tray": {
-        "icon-size": 21,
+        "icon-size": 25,
         "spacing": 10
     },
     "clock": {
@@ -51,7 +51,7 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{signalStrength}% ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-ethernet": "󰈀",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
@@ -97,11 +97,11 @@
         "all-outputs": true,
         "format": "{name} {icon}",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
+            "1": "",
+            "2": "󰈹",
+            "3": "",
+            "4": "",
+            "5": "",
             "urgent": "",
             "focused": "",
             "default": ""
