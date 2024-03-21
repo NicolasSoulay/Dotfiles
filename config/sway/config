@@ -23,12 +23,15 @@ corner_radius 8
 shadows on
 shadow_blur_radius 8
 shadow_color #303446
+default_dim_inactive 0.1
+titlebar_separator disable
 
-client.focused #a89984 #a89984 #a89984 #a89984 #d4be98
-client.unfocused #282828 #282828 #282828
+client.focused #d4be98 #282828 #d4be98 #282828 #d4be98
+client.unfocused #282828 #282828 #a89984 #282828 #282828
 
-default_border pixel 1
-default_floating_border none
+# default_border pixel 1
+default_border normal 1
+default_floating_border normal 1
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
