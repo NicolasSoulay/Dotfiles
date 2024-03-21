@@ -15,7 +15,7 @@ flatpak install flathub io.dbeaver.DBeaverCommunity
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
-sudo apt install gimp firefox-esr thunderbird blender libreoffice wine wine32 timeshift
+sudo apt install gimp firefox-esr thunderbird blender libreoffice timeshift
 
 # Desktop env
 sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar greetd
@@ -23,11 +23,11 @@ sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidl
 # Utils
 sudo apt install wget gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel pavucontrol playerctl
 
-# SwayFx dependency
-sudo apt install glslang-tools libcairo2-dev libcap-dev libdbus-1-dev libdisplay-info-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libliftoff-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libseat-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc tree wayland-protocols
-sudo apt install hwdata
-sudo apt install libpango1.0-dev
-sudo apt install libgbm-dev
+# SwayFx/Hyprland dependency
+sudo apt install glslang-tools libgbm-dev hwdata libcairo2-dev libcap-dev libdbus-1-dev libdisplay-info-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libliftoff-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libseat-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc tree wayland-protocols
+
+# Librairie SDL
+sudo apt-get install libsdl2-dev
 
 # MariaDb
 sudo apt install mariadb-server mariadb-client
@@ -41,11 +41,15 @@ sudo apt install python3 python3-pip python3-venv python3-pynvim
 # C++
 sudo apt install gcc g++
 
+# C#
+wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+sudo apt-get update 
+sudo apt-get install -y dotnet-sdk-8.0
+
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-# Librairie SDL
-sudo apt-get install libsdl2-dev
 
 # Compte default git
 git config --global user.email "soulaynicolas@gmail.com"
