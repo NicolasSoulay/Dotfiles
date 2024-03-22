@@ -27,7 +27,7 @@ sudo apt install wget gh jq findutils fd-find ninja-build gettext cmake unzip cu
 sudo apt install glslang-tools libgbm-dev hwdata libcairo2-dev libcap-dev libdbus-1-dev libdisplay-info-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libliftoff-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libseat-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc tree wayland-protocols
 
 # Librairie SDL
-sudo apt-get install libsdl2-dev
+sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
 
 # MariaDb
 sudo apt install mariadb-server mariadb-client
