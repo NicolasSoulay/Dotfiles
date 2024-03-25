@@ -93,7 +93,7 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Install de packages NPM
-sudo su - $USER -c 'nvm install node'
+sudo su - $USER -c 'nvm install --lts'
 sudo su - $USER -c 'nvm install-latest-npm'
 sudo su - $USER -c 'npm install -g @angular/cli neovim sass typescript'
 
