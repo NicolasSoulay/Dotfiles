@@ -11,7 +11,7 @@ local themes_path                               = gfs.get_themes_dir()
 
 local theme                                     = {}
 
-theme.font                                      = "Jet Brains Mono"
+theme.font                                      = "JetBrainsMono NFM"
 
 theme.bg_normal                                 = "#282828"
 theme.bg_focus                                  = "#535d6c"
@@ -24,7 +24,7 @@ theme.fg_focus                                  = "#d4be98"
 theme.fg_urgent                                 = "#d4be98"
 theme.fg_minimize                               = "#d4be98"
 
-theme.useless_gap                               = dpi(0)
+theme.useless_gap                               = dpi(5)
 theme.border_width                              = dpi(0)
 theme.border_normal                             = "#282828"
 theme.border_focus                              = "#282828"
@@ -101,7 +101,7 @@ theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titleb
 
 theme.wallpaper                                 = themes_path .. "default/background.png"
 
-theme.debian_icon                               = "~/.config/awesome/themes/lacerda/assets/debian.png"
+theme.debian_icon                               = "~/.config/awesome/theme/assets/debian.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh                              = themes_path .. "default/layouts/fairhw.png"

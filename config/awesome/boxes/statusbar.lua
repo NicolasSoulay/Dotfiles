@@ -66,6 +66,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.mainmenu:connect_signal("button::press", function() awful.util.spawn("xfce4-popup-whiskermenu -p") end)
 
     -- Create the bottom  wibox
+
+    s.myinvisiblewibar = awful.wibar({ screen = s, height = 35, opacity = 0, position = "bottom" })
     s.mywibox = wibox({
         screen = s,
         height = 30,
@@ -76,8 +78,6 @@ awful.screen.connect_for_each_screen(function(s)
         ontop = false,
     })
     s.mywibox.visible = true
-
-    s.myinvisiblewibar = awful.wibar({ screen = s, height = 35, opacity = 0, position = "bottom" })
 
     -- Create the top wibar
     s.mywibar = awful.wibar({ screen = s, height = 30, opacity = 1, position = "top" })
