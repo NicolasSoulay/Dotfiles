@@ -34,6 +34,11 @@ local binding = {
 }
 
 RC.layouts = main.layouts()
+awful.layout.layouts = {
+    awful.layout.suit.tile,
+    awful.layout.suit.fair,
+    awful.layout.suit.floating,
+}
 RC.tags = main.tags()
 RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
 

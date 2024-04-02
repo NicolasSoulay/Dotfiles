@@ -9,16 +9,16 @@ function _M.get()
     -- Table of layouts to cover with awful.layout.inc, order matters.
     local layouts = {
 
-        awful.layout.suit.tile,        -- 2:
-        awful.layout.suit.floating,    -- 1:
+        awful.layout.suit.tile,     -- 2:
+        awful.layout.suit.fair,     -- 6:
+        awful.layout.suit.floating, -- 1:
         --    awful.layout.suit.tile.left,        -- 3:
         --    awful.layout.suit.tile.bottom,      -- 4:
         --    awful.layout.suit.tile.top,         -- 5:
 
-        --    awful.layout.suit.fair,             -- 6:
         --    awful.layout.suit.fair.horizontal,  -- 7:
 
-        awful.layout.suit.spiral, -- 8:
+        -- awful.layout.suit.spiral, -- 8:
         --    awful.layout.suit.spiral.dwindle,     -- 9:
 
         --    awful.layout.suit.max,                -- 10:
