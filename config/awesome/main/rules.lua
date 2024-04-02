@@ -17,8 +17,8 @@ function _M.get(clientkeys, clientbuttons)
         {
             rule = {},
             properties = {
-                border_width = 2,
-                border_color = '#282828',
+                border_width = beautiful.border_width,
+                border_color = beautiful.border_normal,
                 focus        = awful.client.focus.filter,
                 raise        = true,
                 keys         = clientkeys,
@@ -27,7 +27,6 @@ function _M.get(clientkeys, clientbuttons)
                 placement    = awful.placement.no_overlap + awful.placement.no_offscreen
             }
         },
-
         -- Floating clients.
         {
             rule_any = {
@@ -81,13 +80,17 @@ function _M.get(clientkeys, clientbuttons)
         },
 
         {
-            rule = { class = "Discord" },
+            rule = { class = "Steam" },
             properties = { tag = "3" }
+        },
+        {
+            rule = { class = "Discord" },
+            properties = { tag = "4" }
         },
 
         {
             rule = { class = "Thunderbird" },
-            properties = { tag = "3" }
+            properties = { tag = "5" }
         },
 
     }

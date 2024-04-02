@@ -23,9 +23,6 @@ local _M               = {}
 mytextclock            = wibox.widget.textclock("%H:%M")
 
 awful.screen.connect_for_each_screen(function(s)
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-
     local sgeo = s.geometry
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
@@ -46,9 +43,34 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        screen          = s,
+        filter          = awful.widget.tasklist.filter.currenttags,
+        buttons         = tasklist_buttons,
+        widget_template = {
+            {
+                {
+                    {
+                        {
+                            id     = 'icon_role',
+                            widget = wibox.widget.imagebox,
+                            resize = true,
+                        },
+                        margins = 5,
+                        widget  = wibox.container.margin,
+                    },
+                    {
+                        id     = 'text_role',
+                        widget = wibox.widget.textbox,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left   = 10,
+                right  = 10,
+                widget = wibox.container.margin
+            },
+            id     = 'background_role',
+            widget = wibox.container.background,
+        },
     }
 
     -- Create a menu widget
@@ -67,15 +89,15 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the bottom  wibox
 
-    s.myinvisiblewibar = awful.wibar({ screen = s, height = 35, opacity = 0, position = "bottom" })
+    s.myinvisiblewibar = awful.wibar({ screen = s, height = 40, opacity = 0, position = "bottom" })
     s.mywibox = wibox({
-        screen = s,
-        height = 30,
+        screen  = s,
+        height  = 30,
         opacity = 1,
-        width = 250,
-        y = sgeo.height - 40,
-        x = sgeo.width - sgeo.width / 2 - 125, -- width of screen/2 - half the wibox width
-        ontop = false,
+        width   = 250,
+        y       = sgeo.height - 40,
+        x       = sgeo.width - sgeo.width / 2 - 125, -- width of screen/2 - half the wibox width
+        ontop   = false,
     })
     s.mywibox.visible = true
 
@@ -88,11 +110,9 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         expand = 'outside',
         { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            -- RC.launcher,
-            -- s.mytaglist,
+            layout = wibox.layout.flex.horizontal,
+            s.mytasklist,
         },
-        -- s.mytasklist, -- Middle widget
         {
             layout = wibox.layout.flex.horizontal,
             wibox.container.place(mytextclock, "center", "center"),
