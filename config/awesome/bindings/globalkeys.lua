@@ -112,7 +112,7 @@ function _M.get()
         awful.key({ modkey }, "c", function()
                 xrandr.xrandr()
             end,
-            { description = "open your the display configuration", group = "launcher" }),
+            { description = "open your the display configuration", group = "launcher" })
     )
 
     return globalkeys
