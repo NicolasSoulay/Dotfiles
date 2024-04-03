@@ -10,7 +10,9 @@ local menubar = require("menubar")
 local modkey = RC.vars.modkey
 local terminal = RC.vars.terminal
 local file_manager = RC.vars.file_manager
+local mail_client = RC.vars.mail_client
 local browser = RC.vars.browser
+local xrandr = require("xrandr")
 
 local _M = {}
 
@@ -89,8 +91,8 @@ function _M.get()
 
 
         -- File manager
-        awful.key({ modkey }, "e", function()
-                awful.util.spawn("kitty -e " .. file_manager)
+        awful.key({ modkey }, "f", function()
+                awful.util.spawn(terminal .. "-e " .. file_manager)
             end,
             { description = "open file manager", group = "launcher" }),
 
@@ -98,7 +100,19 @@ function _M.get()
         awful.key({ modkey }, "b", function()
                 awful.util.spawn(browser)
             end,
-            { description = "open firefox", group = "launcher" })
+            { description = "open your web browser", group = "launcher" }),
+
+        -- Mail
+        awful.key({ modkey }, "m", function()
+                awful.util.spawn(mail_client)
+            end,
+            { description = "open your mail client", group = "launcher" }),
+
+        -- Display configuration
+        awful.key({ modkey }, "c", function()
+                xrandr.xrandr()
+            end,
+            { description = "open your the display configuration", group = "launcher" }),
     )
 
     return globalkeys
