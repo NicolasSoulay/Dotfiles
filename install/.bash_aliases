@@ -15,3 +15,13 @@ alias egrep='egrep --color=auto'
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 alias cd="z"
+
+alias cat='batcat --paging=never'
+alias bat='batcat'
+
+alias fzf='sk'
+
+alias bathelp='batcat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
