@@ -108,6 +108,13 @@ function _M.get()
             end,
             { description = "open your mail client", group = "launcher" }),
 
+        -- Mail
+        awful.key({ modkey }, "p", function()
+                awful.util.spawn("kitty -e ncspot", { tag = "6" })
+            end,
+            { description = "open spotify", group = "launcher" }),
+
+
         -- Display configuration
         awful.key({ modkey }, "c", function()
                 xrandr.xrandr()

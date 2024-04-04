@@ -80,19 +80,23 @@ function _M.get(clientkeys, clientbuttons)
         },
 
         {
-            rule = { class = "Steam" },
+            rule = { name = "Steam" },
             properties = { tag = "3" }
         },
         {
-            rule = { class = "Discord" },
+            rule = { name = "Discord" },
             properties = { tag = "4" }
         },
 
         {
-            rule = { class = "Thunderbird" },
+            rule = { name = "Mozilla Thunderbird" },
             properties = { tag = "5" }
         },
 
+        {
+            rule = { class = "ncspot", instance = "kitty" },
+            properties = { tag = "6" }
+        },
     }
 
     return rules

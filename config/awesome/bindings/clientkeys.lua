@@ -13,7 +13,7 @@ function _M.get()
     local clientkeys = gears.table.join(
         awful.key({ modkey, "Shift" }, "c", function(c) c:kill() end,
             { description = "close", group = "client" }),
-        awful.key({ modkey, }, "m",
+        awful.key({ modkey, "Control" }, "m",
             function(c)
                 c.maximized = not c.maximized
                 c:raise()
