@@ -17,7 +17,7 @@ sudo apt install gimp firefox-esr thunderbird blender libreoffice timeshift stea
 sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura mc greetd bat
+sudo apt install kitty rofi numlockx exa neofetch zathura mc greetd bat fzf mpv
 
 # # Sway
 # sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar 
