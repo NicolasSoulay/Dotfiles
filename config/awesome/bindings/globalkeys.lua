@@ -92,7 +92,7 @@ function _M.get()
 
         -- File manager
         awful.key({ modkey }, "f", function()
-                awful.util.spawn(terminal .. "-e " .. file_manager)
+                awful.util.spawn(terminal .. " -e " .. file_manager)
             end,
             { description = "open file manager", group = "launcher" }),
 
@@ -108,9 +108,15 @@ function _M.get()
             end,
             { description = "open your mail client", group = "launcher" }),
 
-        -- Mail
+        -- Discord
+        awful.key({ modkey }, "d", function()
+                awful.util.spawn("Discord")
+            end,
+            { description = "open discord", group = "launcher" }),
+
+        -- ncspot
         awful.key({ modkey }, "p", function()
-                awful.util.spawn("kitty -e ncspot", { tag = "6" })
+                awful.util.spawn(terminal .. " -e ncspot", { tag = "6" })
             end,
             { description = "open spotify", group = "launcher" }),
 

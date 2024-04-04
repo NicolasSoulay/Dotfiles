@@ -68,3 +68,4 @@ require("main.signals")
 -- Autostart Applications
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("picom")
+awful.spawn.with_shell("dbus-run-session")
