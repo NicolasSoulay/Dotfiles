@@ -7,25 +7,29 @@ sudo apt upgrade
 source ~/.bashrc
 
 # Flatpak
-flatpak install flathub com.valvesoftware.Steam
-flatpak install flathub com.spotify.Client
 flatpak install flathub com.discordapp.Discord
 flatpak install flathub md.obsidian.Obsidian
 flatpak install flathub io.dbeaver.DBeaverCommunity
-flatpak install flathub com.getpostman.Postman
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
-sudo apt install gimp firefox-esr thunderbird blender libreoffice timeshift
+sudo apt install gimp firefox-esr thunderbird blender libreoffice timeshift steam-installer
+sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura mc sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar greetd
+sudo apt install kitty rofi numlockx exa neofetch zathura mc greetd
+
+# # Sway
+# sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar 
+#
+# # SwayFx/Hyprland dependency
+# sudo apt install glslang-tools libgbm-dev hwdata libcairo2-dev libcap-dev libdbus-1-dev libdisplay-info-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libliftoff-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libseat-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc tree wayland-protocols
+
+# Awesome Wm
+sudo apt install awesome picom nitrogen
 
 # Utils
-sudo apt install wget gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel pavucontrol playerctl
-
-# SwayFx/Hyprland dependency
-sudo apt install glslang-tools libgbm-dev hwdata libcairo2-dev libcap-dev libdbus-1-dev libdisplay-info-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libliftoff-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libseat-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc tree wayland-protocols
+sudo apt install wget fzf gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel pavucontrol playerctl mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
 
 # Librairie SDL
 sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
@@ -41,13 +45,6 @@ sudo apt install python3 python3-pip python3-venv python3-pynvim
 
 # C++
 sudo apt install gcc g++
-
-# C#
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
-sudo apt-get update 
-sudo apt-get install -y dotnet-sdk-8.0
 
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -97,6 +94,15 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 sudo su - $USER -c 'nvm install --lts'
 sudo su - $USER -c 'nvm install-latest-npm'
 sudo su - $USER -c 'npm install -g @angular/cli neovim sass typescript'
+
+# Packages cargo
+cargo install zoxide skim
+cargo install --locked ncspot
+
+# ani-cli
+git clone "https://github.com/pystardust/ani-cli.git"
+sudo cp ani-cli/ani-cli /usr/local/bin
+rm -rf ani-cli
 
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
 sudo apt update

@@ -33,3 +33,8 @@ export HISTFILESIZE=1000
 # I don't remember why, but I need this
 shopt -s globstar
 
+# case insensitive auto complete
+bind 'set completion-ignore-case on'
+
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"

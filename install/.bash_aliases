@@ -13,3 +13,5 @@ alias fgrep='rg -F --color=auto'
 alias egrep='egrep --color=auto'
 
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+
+alias cd="z"
