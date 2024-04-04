@@ -218,7 +218,7 @@ return {
                     "emmet_language_server", "html",
                     "tsserver", "angularls", "bashls", "jsonls",
                     "tailwindcss",
-                    "rust_analyzer", "clangd", "marksman", "csharp_ls" },
+                    "rust_analyzer", "clangd", "marksman" },
                 handlers = {
                     lsp_zero.default_setup,
                     lua_ls = function()

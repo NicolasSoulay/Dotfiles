@@ -26,7 +26,7 @@ sudo apt install kitty rofi numlockx exa neofetch zathura mc greetd
 # sudo apt install glslang-tools libgbm-dev hwdata libcairo2-dev libcap-dev libdbus-1-dev libdisplay-info-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libliftoff-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libseat-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc tree wayland-protocols
 
 # Awesome Wm
-sudo apt install awesome picom nitrogen
+sudo apt install awesome picom nitrogen xorg
 
 # Utils
 sudo apt install wget fzf gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel pavucontrol playerctl mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386

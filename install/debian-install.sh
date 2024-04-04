@@ -36,6 +36,7 @@ ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
 ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
 ln -sf ~/Dotfiles/config/sway ~/.config/sway
 ln -sf ~/Dotfiles/config/waybar ~/.config/waybar
+ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
 ln -sf ~/Dotfiles/config/zathura ~/.config/zathura
 ln -sf ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
 
