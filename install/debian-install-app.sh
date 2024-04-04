@@ -30,6 +30,7 @@ sudo apt install awesome picom nitrogen xorg
 
 # Utils
 sudo apt install wget fzf gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel pavucontrol playerctl mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
+sudo apt install libdbus-1-dev libncursesw5-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
 
 # Librairie SDL
 sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
@@ -103,6 +104,9 @@ cargo install --locked ncspot
 git clone "https://github.com/pystardust/ani-cli.git"
 sudo cp ani-cli/ani-cli /usr/local/bin
 rm -rf ani-cli
+
+# Starhip
+curl -sS https://starship.rs/install.sh | sh
 
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
 sudo apt update
