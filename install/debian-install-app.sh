@@ -109,6 +109,7 @@ rm -rf ani-cli
 curl -sS https://starship.rs/install.sh | sh
 
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
+sudo apt purge xdg-desktop-portal
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade 
 sudo apt autoremove
