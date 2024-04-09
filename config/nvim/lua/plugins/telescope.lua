@@ -30,6 +30,14 @@ function M.config()
                     ["<C-k>"] = actions.move_selection_previous,
                 },
             },
+            hidden = true,
+            no_ignore = true,
+            file_ignore_patterns = {
+                "node_modules",
+                ".ruff_cache",
+                ".git/",
+                ".mypy_cache",
+            },
         },
         pickers = {
             buffers = {
@@ -38,7 +46,17 @@ function M.config()
                         ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
                     }
                 }
-            }
+            },
+            find_files = {
+                hidden = true,
+                no_ignore = true,
+                file_ignore_patterns = {
+                    "node_modules",
+                    ".ruff_cache",
+                    ".git/",
+                    ".mypy_cache",
+                },
+            },
         },
         -- extensions = {
         --     ["ui-select"] = {
