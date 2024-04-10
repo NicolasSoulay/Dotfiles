@@ -10,6 +10,7 @@ source ~/.bashrc
 flatpak install flathub com.discordapp.Discord
 flatpak install flathub md.obsidian.Obsidian
 flatpak install flathub io.dbeaver.DBeaverCommunity
+flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
