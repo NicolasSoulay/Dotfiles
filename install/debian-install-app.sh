@@ -38,6 +38,9 @@ sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
 # MariaDb
 sudo apt install mariadb-server mariadb-client
 
+# Postgres
+sudo apt install postgresql postrgresql-client
+
 # PHP
 sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml composer php-symfony-console
 
@@ -107,6 +110,9 @@ rm -rf ani-cli
 
 # Starhip
 curl -sS https://starship.rs/install.sh | sh
+
+# Postman
+curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
 
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
 sudo apt purge xdg-desktop-portal

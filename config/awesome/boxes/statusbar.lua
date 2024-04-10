@@ -87,23 +87,21 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.mainmenu:connect_signal("button::press", function() awful.util.spawn("xfce4-popup-whiskermenu -p") end)
 
-    -- Create the bottom  wibox
-
-    s.myinvisiblewibar = awful.wibar({ screen = s, height = 40, opacity = 0, position = "bottom" })
-    s.mywibox = wibox({
-        screen  = s,
-        height  = 30,
-        opacity = 1,
-        width   = 250,
-        y       = sgeo.height - 40,
-        x       = sgeo.width - sgeo.width / 2 - 125, -- width of screen/2 - half the wibox width
-        ontop   = false,
-    })
-    s.mywibox.visible = true
+    -- -- Create the bottom  wibox
+    -- s.myinvisiblewibar = awful.wibar({ screen = s, height = 40, opacity = 0, position = "bottom" })
+    -- s.mywibox = wibox({
+    --     screen  = s,
+    --     height  = 30,
+    --     opacity = 1,
+    --     width   = 250,
+    --     y       = sgeo.height - 40,
+    --     x       = sgeo.width - sgeo.width / 2 - 125, -- width of screen/2 - half the wibox width
+    --     ontop   = false,
+    -- })
+    -- s.mywibox.visible = true
 
     -- Create the top wibar
     s.mywibar = awful.wibar({ screen = s, height = 30, opacity = 1, position = "top" })
-
 
     -- Add widgets to the wibar
     s.mywibar:setup {
@@ -111,7 +109,8 @@ awful.screen.connect_for_each_screen(function(s)
         expand = 'outside',
         { -- Left widgets
             layout = wibox.layout.flex.horizontal,
-            s.mytasklist,
+            -- s.mytasklist,
+            s.mytaglist,
         },
         {
             layout = wibox.layout.flex.horizontal,
@@ -124,25 +123,25 @@ awful.screen.connect_for_each_screen(function(s)
     }
     -- wibox.widget.systray:set_base_size(10)
 
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        expand = 'outside',
-        shape = function(cr, width, height)
-            gears.shape.rounded_rect(cr, width, height, 5)
-        end,
-
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            s.mainmenu,
-        },
-        {
-            s.mytaglist,
-            layout = wibox.layout.flex.horizontal,
-        },
-        { -- Right widgets
-            wibox.container.place(s.mylayoutbox, "right", "center"),
-            layout = wibox.layout.flex.horizontal,
-        },
-    }
+    -- s.mywibox:setup {
+    --     layout = wibox.layout.align.horizontal,
+    --     expand = 'outside',
+    --     shape = function(cr, width, height)
+    --         gears.shape.rounded_rect(cr, width, height, 5)
+    --     end,
+    --
+    --     { -- Left widgets
+    --         layout = wibox.layout.fixed.horizontal,
+    --         s.mainmenu,
+    --     },
+    --     {
+    --         s.mytaglist,
+    --         layout = wibox.layout.flex.horizontal,
+    --     },
+    --     { -- Right widgets
+    --         wibox.container.place(s.mylayoutbox, "right", "center"),
+    --         layout = wibox.layout.flex.horizontal,
+    --     },
+    -- }
 end)
 -- }}}

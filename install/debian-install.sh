@@ -16,6 +16,7 @@ touch  ~/.local/state/bash/history
 touch  ~/.local/share/wget-hsts
 
 # Config apache2
+sudo apt install apache2
 mkdir -p ~/Dev/localhost
 sudo chmod 0755 ~/Dev/localhost
 sudo chgrp www-data ~/Dev/localhost
@@ -49,8 +50,8 @@ fc-cache -f -v
 
 #pb clavier
 sudo touch /etc/modprobe.d/hid_apple.conf
-sudo echo options hid_apple fnmode=2 >> /etc/modprobe.d/hid_apple.conf
-sudo update-initramfs -u
+echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
+sudo update-initramfs -u -k all
 
 # Flatpack
 sudo apt install flatpak
