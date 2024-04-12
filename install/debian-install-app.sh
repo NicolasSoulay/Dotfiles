@@ -18,7 +18,7 @@ sudo apt install gimp firefox-esr thunderbird blender libreoffice timeshift stea
 sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura mc greetd bat fzf mpv
+sudo apt install kitty rofi numlockx exa neofetch zathura mc greetd bat fzf mpv xdg-desktop-portal pipewire pipewire-media-session
 
 # # Sway
 # sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar 
@@ -112,11 +112,7 @@ rm -rf ani-cli
 # Starhip
 curl -sS https://starship.rs/install.sh | sh
 
-# Postman
-curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
-sudo apt purge xdg-desktop-portal
 sudo apt update
 sudo apt upgrade 
 sudo apt autoremove
