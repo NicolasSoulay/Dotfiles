@@ -1,26 +1,62 @@
 # Color prompt
-
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
+# Home Scripts path
+export PATH="$HOME/.local/bin:$PATH"
 
-# Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+# XDG specification
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
 
-# Environment Variables
-if [ -f ~/.bash_env ]; then
-   . ~/.bash_env
-fi
+# XDG ninja recomendation
+export HISTFILE="$XDG_STATE_HOME"/bash/history
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export XCURSOR_PATH=/usr/share/icons:$XDG_DATA_HOME/icons
+export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export WINEPREFIX="$XDG_DATA_HOME"/wine
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export GCM_PLAINTEXT_STORE_PATH="$XDG_DATA_HOME"/gcm/store
+export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
 # Don't put duplicate lines in the history
 export HISTCONTROL=ignoredups
 #... and ignore same successive entries
 export HISTCONTROL=ignoreboth
+
+# ls with exa
+alias ls='exa -lah --icons --group-directories-first --sort=ext'
+alias lst='exa -a --tree --icons --group-directories-first --sort=ext'
+alias lsd='exa -lah --icons --sort=mod' 
+alias lss='exa -lah --icons --sort=size'
+
+# neovim
+alias v='nvim'
+ 
+# grep color
+alias grep='rg --color=auto'
+alias fgrep='rg -F --color=auto'
+alias egrep='egrep --color=auto'
+
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+
+alias cd="z"
+
+alias cat='batcat --paging=never'
+alias bat='batcat'
+
+alias fd='fdfind'
+
+alias fzf='sk'
 
 # Make sure all terminals save history
 shopt -s histappend
@@ -36,5 +72,14 @@ shopt -s globstar
 # case insensitive auto complete
 bind 'set completion-ignore-case on'
 
+. "$HOME/.local/share/cargo/env"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

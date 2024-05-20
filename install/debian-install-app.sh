@@ -43,7 +43,7 @@ sudo apt install mariadb-server mariadb-client
 sudo apt install postgresql postrgresql-client
 
 # PHP
-sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml composer php-symfony-console
+sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml php-zip composer php-symfony-console
 
 # Python
 sudo apt install python3 python3-pip python3-venv python3-pynvim

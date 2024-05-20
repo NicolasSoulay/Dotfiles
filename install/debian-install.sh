@@ -28,17 +28,14 @@ sudo ln -s ~/Dev/localhost /var/www/html
 rm ~/.bashrc
 rm ~/.bash_aliases
 cp ~/Dotfiles/install/.bashrc ~/.bashrc
-cp ~/Dotfiles/install/.bash_aliases ~/.bash_aliases
-cp ~/Dotfiles/install/.bash_env ~/.bash_env
 
 # Tous les fichier de config + les wallpapers
 ln -sf ~/Dotfiles/config/kitty ~/.config/kitty
 ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
 ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
-ln -sf ~/Dotfiles/config/sway ~/.config/sway
-ln -sf ~/Dotfiles/config/waybar ~/.config/waybar
 ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
 ln -sf ~/Dotfiles/config/zathura ~/.config/zathura
+ln -sf ~/Dotfiles/config/tmux ~/.config/tmux
 ln -sf ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
 
 # On fais les liens pour les scripts
@@ -48,10 +45,10 @@ ln -sf ~/Dotfiles/bin ~/.local/bin
 ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
 fc-cache -f -v
 
-#pb clavier
-sudo touch /etc/modprobe.d/hid_apple.conf
-echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
-sudo update-initramfs -u -k all
+# pb clavier
+# sudo touch /etc/modprobe.d/hid_apple.conf
+# echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
+# sudo update-initramfs -u -k all
 
 # Flatpack
 sudo apt install flatpak
