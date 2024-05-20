@@ -89,7 +89,6 @@ function _M.get()
             end,
             { description = "run rofi window", group = "launcher" }),
 
-
         -- File manager
         awful.key({ modkey }, "f", function()
                 awful.util.spawn(terminal .. " -e " .. file_manager)
@@ -125,7 +124,7 @@ function _M.get()
         awful.key({ modkey }, "c", function()
                 xrandr.xrandr()
             end,
-            { description = "open your the display configuration", group = "launcher" })
+            { description = "open the display configuration", group = "launcher" })
     )
 
     return globalkeys

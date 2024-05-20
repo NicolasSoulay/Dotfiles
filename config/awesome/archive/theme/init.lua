@@ -63,8 +63,8 @@ theme.menu_width                                = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal              = "~/.config/awesome/theme/assets/close_normal.png"
-theme.titlebar_close_button_focus               = "~/.config/awesome/theme/assets/close_normal.png"
+theme.titlebar_close_button_normal              = "./assets/close_normal.png"
+theme.titlebar_close_button_focus               = "./assets/close_normal.png"
 
 theme.titlebar_minimize_button_normal           = themes_path .. "default/titlebar/minimize_normal.png"
 theme.titlebar_minimize_button_focus            = themes_path .. "default/titlebar/minimize_focus.png"
