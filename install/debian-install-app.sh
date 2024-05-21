@@ -11,6 +11,7 @@ flatpak install flathub com.discordapp.Discord
 flatpak install flathub md.obsidian.Obsidian
 flatpak install flathub io.dbeaver.DBeaverCommunity
 flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
+flatpak install flathub net.lutris.Lutris
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
@@ -19,12 +20,6 @@ sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 
 # Desktop env
 sudo apt install kitty rofi numlockx exa neofetch zathura mc greetd bat fzf mpv
-
-# # Sway
-# sway swaybg swayidle swaylock xdg-desktop-portal-wlr xwayland waybar 
-#
-# # SwayFx/Hyprland dependency
-# sudo apt install glslang-tools libgbm-dev hwdata libcairo2-dev libcap-dev libdbus-1-dev libdisplay-info-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libliftoff-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libseat-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc tree wayland-protocols
 
 # Awesome Wm
 sudo apt install awesome picom nitrogen xorg
