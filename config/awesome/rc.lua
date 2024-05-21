@@ -12,7 +12,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -68,9 +67,9 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+    awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.max,
-    awful.layout.suit.tile,
     awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
@@ -121,8 +120,6 @@ mylauncher = awful.widget.launcher({
     menu = mymainmenu
 })
 
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
@@ -313,10 +310,6 @@ globalkeys = gears.table.join(
         end,
         { description = "lua execute prompt", group = "awesome" }),
 
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-        { description = "show the menubar", group = "launcher" }),
-
     -- Rofi window
     awful.key({ "Mod1", }, "Tab", function()
             awful.util.spawn("rofi -show window")
@@ -345,7 +338,19 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "m", function()
             awful.util.spawn(mail_client)
         end,
-        { description = "open your mail client", group = "launcher" })
+        { description = "open your mail client", group = "launcher" }),
+
+    -- Discord
+    awful.key({ modkey }, "d", function()
+            awful.util.spawn("Discord")
+        end,
+        { description = "open discord", group = "launcher" }),
+
+    -- ncspot
+    awful.key({ modkey }, "p", function()
+            awful.util.spawn(terminal .. " -e ncspot", { tag = "6" })
+        end,
+        { description = "open spotify", group = "launcher" })
 )
 
 clientkeys = gears.table.join(
@@ -534,9 +539,29 @@ awful.rules.rules = {
         properties = { titlebars_enabled = true }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    {
+        rule = { class = "Firefox" },
+        properties = { tag = "2" }
+    },
+
+    {
+        rule = { name = "Steam" },
+        properties = { tag = "3" }
+    },
+    {
+        rule = { name = "Discord" },
+        properties = { tag = "4" }
+    },
+
+    {
+        rule = { name = "Mozilla Thunderbird" },
+        properties = { tag = "5" }
+    },
+
+    {
+        rule = { class = "ncspot", instance = "kitty" },
+        properties = { tag = "6" }
+    }
 }
 -- }}}
 
