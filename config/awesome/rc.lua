@@ -563,7 +563,7 @@ awful.rules.rules = {
     },
 
     {
-        rule = { name = "EVE Online" },
+        rule = { name = "EVE" },
         properties = { tag = "3", fullscreen = true }
     },
 
