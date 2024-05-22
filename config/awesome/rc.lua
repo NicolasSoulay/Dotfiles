@@ -68,9 +68,9 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.floating,
+    -- awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
@@ -171,7 +171,7 @@ local tasklist_buttons = gears.table.join(
 
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "", "󰈹", "", "󰭹", "", "", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -213,7 +213,7 @@ awful.screen.connect_for_each_screen(function(s)
         {             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
-            s.mylayoutbox,
+            -- s.mylayoutbox,
             wibox.widget.systray(),
         },
     }
@@ -345,6 +345,12 @@ globalkeys = gears.table.join(
             awful.util.spawn("Discord")
         end,
         { description = "open discord", group = "launcher" }),
+
+    -- pavucontrol
+    awful.key({ modkey }, "v", function()
+            awful.util.spawn("pavucontrol")
+        end,
+        { description = "open pavucontrol", group = "launcher" }),
 
     -- ncspot
     awful.key({ modkey }, "p", function()
@@ -522,6 +528,8 @@ awful.rules.rules = {
             -- and the name shown there might not match defined rules here.
             name = {
                 "Event Tester", -- xev.
+                "Thunar",
+                "Volume Control"
             },
             role = {
                 "AlarmWindow",   -- Thunderbird's calendar.
@@ -569,10 +577,10 @@ awful.rules.rules = {
         properties = { tag = "5" }
     },
 
-    {
-        rule = { name = "Thunar" },
-        properties = { floating = true }
-    },
+    -- {
+    --     rule = { name = "Thunar" },
+    --     properties = { floating = true }
+    -- },
 
     {
         rule = { class = "ncspot", instance = "kitty" },
@@ -586,7 +594,9 @@ awful.rules.rules = {
 client.connect_signal("manage", function(c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    if not awesome.startup then awful.client.setslave(c) end
+
+    if c.floating then c.shape = gears.shape.rounded_rect end
 
     if awesome.startup
         and not c.size_hints.user_position
