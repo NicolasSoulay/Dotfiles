@@ -6,7 +6,6 @@ local theme_assets                              = require("beautiful.theme_asset
 local xresources                                = require("beautiful.xresources")
 local dpi                                       = xresources.apply_dpi
 
-local gfs                                       = require("gears.filesystem")
 local themes_path                               = "~/.config/awesome/themes/"
 
 local theme                                     = {}
@@ -29,6 +28,8 @@ theme.border_width                              = dpi(0)
 theme.border_normal                             = "#282828"
 theme.border_focus                              = "#C7C7B6"
 theme.border_marked                             = "#282828"
+
+theme.titlebar_buttons_spacing                  = dpi(3)
 
 -- There are other variable sets
 -- overriding the default one when

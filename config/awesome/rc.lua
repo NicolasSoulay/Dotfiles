@@ -52,7 +52,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/theme.lua")
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -546,8 +546,19 @@ awful.rules.rules = {
 
     {
         rule = { name = "Steam" },
-        properties = { tag = "3" }
+        properties = { tag = "3", floating = true }
     },
+
+    {
+        rule = { name = "EVE Online Launcher" },
+        properties = { tag = "3", floating = true }
+    },
+
+    {
+        rule = { name = "EVE Online" },
+        properties = { tag = "3", fullscreen = true }
+    },
+
     {
         rule = { name = "Discord" },
         properties = { tag = "4" }
@@ -556,6 +567,11 @@ awful.rules.rules = {
     {
         rule = { name = "Mozilla Thunderbird" },
         properties = { tag = "5" }
+    },
+
+    {
+        rule = { name = "Thunar" },
+        properties = { floating = true }
     },
 
     {
@@ -598,7 +614,7 @@ client.connect_signal("request::titlebars", function(c)
         size = 20,
     }):setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
+            -- awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
@@ -611,21 +627,22 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.floatingbutton(c),
-            awful.titlebar.widget.maximizedbutton(c),
-            -- awful.titlebar.widget.stickybutton(c),
-            -- awful.titlebar.widget.ontopbutton(c),
-            awful.titlebar.widget.closebutton(c),
-            layout = wibox.layout.fixed.horizontal()
+            {
+                awful.titlebar.widget.floatingbutton(c),
+                awful.titlebar.widget.maximizedbutton(c),
+                awful.titlebar.widget.closebutton(c),
+                spacing = beautiful.titlebar_buttons_spacing,
+                layout = wibox.layout.fixed.horizontal()
+            },
+            top = 1,
+            bottom = 1,
+            left = 1,
+            right = 3,
+            widget = wibox.container.margin
         },
         layout = wibox.layout.align.horizontal
     }
 end)
-
--- -- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal("mouse::enter", function(c)
---     c:emit_signal("request::activate", "mouse_enter", { raise = false })
--- end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
