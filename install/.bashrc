@@ -60,7 +60,6 @@ alias bat='batcat'
 alias fd='fdfind'
 
 alias fzf='sk'
-alias tldr='tealdeer'
 
 # Make sure all terminals save history
 shopt -s histappend
