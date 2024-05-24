@@ -550,42 +550,37 @@ awful.rules.rules = {
 
     {
         rule = { class = "Firefox" },
-        properties = { tag = "2" }
+        properties = { tag = "󰈹" }
     },
 
     {
         rule = { name = "Steam" },
-        properties = { tag = "3", floating = true }
+        properties = { tag = "", floating = true }
     },
 
     {
         rule = { name = "EVE Online Launcher" },
-        properties = { tag = "3", floating = true }
+        properties = { tag = "", floating = true }
     },
 
     {
         rule = { name = "EVE" },
-        properties = { tag = "3", fullscreen = true }
+        properties = { tag = "", fullscreen = true }
     },
 
     {
         rule = { name = "Discord" },
-        properties = { tag = "4" }
+        properties = { tag = "󰭹" }
     },
 
     {
         rule = { name = "Mozilla Thunderbird" },
-        properties = { tag = "5" }
+        properties = { tag = "" }
     },
-
-    -- {
-    --     rule = { name = "Thunar" },
-    --     properties = { floating = true }
-    -- },
 
     {
         rule = { class = "ncspot", instance = "kitty" },
-        properties = { tag = "6" }
+        properties = { tag = "" }
     }
 }
 -- }}}

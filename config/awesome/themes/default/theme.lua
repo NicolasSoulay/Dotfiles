@@ -13,7 +13,7 @@ local theme                                     = {}
 theme.font                                      = "JetBrainsMono NFM"
 
 theme.bg_normal                                 = "#282828"
-theme.bg_focus                                  = "#282828"
+theme.bg_focus                                  = "#505050"
 theme.bg_urgent                                 = "#ff0000"
 theme.bg_minimize                               = "#444444"
 theme.bg_systray                                = theme.bg_normal
@@ -30,6 +30,11 @@ theme.border_focus                              = "#C7C7B6"
 theme.border_marked                             = "#282828"
 
 theme.titlebar_buttons_spacing                  = dpi(3)
+
+theme.tasklist_bg_focus                         = "#282828"
+
+theme.titlebar_bg_normal                        = "#282828"
+theme.titlebar_bg_focus                         = "#282828"
 
 -- There are other variable sets
 -- overriding the default one when

@@ -109,6 +109,13 @@ rm -rf ani-cli
 curl -sS https://starship.rs/install.sh | sh
 
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
+sudo rm ~/.wget-hsts
+sudo rm ~/.bash_history
+
+mkdir ~/.config/git
+mv ~/.gitconfig ~/.config/git/config
+sed -i '$ d' ~/.bashrc
+
 sudo apt update
 sudo apt upgrade 
 sudo apt autoremove
