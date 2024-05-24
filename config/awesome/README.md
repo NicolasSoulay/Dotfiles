@@ -10,5 +10,5 @@
 - power off / restart menu
 - custom icons for app
 - screenshot tool
-- double click on the titlebar for maximizing/minimizing the screen
+- ~~double click on the titlebar for maximizing/minimizing the screen~~
 - ~~define starting state for app (floating, fullscreen, tilled...)~~
