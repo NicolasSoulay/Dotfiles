@@ -97,7 +97,8 @@ sudo su - $USER -c 'nvm install-latest-npm'
 sudo su - $USER -c 'npm install -g @angular/cli neovim sass typescript'
 
 # Packages cargo
-cargo install zoxide skim uwuify
+cargo install skim uwuify
+cargo install zoxide --locked
 cargo install --locked ncspot
 
 # ani-cli
