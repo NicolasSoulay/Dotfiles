@@ -15,7 +15,7 @@ flatpak install flathub net.lutris.Lutris
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
-sudo apt install gimp firefox-esr thunderbird blender libreoffice timeshift steam-installer
+sudo apt install gimp firefox-esr thunderbird blender libreoffice qbittorrent timeshift steam-installer
 sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 
 # Desktop env
@@ -38,7 +38,7 @@ sudo apt install mariadb-server mariadb-client
 sudo apt install postgresql postrgresql-client
 
 # PHP
-sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml php-zip composer php-symfony-console
+sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml php-zip composer php-symfony-console php-gd
 
 # Python
 sudo apt install python3 python3-pip python3-venv python3-pynvim
@@ -97,7 +97,7 @@ sudo su - $USER -c 'nvm install-latest-npm'
 sudo su - $USER -c 'npm install -g @angular/cli neovim sass typescript'
 
 # Packages cargo
-cargo install zoxide skim
+cargo install zoxide skim uwuify
 cargo install --locked ncspot
 
 # ani-cli
