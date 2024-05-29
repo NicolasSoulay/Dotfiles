@@ -125,9 +125,36 @@ mylauncher = awful.widget.launcher({
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
+-- Calendar widget
+local calendar_widget = require("widgets.calendar")
+local cw = calendar_widget({
+    theme = 'naughty',
+    placement = 'bottom_right',
+    start_sunday = false,
+    radius = 8,
+    previous_month_button = 1,
+    next_month_button = 3,
+})
+
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %H:%M  %d/%m/%Y ")
+mytextclock = wibox.widget.textclock("  %d/%m/%Y %H:%M  ")
+mytextclock:connect_signal("button::press",
+    function(_, _, _, button)
+        if button == 1 then cw.toggle() end
+    end)
+
+-- Package update widget
+local apt_widget = require("widgets.apt-widget")
+
+-- Logout menu widget
+local logout_menu_widget = require("widgets.logout-menu")
+
+-- Volume control widget
+local volume_widget = require('widgets.volume')
+
+-- Bluetooth widget
+local bluetooth = require("widgets.bluetooth")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -213,8 +240,13 @@ awful.screen.connect_for_each_screen(function(s)
         {             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
-            -- s.mylayoutbox,
             wibox.widget.systray(),
+            volume_widget{
+                widget_type = 'arc'
+            },
+            apt_widget(),
+            bluetooth.new(),
+            logout_menu_widget(),
         },
     }
 end)

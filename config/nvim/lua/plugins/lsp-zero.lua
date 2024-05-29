@@ -197,7 +197,7 @@ return {
                 -- see :help lsp-zero-keybindings
                 -- to learn the available actions
                 if client.supports_method "textDocument/inlayHint" then
-                    vim.lsp.inlay_hint.enable(bufnr, true)
+                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                 end
                 lsp_zero.buffer_autoformat()
                 lsp_zero.default_keymaps({ buffer = bufnr })
