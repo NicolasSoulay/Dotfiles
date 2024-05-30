@@ -146,15 +146,23 @@ mytextclock:connect_signal("button::press",
 
 -- Package update widget
 local apt_widget = require("widgets.apt-widget")
+local myapt = apt_widget()
 
 -- Logout menu widget
 local logout_menu_widget = require("widgets.logout-menu")
+local mylogout = logout_menu_widget()
+
+local mysystray = wibox.widget.systray()
 
 -- Volume control widget
 local volume_widget = require('widgets.volume')
+local myvolume = volume_widget {
+    widget_type = 'arc'
+}
 
 -- Bluetooth widget
 local bluetooth = require("widgets.bluetooth")
+local mybluetooth = bluetooth.new()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -240,13 +248,11 @@ awful.screen.connect_for_each_screen(function(s)
         {             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
-            wibox.widget.systray(),
-            volume_widget{
-                widget_type = 'arc'
-            },
-            apt_widget(),
-            bluetooth.new(),
-            logout_menu_widget(),
+            mysystray,
+            myvolume,
+            myapt,
+            mybluetooth,
+            mylogout,
         },
     }
 end)
@@ -272,6 +278,19 @@ globalkeys = gears.table.join(
         { description = "view next", group = "tag" }),
     awful.key({ modkey, "Control" }, "l", awful.tag.viewnext,
         { description = "view next", group = "tag" }),
+
+    awful.key({ modkey }, "=",
+        function()
+            volume_widget:inc(5)
+        end,
+        { description = "volume up", group = "awesome" }
+    ),
+    awful.key({ modkey }, "-",
+        function()
+            volume_widget:dec(5)
+        end,
+        { description = "volume down", group = "awesome" }
+    ),
 
     awful.key({ modkey, }, "l",
         function()
@@ -355,7 +374,7 @@ globalkeys = gears.table.join(
         { description = "open file manager", group = "launcher" }),
 
     -- Tmux sessionizer
-    awful.key({ "Control" }, "f", function()
+    awful.key({ modkey }, "t", function()
             awful.util.spawn(terminal .. " -e tmux-sessionizer")
         end,
         { description = "open tmux-sessionizer", group = "launcher" }),
