@@ -7,6 +7,7 @@ fi
 
 # Home Scripts path
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/sbin:$PATH"
 
 # Variables
 export EDITOR="/usr/bin/nvim"
@@ -30,6 +31,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export GCM_PLAINTEXT_STORE_PATH="$XDG_DATA_HOME"/gcm/store
 export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship/starship.toml
 
 # Don't put duplicate lines in the history
 export HISTCONTROL=ignoredups

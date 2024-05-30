@@ -30,12 +30,14 @@ rm ~/.bash_aliases
 cp ~/Dotfiles/install/.bashrc ~/.bashrc
 
 # Tous les fichier de config + les wallpapers
+ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
 ln -sf ~/Dotfiles/config/kitty ~/.config/kitty
 ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
 ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
-ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
-ln -sf ~/Dotfiles/config/zathura ~/.config/zathura
+ln -sf ~/Dotfiles/config/starship ~/.config/starship
 ln -sf ~/Dotfiles/config/tmux ~/.config/tmux
+ln -sf ~/Dotfiles/config/wezterm ~/.config/wezterm
+ln -sf ~/Dotfiles/config/zathura ~/.config/zathura
 ln -sf ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
 
 # On fais les liens pour les scripts
