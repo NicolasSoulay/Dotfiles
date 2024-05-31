@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fdfind . ~/Dev ~/Dev/localhost/ /home/ ~/Dotfiles/config/ ~/Dotfiles -d 1 --type d -L | fzf)
+    selected=$(fdfind . ~/Dev ~/Dev/localhost/ /home/ ~/Dotfiles/config/ ~/Dotfiles -d 1 --type d -L | sk)
 fi
 
 if [[ -z $selected ]]; then

@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+list=("Other" "TeckenESN" "NicolasSoulay")
+selected=$(printf "%s\n" "${list[@]}" | sk)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+if [[ $selected != "Other" ]]; then
+    repo=$(gh repo list $selected | sk | awk '{print $1}')
+else
+    echo "enter the user name:"
+    read name
+    repo=$(gh repo list $name | sk | awk '{print $1}')
+fi
+
+if [[ -z $repo ]]; then
+    exit 0
+fi
+
+git clone https://github.com/"$repo"
