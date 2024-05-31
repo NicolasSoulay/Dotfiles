@@ -61,7 +61,7 @@ local function worker(user_args)
     local onlock = args.onlock or function() awful.spawn.with_shell("i3lock") end
     local onreboot = args.onreboot or function() awful.spawn.with_shell("reboot") end
     local onsuspend = args.onsuspend or function() awful.spawn.with_shell("systemctl suspend") end
-    local onpoweroff = args.onpoweroff or function() awful.spawn.with_shell("shutdown now") end
+    local onpoweroff = function() awful.spawn.with_shell("shutdown now") end
 
     local menu_items = {
         { name = 'Log out',   icon_name = 'log-out.svg',    command = onlogout },
