@@ -39,6 +39,7 @@ ln -sf ~/Dotfiles/config/tmux ~/.config/tmux
 ln -sf ~/Dotfiles/config/wezterm ~/.config/wezterm
 ln -sf ~/Dotfiles/config/zathura ~/.config/zathura
 ln -sf ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
+ln -sf ~/Dotfiles/screenshots ~/Pictures/Screenshots
 
 # On fais les liens pour les scripts
 ln -sf ~/Dotfiles/bin ~/.local/bin
