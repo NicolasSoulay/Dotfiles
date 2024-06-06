@@ -202,7 +202,7 @@ local tasklist_buttons = gears.table.join(
 
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
-    awful.tag({ "", "󰈹", "", "󰭹", "", "", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "", "󰈹", "", "", "󰭹", "", "", "" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -305,7 +305,11 @@ globalkeys = gears.table.join(
     -- Layout manipulation
     awful.key({ modkey, "Mod1" }, "l", function() awful.screen.focus_relative(1) end,
         { description = "focus the next screen", group = "screen" }),
+    awful.key({ modkey, "Mod1" }, "Right", function() awful.screen.focus_relative(1) end,
+        { description = "focus the next screen", group = "screen" }),
     awful.key({ modkey, "Mod1" }, "h", function() awful.screen.focus_relative(-1) end,
+        { description = "focus the previous screen", group = "screen" }),
+    awful.key({ modkey, "Mod1" }, "Left", function() awful.screen.focus_relative(-1) end,
         { description = "focus the previous screen", group = "screen" }),
 
     -- Standard program
