@@ -144,10 +144,6 @@ mytextclock:connect_signal("button::press",
         if button == 1 then cw.toggle() end
     end)
 
--- Package update widget
-local apt_widget = require("widgets.apt-widget")
-local myapt = apt_widget()
-
 -- Logout menu widget
 local logout_menu_widget = require("widgets.logout-menu")
 local mylogout = logout_menu_widget()
@@ -250,7 +246,6 @@ awful.screen.connect_for_each_screen(function(s)
             mytextclock,
             mysystray,
             myvolume,
-            myapt,
             mybluetooth,
             mylogout,
         },
@@ -691,9 +686,19 @@ client.connect_signal("request::titlebars", function(c)
         size = 20,
     }):setup {
         { -- Left
-            -- awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
+            {
+                awful.titlebar.widget.floatingbutton(c),
+                awful.titlebar.widget.stickybutton(c),
+                awful.titlebar.widget.ontopbutton(c),
+                spacing = beautiful.titlebar_buttons_spacing,
+                layout = wibox.layout.fixed.horizontal()
+            },
+            top    = 3,
+            bottom = 1,
+            left   = 3,
+            right  = 1,
+            widget = wibox.container.margin
+
         },
         {     -- Middle
             { -- Title
@@ -705,7 +710,7 @@ client.connect_signal("request::titlebars", function(c)
         },
         { -- Right
             {
-                awful.titlebar.widget.floatingbutton(c),
+                awful.titlebar.widget.minimizebutton(c),
                 awful.titlebar.widget.maximizedbutton(c),
                 awful.titlebar.widget.closebutton(c),
                 spacing = beautiful.titlebar_buttons_spacing,

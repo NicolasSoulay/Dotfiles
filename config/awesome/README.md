@@ -6,7 +6,7 @@
 - volume control -> implemented, need to be redone for better ux
 - wifi manager
 - bluetooth manager -> implemented, need to change icon
-- update manager -> implemented, need to configure icon and scheme
+- update manager
 - ~~power off / restart menu~~
 - custom icons for app
 - screenshot tool
