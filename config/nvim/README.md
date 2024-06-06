@@ -27,3 +27,37 @@
 - __implement__: different indent style depending on the type of file
 - __problem__: indent with 'tab' key does not work most of the time in insert mode
 - __problem__: bufferline glitch when hovering
+
+
+action preview 5072b1b
+cmp buffer 3022dbc
+cmp cmdline 8ee981b
+cmp emoji 0cad702
+cmp nvim lsp 5af77f5
+cmp nvim lua f12408b
+cmp path 91ff86c
+cmp luasnip 05a9ab2
+comment nvim e51f2b1
+friendly snippet dcd4a58
+gitsigns 078041e
+gruvbox b17fe51
+kanagawa bfa818c
+lazy 83493db
+lsp zero 14c9164
+luasnip a7a4b46
+mason lspconfig.nvim 82c7cb0
+mason 3b5068f
+nvim autopair c6139ca
+nvim cmp 04e0ca3
+nvim lspconfing 8c18318
+nvim tree 707b24a
+nvim treesitter f197a15
+nvim ts context comment 7ab799a
+nvim web devicon cb0c967
+onenord ce4aacb
+playground ba48c6a
+plenary 5001291
+project 8c6bad7
+telescope 6312868
+toggleterm 193786e
+vin fugitive 8d4e8d4
