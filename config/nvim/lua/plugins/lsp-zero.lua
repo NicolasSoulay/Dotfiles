@@ -1,7 +1,7 @@
 return {
     {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
+        -- branch = 'v3.x',
         lazy = true,
         config = false,
         init = function()
@@ -47,6 +47,7 @@ return {
             {
                 "L3MON4D3/LuaSnip",
                 event = "InsertEnter",
+                build = "make install_jsregexp",
                 dependencies = {
                     "rafamadriz/friendly-snippets",
                 },

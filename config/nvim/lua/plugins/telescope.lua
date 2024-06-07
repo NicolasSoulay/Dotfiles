@@ -1,9 +1,9 @@
 local M = {
     'nvim-telescope/telescope.nvim',
-    version = '0.1.x',
+    -- version = '0.1.x',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        version = "0.1.x"
+        -- version = "0.1.x"
     },
     -- {
     --     'nvim-telescope/telescope-ui-select.nvim'

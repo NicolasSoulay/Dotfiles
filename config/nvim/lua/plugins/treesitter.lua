@@ -1,9 +1,7 @@
 local M = {
     "nvim-treesitter/nvim-treesitter",
-    version = "v0.9.x",
-    build = function()
-        require("nvim-treesitter.install").update({ with_sync = true })
-    end,
+    -- version = "v0.9.x",
+    build = ":TSUpdate"
 }
 function M.config()
     -- local treesitter = require "nvim-treesitter"
