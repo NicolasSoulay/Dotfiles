@@ -98,8 +98,9 @@ sudo su - $USER -c 'npm install -g @angular/cli neovim sass typescript'
 
 # Packages cargo
 cargo install skim uwuify
-cargo install zoxide --locked
 cargo install --locked ncspot
+cargo install --locked zellij
+cargo install --locked zoxide
 
 # ani-cli
 git clone "https://github.com/pystardust/ani-cli.git"

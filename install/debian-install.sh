@@ -38,6 +38,7 @@ ln -sf ~/Dotfiles/config/starship ~/.config/starship
 ln -sf ~/Dotfiles/config/tmux ~/.config/tmux
 ln -sf ~/Dotfiles/config/wezterm ~/.config/wezterm
 ln -sf ~/Dotfiles/config/zathura ~/.config/zathura
+ln -sf ~/Dotfiles/config/zellij ~/.config/zellij
 ln -sf ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
 ln -sf ~/Dotfiles/screenshots ~/Pictures/Screenshots
 
