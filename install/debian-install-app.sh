@@ -35,7 +35,7 @@ sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
 sudo apt install mariadb-server mariadb-client
 
 # Postgres
-sudo apt install postgresql postrgresql-client
+sudo apt install postgresql postgresql-client
 
 # PHP
 sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml php-zip composer php-symfony-console php-gd
