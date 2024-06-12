@@ -15,7 +15,7 @@ flatpak install flathub net.lutris.Lutris
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
-sudo apt install gimp firefox-esr thunderbird blender libreoffice qbittorrent timeshift steam-installer
+sudo apt install gimp firefox-esr thunderbird blender libreoffice qbittorrent timeshift steam-installer dwarf-fortress
 sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 
 # Desktop env
