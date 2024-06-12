@@ -32,6 +32,11 @@ if awesome.startup_errors then
     })
 end
 
+function naughty.config.notify_callback(args)
+    awful.spawn.with_shell('paplay ~/.config/awesome/themes/default/sounds/notification.wav')
+    return args
+end
+
 -- Handle runtime errors after startup
 do
     local in_error = false
@@ -265,13 +270,29 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
-    awful.key({ modkey, "Control" }, "Left", awful.tag.viewprev,
+    awful.key({ modkey, "Control" }, "Left",
+        function()
+            awful.spawn.with_shell('paplay ~/.config/awesome/themes/default/sounds/navigation_left.wav')
+            awful.tag.viewprev()
+        end,
         { description = "view previous", group = "tag" }),
-    awful.key({ modkey, "Control" }, "h", awful.tag.viewprev,
+    awful.key({ modkey, "Control" }, "h",
+        function()
+            awful.spawn.with_shell('paplay ~/.config/awesome/themes/default/sounds/navigation_left.wav')
+            awful.tag.viewprev()
+        end,
         { description = "view previous", group = "tag" }),
-    awful.key({ modkey, "Control" }, "Right", awful.tag.viewnext,
+    awful.key({ modkey, "Control" }, "Right",
+        function()
+            awful.spawn.with_shell('paplay ~/.config/awesome/themes/default/sounds/navigation_right.wav')
+            awful.tag.viewnext()
+        end,
         { description = "view next", group = "tag" }),
-    awful.key({ modkey, "Control" }, "l", awful.tag.viewnext,
+    awful.key({ modkey, "Control" }, "l",
+        function()
+            awful.spawn.with_shell('paplay ~/.config/awesome/themes/default/sounds/navigation_right.wav')
+            awful.tag.viewnext()
+        end,
         { description = "view next", group = "tag" }),
 
     awful.key({ modkey }, "=",
@@ -445,6 +466,7 @@ clientkeys = gears.table.join(
                     screen.tags[idx]:view_only()
                 end
             end
+            awful.spawn.with_shell('paplay ~/.config/awesome/themes/default/sounds/navigation_right.wav')
         end,
         { description = "move focused client to next tag and view tag", group = "client" }),
     awful.key({ modkey, "Control", "Mod1" }, "Left", function()
@@ -458,6 +480,7 @@ clientkeys = gears.table.join(
                     screen.tags[idx]:view_only()
                 end
             end
+            awful.spawn.with_shell('paplay ~/.config/awesome/themes/default/sounds/navigation_left.wav')
         end,
         { description = "move focused client to previous tag and view tag", group = "client" }),
     awful.key({ modkey, "Control", "Mod1" }, "l", function()
@@ -471,6 +494,7 @@ clientkeys = gears.table.join(
                     screen.tags[idx]:view_only()
                 end
             end
+            awful.spawn.with_shell('paplay ~/.config/awesome/themes/default/sounds/navigation_right.wav')
         end,
         { description = "move focused client to next tag and view tag", group = "client" }),
     awful.key({ modkey, "Control", "Mod1" }, "h", function()
@@ -484,6 +508,7 @@ clientkeys = gears.table.join(
                     screen.tags[idx]:view_only()
                 end
             end
+            awful.spawn.with_shell('paplay ~/.config/awesome/themes/default/sounds/navigation_left.wav')
         end,
         { description = "move focused client to previous tag and view tag", group = "client" })
 )
@@ -738,3 +763,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("xrandr --output DisplayPort-2 --mode 3440x1440 --rate 100")
+awful.spawn.with_shell("paplay ~/.config/awesome/themes/default/sounds/startup.wav")
