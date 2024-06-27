@@ -393,11 +393,11 @@ globalkeys = gears.table.join(
         end,
         { description = "open file manager", group = "launcher" }),
 
-    -- zellij sessionizer
+    -- tmux sessionizer
     awful.key({ modkey }, "t", function()
-            awful.util.spawn(terminal .. " -e zellij-sessionizer")
+            awful.util.spawn(terminal .. " -e tmux-sessionizer")
         end,
-        { description = "open zellij-sessionizer", group = "launcher" }),
+        { description = "open tmux-sessionizer", group = "launcher" }),
 
     -- Browser
     awful.key({ modkey }, "b", function()
