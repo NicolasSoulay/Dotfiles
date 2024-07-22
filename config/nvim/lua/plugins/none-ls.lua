@@ -20,9 +20,8 @@ function M.config()
             formatting.prettierd,
             formatting.black,
             require("none-ls.code_actions.eslint"),
-            formatting.phpcsfixer.with({
-                args = { "fix", "$FILENAME" },
-            }),
+            formatting.phpcsfixer,
+            diagnostics.twigcs,
             -- formatting.twig_cs_fixer,
         },
     }
