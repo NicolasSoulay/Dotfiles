@@ -20,12 +20,10 @@ function M.config()
             enable = true,
             disable = { "" },
         },
-
         autopairs = {
             enable = true,
             disable = { "" },
         },
-
         indent = {
             enable = true,
             disable = { "" },
