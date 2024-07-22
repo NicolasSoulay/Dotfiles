@@ -1,5 +1,7 @@
 require "core.options"
 require "core.keymaps"
 require "core.statusline"
+require "core.autocomands"
 require "core.lazy"
 require "core.colorscheme"
+require "core.diagnostic"

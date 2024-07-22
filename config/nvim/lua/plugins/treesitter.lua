@@ -1,8 +1,9 @@
 local M = {
     "nvim-treesitter/nvim-treesitter",
-    -- version = "v0.9.x",
-    build = ":TSUpdate"
+    event = { "BufReadPost", "BufNewFile" },
+    build = ":TSUpdate",
 }
+
 function M.config()
     -- local treesitter = require "nvim-treesitter"
     local configs = require "nvim-treesitter.configs"
