@@ -46,18 +46,11 @@ function M.config()
 		"lua_ls",
 		"phpactor",
 		"twiggy_language_server",
-		"intelephense",
-		"cssls",
-		"eslint",
 		"yamlls",
-		"cssmodules_ls",
 		"emmet_language_server",
-		"html",
 		"tsserver",
-		"angularls",
 		"bashls",
 		"jsonls",
-		"tailwindcss",
 		"rust_analyzer",
 		"clangd",
 		"marksman",
@@ -104,7 +97,7 @@ function M.config()
 			capabilities = M.common_capabilities(),
 		}
 
-		local require_ok, settings = pcall(require, "lsp-settings." .. server)
+		local require_ok, settings = pcall(require, "lspsettings." .. server)
 		if require_ok then
 			opts = vim.tbl_deep_extend("force", settings, opts)
 		end
