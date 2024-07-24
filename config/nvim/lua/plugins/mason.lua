@@ -44,6 +44,9 @@ return {
 				"eslint_d",
 				"phpstan",
 				"php-cs-fixer",
+				"twig-cs-fixer",
+				"twigcs",
+				"djlint",
 			},
 		})
 	end,
