@@ -1,21 +1,19 @@
-local M = {
-    -- Gruvbox Material
-    {
-        "https://github.com/sainnhe/gruvbox-material",
-    },
+return {
+	-- Gruvbox Material
+	{
+		"https://github.com/sainnhe/gruvbox-material",
+	},
 
-    -- Kanagawa
-    {
-        "https://github.com/rebelot/kanagawa.nvim",
-        priority = 1000,
-        config = true,
-        opts = {}
-    },
+	-- Kanagawa
+	{
+		"https://github.com/rebelot/kanagawa.nvim",
+		priority = 1000,
+		config = true,
+		opts = {},
+	},
 
-    -- OneNord
-    {
-        "https://github.com/rmehri01/onenord.nvim"
-    }
+	-- OneNord
+	{
+		"https://github.com/rmehri01/onenord.nvim",
+	},
 }
-
-return M

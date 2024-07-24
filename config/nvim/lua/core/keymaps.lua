@@ -1,29 +1,6 @@
 local keymap = vim.keymap.set
 local opts = { silent = true }
 
--- PLUGINS --
--- Nvim-tree
-keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
-
--- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-
--- Treesitter Playground
-keymap("n", "<leader>tsp", ":TSPlaygroundToggle<CR>", opts)
-
--- Vim Fugitive
-keymap("n", "<leader>gs", ":Git<CR>", opts)
-
--- Comment
-keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
-keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
-
--- Zen-mode
-keymap("n", "<leader>z", ":ZenMode<CR>", opts)
-
 -- NORMAL --
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
