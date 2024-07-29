@@ -48,8 +48,9 @@ keymap("n", "<leader>w", "<cmd>set wrap linebreak<CR>", opts)
 keymap("n", "<leader>W", "<cmd>set nowrap linebreak<CR>", opts)
 
 -- INSERT --
--- Press jk fast to enter
+-- Press jk fast to go back to normal mode
 keymap("i", "jk", "<ESC>", opts)
+keymap("v", "jk", "<ESC>", opts)
 
 -- VISUAL --
 -- Stay in indent mode

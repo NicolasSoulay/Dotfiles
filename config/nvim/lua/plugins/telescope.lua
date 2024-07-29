@@ -1,6 +1,9 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	dependencies = {{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true }},
+	dependencies = {
+		{ "nvim-lua/plenary.nvim" },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
+	},
 	config = function()
 		local icons = require("core.icons")
 		local actions = require("telescope.actions")
@@ -100,6 +103,5 @@ return {
 		vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>")
 		vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>")
 		vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>")
-		vim.keymap.set("n", "<leader>fp", ":Telescope projects<CR>")
 	end,
 }
