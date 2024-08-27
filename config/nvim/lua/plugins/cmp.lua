@@ -74,55 +74,20 @@ return {
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					luasnip.lsp_expand(args.body) -- For `luasnip` users.
+					luasnip.lsp_expand(args.body)
 				end,
 			},
-			mapping = cmp.mapping.preset.insert({
-				["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-				["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-				["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-				["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-				["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-				["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-				["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-				["<C-e>"] = cmp.mapping({
-					i = cmp.mapping.abort(),
-					c = cmp.mapping.close(),
-				}),
-				-- Accept currently selected item. If none selected, `select` first item.
-				-- Set `select` to `false` to only confirm explicitly selected items.
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
-				["<Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_next_item()
-					elseif luasnip.expandable() then
-						luasnip.expand()
-					elseif luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
-					elseif check_backspace() then
-						fallback()
-						-- require("neotab").tabout()
-					else
-						fallback()
-						-- require("neotab").tabout()
-					end
-				end, {
-					"i",
-					"s",
-				}),
-				["<S-Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_prev_item()
-					elseif luasnip.jumpable(-1) then
-						luasnip.jump(-1)
-					else
-						fallback()
-					end
-				end, {
-					"i",
-					"s",
-				}),
-			}),
+			mapping = {
+				["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+				["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+				["<C-y>"] = cmp.mapping(
+					cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Insert,
+						select = true,
+					}),
+					{ "i", "c" }
+				),
+			},
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = function(entry, vim_item)
@@ -152,10 +117,10 @@ return {
 				{ name = "path" },
 				{ name = "calc" },
 			},
-			confirm_opts = {
-				behavior = cmp.ConfirmBehavior.Replace,
-				select = false,
-			},
+			-- confirm_opts = {
+			-- 	behavior = cmp.ConfirmBehavior.Replace,
+			-- 	select = false,
+			-- },
 			window = {
 				completion = {
 					border = "rounded",
@@ -165,9 +130,21 @@ return {
 					border = "rounded",
 				},
 			},
-			experimental = {
-				ghost_text = false,
-			},
+			-- experimental = {
+			-- 	ghost_text = false,
+			-- },
 		})
+
+		vim.keymap.set({ "i", "s" }, "<C-n>", function()
+			if luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			end
+		end, { silent = true })
+
+		vim.keymap.set({ "i", "s" }, "<C-p>", function()
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			end
+		end, { silent = true })
 	end,
 }
