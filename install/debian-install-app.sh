@@ -9,6 +9,8 @@ source ~/.bashrc
 # Flatpak
 flatpak install flathub com.discordapp.Discord
 flatpak install flathub md.obsidian.Obsidian
+flatpak install flathub com.spotify.Client
+flatpak install flathub org.duckstation.DuckStation
 flatpak install flathub io.dbeaver.DBeaverCommunity
 flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
 flatpak install flathub net.lutris.Lutris
@@ -19,7 +21,7 @@ sudo apt install gimp firefox-esr thunderbird blender libreoffice qbittorrent ti
 sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura thunar thunar-archive-plugin greetd bat fzf mpv tealdeer
+sudo apt install kitty rofi numlockx exa neofetch zathura thunar thunar-archive-plugin greetd bat fzf mpv tealdeer tmux
 
 # Awesome Wm
 sudo apt install awesome picom nitrogen xorg
@@ -98,8 +100,6 @@ sudo su - $USER -c 'npm install -g @angular/cli neovim sass typescript'
 
 # Packages cargo
 cargo install skim uwuify cargo-update
-cargo install --locked ncspot
-cargo install --locked zellij
 cargo install --locked zoxide
 
 # ani-cli

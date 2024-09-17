@@ -16,4 +16,9 @@ return {
 	{
 		"https://github.com/rmehri01/onenord.nvim",
 	},
+
+	--Github
+	{
+		"projekt0n/github-nvim-theme",
+	},
 }
