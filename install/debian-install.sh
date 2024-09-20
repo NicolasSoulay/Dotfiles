@@ -12,6 +12,11 @@ mkdir -p ~/.local/state/bash
 mkdir -p ~/.cache
 mkdir -p ~/.config/nvm
 mkdir -p ~/.local/share
+mkdir -p ~/Games
+mkdir -p ~/Games/BIOS
+mkdir -p ~/Games/PS1
+mkdir -p ~/Games/ROMS
+mkdir -p ~/Games/ROMS/PS1
 touch  ~/.local/state/bash/history
 touch  ~/.local/share/wget-hsts
 
