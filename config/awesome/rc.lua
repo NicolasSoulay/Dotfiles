@@ -426,7 +426,7 @@ globalkeys = gears.table.join(
 
 	-- Spotify
 	awful.key({ modkey }, "p", function()
-		awful.util.spawn(terminal .. " -e Spotify", { tag = "6" })
+		awful.util.spawn("Spotify")
 	end, { description = "open spotify", group = "launcher" })
 )
 
