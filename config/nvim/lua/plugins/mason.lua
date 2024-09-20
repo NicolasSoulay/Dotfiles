@@ -21,7 +21,7 @@ return {
 				"twiggy_language_server",
 				"yamlls",
 				"emmet_language_server",
-				"tsserver",
+				"ts_ls",
 				"bashls",
 				"jsonls",
 				"rust_analyzer",
