@@ -9,18 +9,19 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
-				javascript = { "prettierd" },
-				typescript = { "prettierd" },
-				javascriptreact = { "prettierd" },
-				typescriptreact = { "prettierd" },
+				cpp = { "clang-format" },
 				css = { "prettierd" },
 				html = { "prettierd" },
+				javascript = { "prettierd" },
+				javascriptreact = { "prettierd" },
 				json = { "prettierd" },
-				markdown = { "prettierd" },
-				yaml = { "prettierd" },
 				lua = { "stylua" },
+				markdown = { "prettierd" },
 				php = { "php_cs_fixer" },
 				twig = { "twig-cs-fixer", "djlint" },
+				typescript = { "prettierd" },
+				typescriptreact = { "prettierd" },
+				yaml = { "prettierd" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

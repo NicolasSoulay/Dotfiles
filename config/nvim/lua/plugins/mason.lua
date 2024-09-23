@@ -40,6 +40,7 @@ return {
 				"twig-cs-fixer",
 				"twigcs",
 				"djlint",
+				"clang-format",
 			},
 		})
 	end,
