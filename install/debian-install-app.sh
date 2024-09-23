@@ -118,6 +118,9 @@ mkdir ~/.config/git
 mv ~/.gitconfig ~/.config/git/config
 sed -i '$ d' ~/.bashrc
 
+xset -dpms
+xset s off
+
 sudo apt update
 sudo apt upgrade 
 sudo apt autoremove

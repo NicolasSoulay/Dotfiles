@@ -62,4 +62,3 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 sudo rm ~/.bash_history
 sudo rm ~/.bash_logout
 sudo rm ~/.wget-hsts
-
