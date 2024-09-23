@@ -1,3 +1,7 @@
+[character]
+success_symbol = "[>_](bold white)"
+error_symbol = "[>_](bold red)"
+
 [aws]
 symbol = "  "
 
@@ -18,6 +22,7 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
+style = "blue"
 
 [docker_context]
 symbol = " "
@@ -54,6 +59,10 @@ symbol = " "
 
 [hostname]
 ssh_symbol = " "
+ssh_only = false
+format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+trim_at = '.companyname.com'
+disabled = false
 
 [java]
 symbol = " "
@@ -159,6 +168,14 @@ symbol = " "
 
 [swift]
 symbol = " "
+
+[username]
+ 
+style_user = 'blue bold'
+style_root = 'black bold'
+format = '[󰣚](bold red) [$user]($style)'
+disabled = false
+show_always = true
 
 [zig]
 symbol = " "
