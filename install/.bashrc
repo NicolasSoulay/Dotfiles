@@ -63,6 +63,10 @@ alias fd='fdfind'
 
 alias fzf='sk'
 
+# g++
+alias gdbug='g++ -ggdb -O2 -DNDEBUG -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -std=c++20'
+alias gbuild='g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -std=c++20'
+
 # Make sure all terminals save history
 shopt -s histappend
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
