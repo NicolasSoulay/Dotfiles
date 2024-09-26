@@ -8,7 +8,6 @@ return {
 		local lint = require("lint")
 
 		lint.linters_by_ft = {
-			cpp = { "cpplint" },
 			javascript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
 			php = { "phpstan" },
