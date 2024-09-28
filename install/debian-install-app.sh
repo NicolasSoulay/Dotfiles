@@ -14,6 +14,7 @@ flatpak install flathub org.duckstation.DuckStation
 flatpak install flathub io.dbeaver.DBeaverCommunity
 flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
 flatpak install flathub net.lutris.Lutris
+flatpak install net.pcsx2.PCSX2
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
