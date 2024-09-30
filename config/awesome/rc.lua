@@ -65,7 +65,7 @@ beautiful.init("~/.config/awesome/themes/default/theme.lua")
 terminal = "wezterm"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
-file_manager = "thunar"
+file_manager = "doublecmd"
 mail_client = "thunderbird"
 web_browser = "firefox"
 
