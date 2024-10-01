@@ -15,8 +15,10 @@ mkdir -p ~/.local/share
 mkdir -p ~/Games
 mkdir -p ~/Games/BIOS
 mkdir -p ~/Games/PS1
+mkdir -p ~/Games/PS2
 mkdir -p ~/Games/ROMS
 mkdir -p ~/Games/ROMS/PS1
+mkdir -p ~/Games/ROMS/PS2
 touch  ~/.local/state/bash/history
 touch  ~/.local/share/wget-hsts
 
@@ -36,6 +38,7 @@ cp ~/Dotfiles/install/.bashrc ~/.bashrc
 
 # Tous les fichier de config + les wallpapers
 ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
+ln -sf ~/Dotfiles/config/doublecmd ~/.config/doublecmd
 ln -sf ~/Dotfiles/config/kitty ~/.config/kitty
 ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
 ln -sf ~/Dotfiles/config/rofi ~/.config/rofi

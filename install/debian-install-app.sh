@@ -7,14 +7,14 @@ sudo apt upgrade
 source ~/.bashrc
 
 # Flatpak
-flatpak install flathub com.discordapp.Discord
-flatpak install flathub md.obsidian.Obsidian
-flatpak install flathub com.spotify.Client
-flatpak install flathub org.duckstation.DuckStation
 flatpak install flathub io.dbeaver.DBeaverCommunity
+flatpak install flathub com.discordapp.Discord
+flatpak install flathub org.duckstation.DuckStation
 flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
 flatpak install flathub net.lutris.Lutris
+flatpak install flathub md.obsidian.Obsidian
 flatpak install net.pcsx2.PCSX2
+flatpak install flathub com.spotify.Client
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
@@ -22,13 +22,13 @@ sudo apt install gimp firefox-esr thunderbird blender libreoffice qbittorrent ti
 sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura thunar thunar-archive-plugin greetd bat fzf mpv tealdeer tmux
+sudo apt install kitty rofi numlockx exa neofetch zathura doublecmd greetd bat fzf mpv tealdeer tmux
 
 # Awesome Wm
 sudo apt install awesome picom nitrogen xorg
 
 # Utils
-sudo apt install wget fzf gh jq findutils fd-find ninja-build gettext cmake unzip curl ripgrep clang xsel pavucontrol playerctl mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
+sudo apt install wget fzf gh jq findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
 sudo apt install libdbus-1-dev libncursesw5-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
 
 # Librairie SDL
@@ -46,8 +46,8 @@ sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli ph
 # Python
 sudo apt install python3 python3-pip python3-venv python3-pynvim
 
-# C++
-sudo apt install gcc g++
+# C/C++
+sudo apt install gcc g++ cmake clang ninja-build
 
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -64,7 +64,7 @@ git config --global credential.credentialStore plaintext
 git-credential-manager configure
 sudo rm gcm.deb
 
-# Install de neovim nightly depuis les sources
+# Install de neovim stable depuis les sources
 mkdir ~/Sources
 cd ~/Sources
 git clone https://github.com/neovim/neovim.git
