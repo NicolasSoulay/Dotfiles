@@ -605,6 +605,7 @@ awful.rules.rules = {
 			name = {
 				"Event Tester", -- xev.
 				"Thunar",
+				"doublecmd",
 				"Volume Control",
 				"Shutter",
 			},
@@ -774,5 +775,5 @@ end)
 -- Autostart Applications
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("picom")
-awful.spawn.with_shell("xrandr --output DisplayPort-2 --mode 3440x1440 --rate 100")
+awful.spawn.with_shell("xrandr --output DisplayPort-2 --primary --mode 3440x1440 --rate 100")
 awful.spawn.with_shell("paplay ~/.config/awesome/themes/default/sounds/startup.wav")

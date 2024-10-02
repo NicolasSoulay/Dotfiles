@@ -154,9 +154,9 @@
   </Toolbars>
   <MainWindow>
     <Position Save="True">
-      <Left>80</Left>
-      <Top>48</Top>
-      <Width>3440</Width>
+      <Left>1720</Left>
+      <Top>0</Top>
+      <Width>1720</Width>
       <Height>1395</Height>
       <PixelsPerInch>96</PixelsPerInch>
       <Maximized>False</Maximized>
@@ -174,7 +174,22 @@
                 <FileSource Type="FileSystem"/>
                 <Paths>
                   <Path Filename="..">/usr/lib/doublecmd/</Path>
-                  <Path Filename="Desktop">/home/lacerda/</Path>
+                  <Path Filename="Downloads">/home/lacerda/</Path>
+                  <Path Filename="..">/home/lacerda/Downloads/</Path>
+                  <Path Filename="Dev">/home/lacerda/</Path>
+                  <Path Filename="..">/home/lacerda/Dev/</Path>
+                  <Path Filename="Documents">/home/lacerda/</Path>
+                  <Path Filename="Exam CDA">/home/lacerda/Documents/</Path>
+                  <Path Filename="Dossier_professionnel_Nicolas_Soulay.pdf">/home/lacerda/Documents/Exam CDA/</Path>
+                  <Path Filename="SDLCPP">/home/lacerda/Dev/</Path>
+                  <Path Filename="..">/home/lacerda/Dev/SDLCPP/</Path>
+                  <Path Filename="sdl_rust_engine">/home/lacerda/Dev/</Path>
+                  <Path Filename="assets">/home/lacerda/Dev/sdl_rust_engine/</Path>
+                  <Path Filename="..">/home/lacerda/Dev/sdl_rust_engine/assets/</Path>
+                  <Path Filename="target">/home/lacerda/Dev/sdl_rust_engine/</Path>
+                  <Path Filename="doc">/home/lacerda/Dev/sdl_rust_engine/target/</Path>
+                  <Path Filename="sdl2">/home/lacerda/Dev/sdl_rust_engine/target/doc/</Path>
+                  <Path Filename="index.html">/home/lacerda/Dev/sdl_rust_engine/target/doc/sdl2/</Path>
                 </Paths>
               </Entry>
             </History>
@@ -192,7 +207,13 @@
               <Entry Active="True">
                 <FileSource Type="FileSystem"/>
                 <Paths>
-                  <Path Filename="..">/usr/lib/doublecmd/</Path>
+                  <Path Filename="doc">/usr/lib/doublecmd/</Path>
+                  <Path Filename="rust-sdl-test">/home/lacerda/Dev/</Path>
+                  <Path Filename="..">/home/lacerda/Dev/rust-sdl-test/</Path>
+                  <Path Filename="..">/home/lacerda/Dev/</Path>
+                  <Path Filename="Dev">/home/lacerda/</Path>
+                  <Path Filename="localhost">/home/lacerda/Dev/</Path>
+                  <Path Filename="..">/home/lacerda/Dev/localhost/</Path>
                 </Paths>
               </Entry>
             </History>

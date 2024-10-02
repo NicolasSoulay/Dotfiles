@@ -31,7 +31,7 @@ sudo chmod 755 ~
 sudo rm -r /var/www/html
 sudo ln -s ~/Dev/localhost /var/www/html
 
-# Ajout des bash alias
+# Copie .bashrc
 rm ~/.bashrc
 rm ~/.bash_aliases
 cp ~/Dotfiles/install/.bashrc ~/.bashrc
