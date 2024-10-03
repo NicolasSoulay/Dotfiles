@@ -98,7 +98,7 @@ sudo apt install rofi numlockx exa neofetch zathura doublecmd-gtk greetd bat fzf
 sudo apt install awesome picom nitrogen xorg -y
 
 # Utils
-sudo apt install wget fzf gh jq findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 -y
+sudo apt install inotify-tools wget fzf gh jq findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 -y
 sudo apt install libdbus-1-dev libncursesw5-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev -y
 
 # Librairie SDL
@@ -120,7 +120,7 @@ sudo apt install python3 python3-pip python3-venv python3-pynvim -y
 sudo apt install gcc g++ cmake clang ninja-build -y
 
 # Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Compte default git
 git config --global user.email "${github_email}"
