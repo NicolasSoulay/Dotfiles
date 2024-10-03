@@ -88,8 +88,11 @@ flatpak install flathub io.dbeaver.DBeaverCommunity -y
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
-sudo apt install gimp firefox-esr thunderbird blender libreoffice qbittorrent timeshift steam-installer dwarf-fortress -y
+sudo apt install firefox-esr thunderbird dwarf-fortress -y
 sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine -y
+
+# Big app
+# sudo apt install gimp blender libreoffice qbittorent steam-installer
 
 # Desktop env
 sudo apt install rofi numlockx exa neofetch zathura doublecmd-gtk greetd bat fzf mpv tealdeer tmux -y
