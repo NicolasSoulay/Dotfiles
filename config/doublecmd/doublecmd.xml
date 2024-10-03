@@ -154,9 +154,9 @@
   </Toolbars>
   <MainWindow>
     <Position Save="True">
-      <Left>1720</Left>
+      <Left>0</Left>
       <Top>0</Top>
-      <Width>1720</Width>
+      <Width>3440</Width>
       <Height>1395</Height>
       <PixelsPerInch>96</PixelsPerInch>
       <Maximized>False</Maximized>
@@ -189,7 +189,13 @@
                   <Path Filename="target">/home/lacerda/Dev/sdl_rust_engine/</Path>
                   <Path Filename="doc">/home/lacerda/Dev/sdl_rust_engine/target/</Path>
                   <Path Filename="sdl2">/home/lacerda/Dev/sdl_rust_engine/target/doc/</Path>
-                  <Path Filename="index.html">/home/lacerda/Dev/sdl_rust_engine/target/doc/sdl2/</Path>
+                  <Path Filename="image">/home/lacerda/Dev/sdl_rust_engine/target/doc/sdl2/</Path>
+                  <Path Filename="..">/home/lacerda/Dev/sdl_rust_engine/target/doc/sdl2/image/</Path>
+                  <Path Filename="..">/home/lacerda/</Path>
+                  <Path Filename="lacerda">/home/</Path>
+                  <Path Filename="..">/home/lacerda/</Path>
+                  <Path Filename="..">/home/lacerda/Desktop/</Path>
+                  <Path Filename="..">/home/lacerda/Dev/</Path>
                 </Paths>
               </Entry>
             </History>
@@ -214,6 +220,8 @@
                   <Path Filename="Dev">/home/lacerda/</Path>
                   <Path Filename="localhost">/home/lacerda/Dev/</Path>
                   <Path Filename="..">/home/lacerda/Dev/localhost/</Path>
+                  <Path Filename="..">/home/lacerda/Dev/</Path>
+                  <Path Filename="Dev">/home/lacerda/</Path>
                 </Paths>
               </Entry>
             </History>
