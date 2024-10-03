@@ -60,6 +60,7 @@ alias cat='batcat --paging=never'
 alias bat='batcat'
 
 alias fd='fdfind'
+alias find='fdfind'
 
 alias fzf='sk'
 

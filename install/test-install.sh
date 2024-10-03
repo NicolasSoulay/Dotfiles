@@ -4,6 +4,9 @@ cd ~
 sudo apt update -y
 sudo apt upgrade -y
 
+echo "User password (for this desktop):"
+read user_password
+
 echo "Github username:"
 read github_username
 
@@ -50,6 +53,7 @@ cp ~/Dotfiles/install/.bashrc ~/.bashrc
 ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
 ln -sf ~/Dotfiles/config/doublecmd ~/.config/doublecmd
 ln -sf ~/Dotfiles/config/kitty ~/.config/kitty
+ln -sf ~/Dotfiles/config/nitrogen ~/.config/nitrogen
 ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
 ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
 ln -sf ~/Dotfiles/config/starship ~/.config/starship
@@ -69,7 +73,7 @@ fc-cache -f -v
 
 # Flatpack
 sudo apt install flatpak -y
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Clean du dossier home
 sudo rm ~/.bash_history
@@ -80,11 +84,11 @@ source ~/.bashrc
 
 # Flatpak
 flatpak install flathub io.dbeaver.DBeaverCommunity -y
-# flatpak install flathub com.discordapp.Discord -y
-# flatpak install flathub org.duckstation.DuckStation -y
-# flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
-# flatpak install net.pcsx2.PCSX2 -y
-# flatpak install flathub com.spotify.Client -y
+flatpak install flathub com.discordapp.Discord -y
+flatpak install flathub org.duckstation.DuckStation -y
+flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
+flatpak install net.pcsx2.PCSX2 -y
+flatpak install flathub com.spotify.Client -y
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
@@ -92,7 +96,7 @@ sudo apt install firefox-esr thunderbird dwarf-fortress -y
 sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine -y
 
 # Big app
-# sudo apt install gimp blender libreoffice qbittorent steam-installer
+sudo apt install gimp blender libreoffice qbittorent steam-installer
 
 # Desktop env
 sudo apt install rofi numlockx exa neofetch zathura doublecmd-gtk greetd bat fzf mpv tealdeer tmux -y
@@ -182,7 +186,7 @@ sudo cp ani-cli/ani-cli /usr/local/bin
 rm -rf ani-cli
 
 # Starhip
-curl -sS https://starship.rs/install.sh | sh -y
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 # Wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
@@ -204,6 +208,7 @@ sudo cp ~/Dotfiles/install/keyboard /etc/modprobe.d/hid_apple.conf
 sudo cp ~/Dotfiles/install/quiet_greeter /etc/sysctl.d/20-quiet-printk.conf
 sudo cp ~/Dotfiles/install/keyboard_config /etc/default/keyboard
 
+tldr update
 sudo apt update -y
 sudo apt upgrade  -y
 sudo apt autoremove -y
