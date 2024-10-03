@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 cd ~
 
-sudo apt update
-sudo apt upgrade
+sudo apt update -y
+sudo apt upgrade -y
 
 echo "Github username:"
 read github_username
@@ -11,7 +11,7 @@ echo "Github email:"
 read github_email
 
 # dossiers utilisateurs
-sudo apt install xdg-user-dirs
+sudo apt install xdg-user-dirs -y
 xdg-user-dirs-update
 
 mkdir -p ~/.local/state/bash
@@ -20,16 +20,20 @@ mkdir -p ~/.config/nvm
 mkdir -p ~/.local/share
 mkdir -p ~/Games
 mkdir -p ~/Games/BIOS
+mkdir -p ~/Games/Emulator/
 mkdir -p ~/Games/PS1
 mkdir -p ~/Games/PS2
 mkdir -p ~/Games/ROMS
 mkdir -p ~/Games/ROMS/PS1
 mkdir -p ~/Games/ROMS/PS2
+mkdir -p ~/Games/BIOS
+mkdir -p ~/Games/BIOS/PS1
+mkdir -p ~/Games/BIOS/PS2
 touch  ~/.local/state/bash/history
 touch  ~/.local/share/wget-hsts
 
 # Config apache2
-sudo apt install apache2
+sudo apt install apache2 -y
 mkdir -p ~/Dev/localhost
 sudo chmod 0755 ~/Dev/localhost
 sudo chgrp www-data ~/Dev/localhost
@@ -64,7 +68,7 @@ ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
 fc-cache -f -v
 
 # Flatpack
-sudo apt install flatpak
+sudo apt install flatpak -y
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Clean du dossier home
@@ -75,50 +79,48 @@ sudo rm ~/.wget-hsts
 source ~/.bashrc
 
 # Flatpak
-flatpak install flathub io.dbeaver.DBeaverCommunity
-flatpak install flathub com.discordapp.Discord
-flatpak install flathub org.duckstation.DuckStation
-flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
-flatpak install flathub net.lutris.Lutris
-flatpak install flathub md.obsidian.Obsidian
-flatpak install net.pcsx2.PCSX2
-flatpak install flathub com.spotify.Client
+flatpak install flathub io.dbeaver.DBeaverCommunity -y
+# flatpak install flathub com.discordapp.Discord -y
+# flatpak install flathub org.duckstation.DuckStation -y
+# flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
+# flatpak install net.pcsx2.PCSX2 -y
+# flatpak install flathub com.spotify.Client -y
 
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
-sudo apt install gimp firefox-esr thunderbird blender libreoffice qbittorrent timeshift steam-installer dwarf-fortress
-sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
+sudo apt install gimp firefox-esr thunderbird blender libreoffice qbittorrent timeshift steam-installer dwarf-fortress -y
+sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine -y
 
 # Desktop env
-sudo apt install kitty rofi numlockx exa neofetch zathura doublecmd greetd bat fzf mpv tealdeer tmux
+sudo apt install rofi numlockx exa neofetch zathura doublecmd-gtk greetd bat fzf mpv tealdeer tmux -y
 
 # Awesome Wm
-sudo apt install awesome picom nitrogen xorg
+sudo apt install awesome picom nitrogen xorg -y
 
 # Utils
-sudo apt install wget fzf gh jq findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
-sudo apt install libdbus-1-dev libncursesw5-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
+sudo apt install wget fzf gh jq findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386 -y
+sudo apt install libdbus-1-dev libncursesw5-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev -y
 
 # Librairie SDL
-sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
+sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev -y
 
 # MariaDb
-sudo apt install mariadb-server mariadb-client
+sudo apt install mariadb-server mariadb-client -y
 
 # Postgres
-sudo apt install postgresql postgresql-client
+sudo apt install postgresql postgresql-client -y
 
 # PHP
-sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml php-zip composer php-symfony-console php-gd php-pgsql
+sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml php-zip composer php-symfony-console php-gd php-pgsql -y
 
 # Python
-sudo apt install python3 python3-pip python3-venv python3-pynvim
+sudo apt install python3 python3-pip python3-venv python3-pynvim -y
 
 # C/C++
-sudo apt install gcc g++ cmake clang ninja-build
+sudo apt install gcc g++ cmake clang ninja-build -y
 
 # Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
 
 # Compte default git
 git config --global user.email "${github_email}"
@@ -156,7 +158,7 @@ cd ~
 
 # Install de symfony
 curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
-sudo apt install symfony-cli
+sudo apt install symfony-cli -y
 
 # Install de NodeJs et NPM
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -177,7 +179,13 @@ sudo cp ani-cli/ani-cli /usr/local/bin
 rm -rf ani-cli
 
 # Starhip
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sh -y
+
+# Wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo apt update -y
+sudo apt install wezterm -y
 
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
 sudo rm ~/.wget-hsts
@@ -187,6 +195,12 @@ mkdir ~/.config/git
 mv ~/.gitconfig ~/.config/git/config
 sed -i '$ d' ~/.bashrc
 
-sudo apt update
-sudo apt upgrade 
-sudo apt autoremove
+# Config du greeter tuigreet + greetd
+sudo cp ~/Dotfiles/install/greetd_tuigreet_config /etc/greetd/config.toml 
+sudo cp ~/Dotfiles/install/keyboard /etc/modprobe.d/hid_apple.conf
+sudo cp ~/Dotfiles/install/quiet_greeter /etc/sysctl.d/20-quiet-printk.conf
+sudo cp ~/Dotfiles/install/keyboard_config /etc/default/keyboard
+
+sudo apt update -y
+sudo apt upgrade  -y
+sudo apt autoremove -y
