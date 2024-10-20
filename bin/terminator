@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-selected=$(ps -aux --sort size | sk | awk '{print $2}')
+selected=$(procs | sk | awk '{print $2}')
 
 if [[ -z $selected ]]; then
     exit 0

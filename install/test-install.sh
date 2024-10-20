@@ -22,16 +22,8 @@ mkdir -p ~/.cache
 mkdir -p ~/.config/nvm
 mkdir -p ~/.local/share
 mkdir -p ~/Games
-mkdir -p ~/Games/BIOS
-mkdir -p ~/Games/Emulator/
 mkdir -p ~/Games/PS1
 mkdir -p ~/Games/PS2
-mkdir -p ~/Games/ROMS
-mkdir -p ~/Games/ROMS/PS1
-mkdir -p ~/Games/ROMS/PS2
-mkdir -p ~/Games/BIOS
-mkdir -p ~/Games/BIOS/PS1
-mkdir -p ~/Games/BIOS/PS2
 touch  ~/.local/state/bash/history
 touch  ~/.local/share/wget-hsts
 
@@ -90,6 +82,15 @@ flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y
 flatpak install net.pcsx2.PCSX2 -y
 flatpak install flathub com.spotify.Client -y
 
+# Dossier pour emulateurs
+mkdir ~/.var/app/org.duckstation.DuckStation/config/duckstation/games
+ln -sf ~/.var/app/org.duckstation.DuckStation/config/duckstation/bios ~/Games/PS1/BIOS
+ln -sf ~/.var/app/org.duckstation.DuckStation/config/duckstation/games ~/Games/PS1/ROMS
+
+mkdir ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games
+ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/bios ~/Games/PS2/BIOS
+ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games ~/Games/PS2/ROMS
+
 # App
 sudo dpkg --add-architecture i386 && sudo apt update
 sudo apt install firefox-esr thunderbird dwarf-fortress -y
@@ -99,7 +100,7 @@ sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine -y
 sudo apt install gimp blender libreoffice qbittorent steam-installer
 
 # Desktop env
-sudo apt install rofi numlockx exa neofetch zathura doublecmd-gtk greetd bat fzf mpv tealdeer tmux -y
+sudo apt install rofi numlockx exa neofetch zathura doublecmd-gtk greetd bat fzf mpv cmus tealdeer tmux -y
 
 # Awesome Wm
 sudo apt install awesome picom nitrogen xorg -y
@@ -177,8 +178,14 @@ sudo su - $USER -c 'nvm install-latest-npm'
 sudo su - $USER -c 'npm install -g @angular/cli neovim sass typescript'
 
 # Packages cargo
-cargo install skim uwuify cargo-update
+cargo install skim uwuify cargo-update procs netscanner rmz cpz
 cargo install --locked zoxide
+cargo install --locked bottom
+cargo install --locked gitui
+
+# netscanner autorisation
+sudo shown root:$USER $XDG_DATA_HOME/cargo/bin/netscanner
+sudo chmod u+s $XDG_DATA_HOME/cargo/bin/netscanner
 
 # ani-cli
 git clone "https://github.com/pystardust/ani-cli.git"

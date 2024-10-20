@@ -44,6 +44,10 @@ alias lst='exa -a --tree --icons --group-directories-first --sort=ext'
 alias lsd='exa -lah --icons --sort=mod' 
 alias lss='exa -lah --icons --sort=size'
 
+# g++
+alias gdbug='g++ -ggdb -O2 -DNDEBUG -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -std=c++20'
+alias gbuild='g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -std=c++20'
+
 # neovim
 alias v='nvim'
  
@@ -60,13 +64,16 @@ alias cat='batcat --paging=never'
 alias bat='batcat'
 
 alias fd='fdfind'
-alias find='fdfind'
+
+alias rm='rmz'
+
+alias cp='cpz'
 
 alias fzf='sk'
 
-# g++
-alias gdbug='g++ -ggdb -O2 -DNDEBUG -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -std=c++20'
-alias gbuild='g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -std=c++20'
+alias ps='procs --tree'
+
+alias htop='btm'
 
 # Make sure all terminals save history
 shopt -s histappend
