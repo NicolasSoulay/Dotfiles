@@ -11,6 +11,22 @@ export PATH="/usr/sbin:$PATH"
 
 # Variables
 export EDITOR="/usr/bin/nvim"
+export BASE16_00="#282828"
+export BASE16_01="#3c3836"
+export BASE16_02="#504945"
+export BASE16_03="#665c54"
+export BASE16_04="#bdae93"
+export BASE16_05="#d5c4a1"
+export BASE16_06="#fbf1c7"
+export BASE16_07="#D4BE98"
+export BASE16_08="#ea6962"
+export BASE16_09="#d3869b"
+export BASE16_0A="#fabd2f"
+export BASE16_0B="#a9b665"
+export BASE16_0C="#89b482"
+export BASE16_0D="#7daea3"
+export BASE16_0E="#fe8019"
+export BASE16_0F="#e78a4e"
 
 # XDG specification
 export XDG_DATA_HOME="$HOME/.local/share"
