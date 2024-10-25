@@ -1,14 +1,3 @@
--- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
---     callback = function()
---         vim.cmd "set formatoptions-=cro"
---     end,
--- })
--- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
---     buffer = buffer,
---     callback = function()
---         vim.lsp.buf.format { async = false }
---     end
--- })
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = {
 		"netrw",
@@ -32,25 +21,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     ]])
 	end,
 })
---
--- vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
--- 	callback = function()
--- 		vim.cmd("quit")
--- 	end,
--- })
---
--- vim.api.nvim_create_autocmd({ "VimResized" }, {
--- 	callback = function()
--- 		vim.cmd("tabdo wincmd =")
--- 	end,
--- })
---
--- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
--- 	pattern = { "*" },
--- 	callback = function()
--- 		vim.cmd("checktime")
--- 	end,
--- })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	callback = function()
