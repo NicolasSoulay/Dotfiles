@@ -4,9 +4,6 @@ cd ~
 sudo apt update -y
 sudo apt upgrade -y
 
-echo "User password (for this desktop):"
-read user_password
-
 echo "Github username:"
 read github_username
 
@@ -175,17 +172,13 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 # Install de packages NPM
 sudo su - $USER -c 'nvm install --lts'
 sudo su - $USER -c 'nvm install-latest-npm'
-sudo su - $USER -c 'npm install -g @angular/cli neovim sass typescript'
+sudo su - $USER -c 'npm install -g @nestjs/cli neovim sass typescript'
 
 # Packages cargo
-cargo install skim uwuify cargo-update procs netscanner rmz cpz
+cargo install skim uwuify cargo-update procs rmz cpz
 cargo install --locked zoxide
 cargo install --locked bottom
 cargo install --locked gitui
-
-# netscanner autorisation
-sudo shown root:$USER $XDG_DATA_HOME/cargo/bin/netscanner
-sudo chmod u+s $XDG_DATA_HOME/cargo/bin/netscanner
 
 # ani-cli
 git clone "https://github.com/pystardust/ani-cli.git"
@@ -215,7 +208,7 @@ sudo cp ~/Dotfiles/install/keyboard /etc/modprobe.d/hid_apple.conf
 sudo cp ~/Dotfiles/install/quiet_greeter /etc/sysctl.d/20-quiet-printk.conf
 sudo cp ~/Dotfiles/install/keyboard_config /etc/default/keyboard
 
-tldr update
+tldr --update
 sudo apt update -y
 sudo apt upgrade  -y
 sudo apt autoremove -y

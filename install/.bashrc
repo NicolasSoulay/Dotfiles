@@ -54,6 +54,14 @@ export HISTCONTROL=ignoredups
 #... and ignore same successive entries
 export HISTCONTROL=ignoreboth
 
+# Make sure all terminals save history
+shopt -s histappend
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# Increase history size
+export HISTSIZE=1000
+export HISTFILESIZE=1000
+
 # ls with exa
 alias ls='exa -lah --icons --group-directories-first --sort=ext'
 alias lst='exa -a --tree --icons --group-directories-first --sort=ext'
@@ -90,14 +98,6 @@ alias fzf='sk'
 alias ps='procs --tree'
 
 alias htop='btm'
-
-# Make sure all terminals save history
-shopt -s histappend
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-
-# Increase history size
-export HISTSIZE=1000
-export HISTFILESIZE=1000
 
 # I don't remember why, but I need this
 shopt -s globstar

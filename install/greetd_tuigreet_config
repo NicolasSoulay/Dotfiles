@@ -2,5 +2,5 @@
 vt = 7
 
 [default_session]
-command = "tuigreet -r --asterisks --cmd startx"
+command = "tuigreet -r --asterisks --cmd startx --time --remember-user-session --user-menu"
 user = "_greetd"
