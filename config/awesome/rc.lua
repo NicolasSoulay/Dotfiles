@@ -65,7 +65,7 @@ beautiful.init("~/.config/awesome/themes/default/theme.lua")
 terminal = "wezterm"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
-file_manager = "doublecmd"
+file_manager = "thunar"
 mail_client = "thunderbird"
 web_browser = "firefox"
 
@@ -74,11 +74,11 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-	awful.layout.suit.tile,
+	awful.layout.suit.tile.left,
+	-- awful.layout.suit.tile,
 	-- awful.layout.suit.floating,
 	-- awful.layout.suit.max,
 	-- awful.layout.suit.max.fullscreen,
-	-- awful.layout.suit.tile.left,
 	-- awful.layout.suit.tile.bottom,
 	-- awful.layout.suit.tile.top,
 	-- awful.layout.suit.fair,
@@ -675,9 +675,9 @@ client.connect_signal("manage", function(c)
 		awful.client.setslave(c)
 	end
 
-	if c.floating then
-		c.shape = gears.shape.rounded_rect
-	end
+	-- if c.floating then
+	c.shape = gears.shape.rounded_rect
+	-- end
 
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
 		-- Prevent clients from being unreachable after screen count changes.
