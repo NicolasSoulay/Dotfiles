@@ -12,7 +12,7 @@ local theme = {}
 
 theme.font = "JetBrainsMono NFM"
 
-theme.useless_gap = dpi(5)
+theme.useless_gap = dpi(3)
 theme.border_width = dpi(1)
 theme.titlebar_buttons_spacing = dpi(3)
 
