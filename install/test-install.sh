@@ -200,6 +200,10 @@ sudo rm ~/.bash_history
 
 mkdir ~/.config/git
 mv ~/.gitconfig ~/.config/git/config
+touch ~/.config/git/.gitignore_global
+echo ".php-cs-fixer.cache" >> ~/.config/git/.gitignore_global
+git config --global core.excludesfile ~/.config/git/.gitignore_global
+
 sed -i '$ d' ~/.bashrc
 
 # Config du greeter tuigreet + greetd
