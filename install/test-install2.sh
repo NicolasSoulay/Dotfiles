@@ -83,7 +83,7 @@ sudo extrepo enable librewolf
 sudo apt update && sudo apt install librewolf -y
 
 # Desktop env
-sudo apt install exa zathura greetd mc mpv cmus tealdeer tmux wofi -y
+sudo apt install exa zathura greetd mc mpv cmus tealdeer tmux wofi clipman -y
 
 # Sway
 sudo apt install sway swaybg swaidle swaylock xdg-desktop-portal-wlr -y
