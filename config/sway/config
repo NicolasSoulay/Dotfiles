@@ -167,5 +167,7 @@ bindsym $mod+ctrl+r mode "resize"
 # Status Bar:
 bar swaybar_command waybar
 
+# Persistant clipboard
+exec wl-paste -t text --watch clipman store --no-persist
 
 include /etc/sway/config.d/*
