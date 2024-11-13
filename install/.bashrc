@@ -5,6 +5,9 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+export MANROFFOPT="-c"
+
 # Don't put duplicate lines in the history
 export HISTCONTROL=ignoredups
 #... and ignore same successive entries
