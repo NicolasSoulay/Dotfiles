@@ -22,6 +22,7 @@ return {
 				"yamlls",
 				"emmet_language_server",
 				"ts_ls",
+				"glint",
 				"bashls",
 				"jsonls",
 				"rust_analyzer",
