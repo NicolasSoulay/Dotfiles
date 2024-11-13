@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Script used for Skim preview eg: sk --ansi -i -c 'ag --color "{}"' --preview "preview.sh {}"
 
 REVERSE="\x1b[7m"
 RESET="\x1b[m"
