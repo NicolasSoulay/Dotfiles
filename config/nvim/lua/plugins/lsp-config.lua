@@ -54,6 +54,7 @@ function M.config()
 		"rust_analyzer",
 		"clangd",
 		"marksman",
+		"glint",
 	}
 
 	local default_diagnostic_config = {
