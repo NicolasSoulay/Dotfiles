@@ -43,10 +43,6 @@ keymap("n", "J", "mzJ`z", opts)
 -- Make current file executable
 keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts)
 
--- Soft wrap
-keymap("n", "<leader>w", "<cmd>set wrap linebreak<CR>", opts)
-keymap("n", "<leader>W", "<cmd>set nowrap linebreak<CR>", opts)
-
 -- INSERT --
 -- Press jk fast to go back to normal mode
 keymap("i", "jk", "<ESC>", opts)
