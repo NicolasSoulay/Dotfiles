@@ -60,35 +60,6 @@ return {
 						},
 					},
 				},
-
-				planets = {
-					show_pluto = true,
-					show_moon = true,
-				},
-
-				colorscheme = {
-					enable_preview = true,
-				},
-
-				lsp_references = {
-					theme = "dropdown",
-					initial_mode = "normal",
-				},
-
-				lsp_definitions = {
-					theme = "dropdown",
-					initial_mode = "normal",
-				},
-
-				lsp_declarations = {
-					theme = "dropdown",
-					initial_mode = "normal",
-				},
-
-				lsp_implementations = {
-					theme = "dropdown",
-					initial_mode = "normal",
-				},
 			},
 			extensions = {
 				fzf = {
@@ -100,8 +71,39 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>")
-		vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>")
-		vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>")
+		local builtin = require("telescope.builtin")
+
+		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find file in current working directory" })
+		vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Search for word in current working directory" })
+		vim.keymap.set(
+			"v",
+			"<leader>fg",
+			builtin.grep_string,
+			{ desc = "Search for selected word in current working directory" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>fb",
+			":Telescope buffers<CR>",
+			{ desc = "Search for all currently open buffer in this session" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>gb",
+			builtin.git_branches,
+			{ desc = "Search for git branches on current working directory" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>gh",
+			builtin.git_bcommits,
+			{ desc = "Search for git commits on current buffer and preview them" }
+		)
+		vim.keymap.set(
+			"v",
+			"<leader>gh",
+			builtin.git_bcommits_range,
+			{ desc = "Git commits on this range of lines and preview them" }
+		)
 	end,
 }
