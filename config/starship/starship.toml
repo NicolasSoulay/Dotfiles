@@ -1,101 +1,61 @@
-[character]
-success_symbol = "[>_](bold white)"
-error_symbol = "[>_](bold red)"
-
-[aws]
-symbol = "  "
-
-[buf]
-symbol = " "
-
-[c]
-symbol = " "
-
-[cmake]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[crystal]
-symbol = " "
-
-[dart]
-symbol = " "
-
-[directory]
-read_only = " 󰌾"
-style = "blue"
-
-[docker_context]
-symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[fennel]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
-
-[git_branch]
-symbol = " "
-
-[golang]
-symbol = " "
-
-[guix_shell]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[haxe]
-symbol = " "
-
-[hg_branch]
-symbol = " "
+[username]
+style_user = 'blue bold'
+style_root = 'black bold'
+format = '[$user]($style)'
+disabled = true
+show_always = false
 
 [hostname]
 ssh_symbol = " "
 ssh_only = false
-format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+format = '\[[$ssh_symbol](bold blue) [$hostname](bold red)\] '
 trim_at = '.companyname.com'
-disabled = false
+disabled = true
 
-[java]
-symbol = " "
+[character]
+success_symbol = " [>_](bold white)"
+error_symbol = " [>_](bold red)"
 
-[julia]
-symbol = " "
+[c]
+symbol = " "
+format = '\[[$symbol($version(-$name))]($style)\]'
 
-[kotlin]
-symbol = " "
+[cmake]
+symbol = " "
+format = '\[[$symbol($version)]($style)\]'
+
+[cmd_duration]
+format = '\[[⏱ $duration]($style)\]'
+
+[directory]
+read_only = " 󰌾"
+format = '\[[ $path](blue)[$read_only](red)\]'
+
+[docker_context]
+symbol = " "
+format = '\[[$symbol$context]($style)\]'
+
+[dotnet]
+format = '\[[$symbol($version)(🎯 $tfm)]($style)\]'
+
+[git_branch]
+symbol = " "
+format = '\[[$symbol$branch]($style)\]'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
 
 [lua]
 symbol = " "
+format = '\[[$symbol($version)]($style)\]'
 
 [memory_usage]
 symbol = "󰍛 "
-
-[meson]
-symbol = "󰔷 "
-
-[nim]
-symbol = "󰆥 "
-
-[nix_shell]
-symbol = " "
+format = '\[$symbol[$ram( | $swap)]($style)\]'
 
 [nodejs]
 symbol = " "
-
-[ocaml]
-symbol = " "
+format = '\[[$symbol($version)]($style)\]'
 
 [os.symbols]
 Alpaquita = " "
@@ -144,40 +104,22 @@ Windows = "󰍲 "
 
 [package]
 symbol = "󰏗 "
-
-[perl]
-symbol = " "
+format = '\[[$symbol$version]($style)\]'
 
 [php]
 symbol = " "
+format = '\[[$symbol($version)]($style)\]'
 
 [pijul_channel]
 symbol = " "
 
 [python]
 symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[ruby]
-symbol = " "
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
 
 [rust]
 symbol = " "
+format = '\[[$symbol($version)]($style)\]'
 
-[scala]
-symbol = " "
-
-[swift]
-symbol = " "
-
-[username]
-style_user = 'blue bold'
-style_root = 'black bold'
-format = '[$user]($style)'
-disabled = false
-show_always = true
-
-[zig]
-symbol = " "
+[sudo]
+format = '\[[as $symbol]($style)\]'
