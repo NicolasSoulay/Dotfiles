@@ -38,11 +38,10 @@ end
 -- {{{ Variable definitions
 beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
-terminal = "kitty"
+terminal = "wezterm"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 file_manager_gui = "thunar"
-mail_client = "thunderbird"
 web_browser = "firefox"
 
 modkey = "Mod4"
