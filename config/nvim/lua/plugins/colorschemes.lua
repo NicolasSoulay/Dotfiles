@@ -17,7 +17,8 @@ return {
 		})
 
 		base16.setup({
-			base00 = "#282828",
+			-- base00 = "#282828",
+			base00 = "NONE",
 			base01 = "#3c3836",
 			base02 = "#504945",
 			base03 = "#665c54",

@@ -4,9 +4,10 @@ return {
 	config = function()
 		local lualine = require("lualine")
 		local colors = {
+			bg = "NONE",
 			fg1 = "#282828",
-			color2 = "#32302f",
 			fg2 = "#d4be98",
+			color2 = "#32302f",
 			color3 = "#32302f",
 			color4 = "#7daea3",
 			color5 = "#89b482",
@@ -22,7 +23,7 @@ return {
 					normal = {
 						a = { fg = colors.fg1, bg = colors.color4, gui = "bold" },
 						b = { fg = colors.fg2, bg = colors.color2 },
-						c = { fg = colors.fg2, bg = colors.fg1 },
+						c = { fg = colors.fg2, bg = colors.bg1 },
 					},
 					command = { a = { fg = colors.fg1, bg = colors.color5, gui = "bold" } },
 					inactive = { a = { fg = colors.fg2, bg = colors.color2 } },

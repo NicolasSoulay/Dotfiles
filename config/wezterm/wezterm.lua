@@ -4,6 +4,20 @@ local config = wezterm.config_builder()
 config.color_scheme = "Gruvbox Material (Gogh)"
 config.hide_tab_bar_if_only_one_tab = true
 config.font = wezterm.font("JetBrainsMono NFM")
+config.window_background_opacity = 0.95
+
+config.colors = {
+	background = "#282828",
+}
+
+config.window_padding = {
+	left = "2px",
+	right = "2px",
+	top = "0px",
+	bottom = "1px",
+}
+
+config.window_close_confirmation = "NeverPrompt"
 
 wezterm.on("user-var-changed", function(window, pane, name, value)
 	local overrides = window:get_config_overrides() or {}
