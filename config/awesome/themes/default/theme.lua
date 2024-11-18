@@ -10,7 +10,7 @@ local themes_path = "~/.config/awesome/themes/"
 
 local theme = {}
 
-theme.font = "JetBrainsMono NFM"
+theme.font = "JetBrainsMono NFP"
 
 theme.useless_gap = dpi(3)
 theme.border_width = dpi(1)
@@ -23,7 +23,7 @@ theme.bg_systray = theme.bg_normal
 
 theme.fg_normal = os.getenv("BASE16_07") or "#ddc7a1"
 theme.fg_focus = os.getenv("BASE16_07") or "#282828"
-theme.fg_urgent = os.getenv("BASE16_07") or "#e78a4e"
+theme.fg_urgent = os.getenv("BASE16_07") or "#282828"
 theme.fg_minimize = os.getenv("BASE16_07") or "#d4be98"
 
 theme.border_normal = os.getenv("BASE16_00") or "#282828"

@@ -10,12 +10,13 @@ config.font = wezterm.font({
 })
 
 config.color_scheme = "Gruvbox Material (Gogh)"
+-- config.window_background_opacity = 1.00
 config.window_background_opacity = 0.95
 config.window_decorations = "RESIZE"
 config.window_padding = {
 	left = "2px",
 	right = "2px",
-	top = "0px",
+	top = "2px",
 	bottom = "0px",
 }
 config.window_close_confirmation = "NeverPrompt"
@@ -33,27 +34,27 @@ config.tab_bar_at_bottom = true
 config.status_update_interval = 1000
 config.colors = {
 	tab_bar = {
-		background = "#282828",
+		background = "NONE",
 		active_tab = {
 			fg_color = "#D4be98",
-			bg_color = "#282828",
+			bg_color = "NONE",
 		},
 		inactive_tab = {
 			fg_color = "#665c54",
-			bg_color = "#282828",
+			bg_color = "NONE",
 		},
 		inactive_tab_hover = {
 			fg_color = "#D4be98",
-			bg_color = "#282828",
+			bg_color = "NONE",
 			italic = true,
 		},
 		new_tab = {
 			fg_color = "#665c54",
-			bg_color = "#282828",
+			bg_color = "NONE",
 		},
 		new_tab_hover = {
 			fg_color = "#D4be98",
-			bg_color = "#282828",
+			bg_color = "NONE",
 		},
 	},
 }

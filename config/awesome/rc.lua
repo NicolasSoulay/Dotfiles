@@ -221,15 +221,13 @@ awful.rules.rules = {
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
-	-- Set the windows at the slave,
-	-- i.e. put it at the end of others instead of setting it master.
 	if not awesome.startup then
 		awful.client.setslave(c)
 	end
 
-	if c.floating then
-		c.shape = gears.shape.rounded_rect
-	end
+	-- if c.floating then
+	c.shape = gears.shape.rounded_rect
+	-- end
 
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
 		-- Prevent clients from being unreachable after screen count changes.
@@ -238,16 +236,24 @@ client.connect_signal("manage", function(c)
 end)
 
 client.connect_signal("property::size", function(c)
-	if c.floating then
-		c.shape = gears.shape.rounded_rect
-	end
-	if not c.floating then
+	-- if c.floating then
+	-- 	c.shape = gears.shape.rounded_rect
+	-- end
+	-- if not c.floating then
+	-- 	c.shape = gears.shape.rectangle
+	-- end
+	if c.maximized then
 		c.shape = gears.shape.rectangle
+	else
+		c.shape = gears.shape.rounded_rect
 	end
 end)
 
 client.connect_signal("focus", function(c)
-	c.border_color = beautiful.border_focus
+	local t = awful.tag.selected(c.screen)
+	if #t:clients() > 1 then
+		c.border_color = beautiful.border_focus
+	end
 end)
 client.connect_signal("unfocus", function(c)
 	c.border_color = beautiful.border_normal
