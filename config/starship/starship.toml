@@ -26,10 +26,13 @@ format = '\[[$symbol($version)]($style)\]'
 
 [cmd_duration]
 format = '\[[⏱ $duration]($style)\]'
+disabled = true
 
 [directory]
-read_only = " 󰌾"
+read_only = "[󰌾]"
 format = '\[[ $path](blue)[$read_only](red)\]'
+# format = '[$read_only](red)'
+# disabled = true
 
 [docker_context]
 symbol = " "
