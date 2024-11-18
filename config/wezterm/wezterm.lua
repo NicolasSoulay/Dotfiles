@@ -2,6 +2,9 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 local act = wezterm.action
+local act_cb = wezterm.action_callback
+local loginfo = wezterm.log_info
+local logerr = wezterm.log_error
 
 -- General appearance, colors, fonts, etc.
 config.font = wezterm.font({
@@ -12,10 +15,9 @@ config.font = wezterm.font({
 config.color_scheme = "Gruvbox Material (Gogh)"
 -- config.window_background_opacity = 1.00
 config.window_background_opacity = 0.95
-config.window_decorations = "RESIZE"
 config.window_padding = {
-	left = "2px",
-	right = "2px",
+	left = "5px",
+	right = "5px",
 	top = "2px",
 	bottom = "0px",
 }
@@ -70,12 +72,7 @@ wezterm.on("update-status", function(window, pane)
 		stat_color = "#e78a4e"
 	end
 
-	-- local basename = function(s)
-	-- 	return s:gsub("^/home/([^/]+)", "~")
-	-- end
-
 	local basename = function(s)
-		-- Nothing a little regex can't fix
 		return string.gsub(s, "^/home/([^/]+)", "~")
 	end
 
@@ -95,6 +92,55 @@ wezterm.on("update-status", function(window, pane)
 	}))
 end)
 
+-- Session manager
+local sessionizer = {}
+sessionizer.toggle = function(window, pane)
+	local projects = {}
+	local success, stdout, stderr = wezterm.run_child_process({
+		"fdfind",
+		"-HI",
+		"^.git$",
+		"--max-depth=4",
+		"--prune",
+		os.getenv("HOME") .. "/Dev",
+	})
+
+	if not success then
+		logerr("Failed to run fd: " .. stderr)
+		return
+	end
+
+	for line in stdout:gmatch("([^\n]*)\n?") do
+		local project = line:gsub("/.git.*$", "")
+		local id = project
+		local label = project:gsub(".*/", "")
+		table.insert(projects, { label = tostring(label), id = tostring(id) })
+	end
+	table.insert(projects, { label = "Main", id = os.getenv("HOME") })
+	table.insert(projects, { label = "Wezterm", id = os.getenv("HOME") .. "/Dotfiles/config/wezterm" })
+	table.insert(projects, { label = "AwesomeWM", id = os.getenv("HOME") .. "/Dotfiles/config/awesome" })
+	table.insert(projects, { label = "Neovim", id = os.getenv("HOME") .. "/Dotfiles/config/nvim" })
+	table.insert(projects, { label = "Starship", id = os.getenv("HOME") .. "/Dotfiles/config/starship" })
+	table.insert(projects, { label = "Scripts", id = os.getenv("HOME") .. "/Dotfiles/bin" })
+
+	window:perform_action(
+		act.InputSelector({
+			action = act_cb(function(win, _, id, label)
+				if not id and not label then
+					loginfo("Cancelled")
+				else
+					loginfo("Selected " .. label)
+					win:perform_action(act.SwitchToWorkspace({ name = label, spawn = { cwd = id } }), pane)
+				end
+			end),
+			fuzzy = true,
+			title = "Select project",
+			choices = projects,
+		}),
+		pane
+	)
+end
+
 -- Keybindings
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
@@ -102,7 +148,7 @@ config.keys = {
 	{
 		key = "a",
 		mods = "LEADER|CTRL",
-		action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
+		action = act.SendKey({ key = "a", mods = "CTRL" }),
 	},
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "h", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
@@ -123,6 +169,9 @@ config.keys = {
 	{ key = "L", mods = "LEADER", action = act.ActivateTabRelative(1) },
 	{ key = "e", mods = "LEADER", action = act.ShowTabNavigator },
 	{ key = "m", mods = "LEADER", action = act.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
+
+	-- workspaces
+	{ key = "f", mods = "LEADER", action = act_cb(sessionizer.toggle) },
 }
 
 for i = 1, 9 do

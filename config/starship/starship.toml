@@ -13,8 +13,8 @@ trim_at = '.companyname.com'
 disabled = true
 
 [character]
-success_symbol = " [>_](bold white)"
-error_symbol = " [>_](bold red)"
+success_symbol = "[>_](bold white)"
+error_symbol = "[>_](bold red)"
 
 [c]
 symbol = " "
@@ -30,7 +30,7 @@ disabled = true
 
 [directory]
 read_only = "[󰌾]"
-format = '\[[ $path](blue)[$read_only](red)\]'
+format = '[ $path](blue)[$read_only](red)'
 # format = '[$read_only](red)'
 # disabled = true
 

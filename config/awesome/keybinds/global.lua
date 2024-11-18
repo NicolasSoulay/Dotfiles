@@ -5,17 +5,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local globalkeys = gears.table.join(
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 
-	awful.key({ modkey, "Control" }, "Left", function()
-		awful.tag.viewprev()
-	end, { description = "view previous", group = "tag" }),
-
 	awful.key({ modkey, "Control" }, "h", function()
 		awful.tag.viewprev()
 	end, { description = "view previous", group = "tag" }),
-
-	awful.key({ modkey, "Control" }, "Right", function()
-		awful.tag.viewnext()
-	end, { description = "view next", group = "tag" }),
 
 	awful.key({ modkey, "Control" }, "l", function()
 		awful.tag.viewnext()
@@ -46,15 +38,7 @@ local globalkeys = gears.table.join(
 		awful.screen.focus_relative(1)
 	end, { description = "focus the next screen", group = "screen" }),
 
-	awful.key({ modkey, "Mod1" }, "Right", function()
-		awful.screen.focus_relative(1)
-	end, { description = "focus the next screen", group = "screen" }),
-
 	awful.key({ modkey, "Mod1" }, "h", function()
-		awful.screen.focus_relative(-1)
-	end, { description = "focus the previous screen", group = "screen" }),
-
-	awful.key({ modkey, "Mod1" }, "Left", function()
 		awful.screen.focus_relative(-1)
 	end, { description = "focus the previous screen", group = "screen" }),
 
