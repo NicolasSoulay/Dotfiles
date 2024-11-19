@@ -91,7 +91,7 @@ ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games ~/Games/PS2/ROMS
 
 # TODO: ajouter des fichiers de configurations pour firefox & qbittorent
 # App
-sudo apt install thunderbird dwarf-fortress firefox-esr libreoffice qbittorent steam-installer -y
+sudo apt install thunderbird dwarf-fortress firefox-esr libreoffice qbittorrent steam-installer -y
 
 # install de MEGA
 wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb"
