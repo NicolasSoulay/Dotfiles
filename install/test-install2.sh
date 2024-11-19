@@ -10,12 +10,6 @@ read github_username
 echo "Github email:"
 read github_email
 
-list=("Xorg" "Wayland" "Both")
-selected=$(printf "%s\n" "${list[@]} | sk")
-
-if [[ -z $selected ]]; then
-    exit 0
-fi
 
 # dossiers utilisateurs
 sudo apt install xdg-user-dirs -y
@@ -36,19 +30,12 @@ touch  ~/.local/share/wget-hsts
 rm ~/.bashrc
 rm ~/.bash_aliases
 cp ~/Dotfiles/install/.bashrc ~/.bashrc
-cp ~/Dotfiles/install/.bash_profile ~/.bash_profile
 
 # Tous les fichier de config + les wallpapers
-if [[ $selected == "Xorg" || $selected == "Both" ]]; then
-    cp ~/Dotfiles/install/.xinitrc ~/.xinitrc
-    ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
-    ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
-fi
-if [[ $selected == "Wayland" || $selected == "Both" ]]; then
-    ln -sf ~/Dotfiles/config/sway ~/.config/sway
-    ln -sf ~/Dotfiles/config/waybar ~/.config/waybar
-    ln -sf ~/Dotfiles/config/wofi ~/.config/wofi
-fi
+# TODO: Créer un xinitrc ou xsession pour le desktop Xorg
+cp ~/Dotfiles/install/.xinitrc ~/.xinitrc
+ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
+ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
 ln -sf ~/Dotfiles/config/kitty ~/.config/kitty
 ln -sf ~/Dotfiles/config/mc ~/.config/mc
 ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
@@ -78,6 +65,7 @@ source ~/.bashrc
 # Flatpak
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub org.duckstation.DuckStation -y
+flatpak install flathub net.lutris.Lutris
 flatpak install net.pcsx2.PCSX2 -y
 
 # Dossier pour emulateurs
@@ -97,25 +85,16 @@ sudo apt install thunderbird dwarf-fortress firefox-esr libreoffice qbittorrent 
 wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb"
 rm megasync-Debian_12_amd64.deb
 
-# Desktop env
+# Desktop env TODO: change exa for eza when it's available for Debian 13
 sudo apt install exa zathura greetd mc mpv cmus tealdeer tmux -y
 
 # Wine
-if [[ $selected == "Xorg" || $selected == "Both" ]]; then
-    sudo dpkg --add-architecture i386 && sudo apt update
-    sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine -y
-fi
+sudo dpkg --add-architecture i386 && sudo apt update
+sudo apt install wine wine64 libwine libwine:i386 fonts-wine -y
 
 
 # Xorg install
-if [[ $selected == "Xorg" || $selected == "Both" ]]; then
-    sudo apt install rofi picom awesome xorg -y
-fi
-
-# Wayland install
-if [[ $selected == "Wayland" || $selected == "Both" ]]; then
-    sudo apt install sway swaybg swaidle swaylock xdg-desktop-portal-wlr wofi clipman xwayland -y
-fi
+sudo apt install rofi picom awesome xorg -y
 
 # Utils
 sudo apt install inotify-tools wget fzf bat gh jq man awk w3m coreutils pavucontrol parallel findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl build-essential -y
