@@ -16,9 +16,9 @@ config.color_scheme = "Gruvbox Material (Gogh)"
 -- config.window_background_opacity = 1.00
 config.window_background_opacity = 0.95
 config.window_padding = {
-	left = "5px",
-	right = "5px",
-	top = "2px",
+	left = "10px",
+	right = "10px",
+	top = "5px",
 	bottom = "0px",
 }
 config.window_close_confirmation = "NeverPrompt"
