@@ -195,11 +195,10 @@ awful.rules.rules = {
 		properties = { floating = true },
 	},
 
-	-- Add titlebars to normal clients and dialogs
-	{
-		rule_any = { type = { "normal", "dialog" } },
-		properties = { titlebars_enabled = false },
-	},
+	-- {
+	-- 	rule_any = { type = { "normal", "dialog" } },
+	-- 	properties = { titlebars_enabled = false },
+	-- },
 
 	{
 		rule = { name = "Mozilla Firefox" },
@@ -219,7 +218,6 @@ awful.rules.rules = {
 -- }}}
 
 -- {{{ Signals
--- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
 	if not awesome.startup then
 		awful.client.setslave(c)
@@ -236,12 +234,6 @@ client.connect_signal("manage", function(c)
 end)
 
 client.connect_signal("property::size", function(c)
-	-- if c.floating then
-	-- 	c.shape = gears.shape.rounded_rect
-	-- end
-	-- if not c.floating then
-	-- 	c.shape = gears.shape.rectangle
-	-- end
 	if c.maximized then
 		c.shape = gears.shape.rectangle
 	else
