@@ -30,6 +30,13 @@ config.inactive_pane_hsb = {
 	brightness = 0.6,
 }
 
+config.unix_domains = {
+	{
+		name = "unix",
+	},
+}
+config.default_gui_startup_args = { "connect", "unix" }
+
 -- Tab bar
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
@@ -78,7 +85,11 @@ wezterm.on("update-status", function(window, pane)
 
 	-- Current working directory
 	local cwd = pane:get_current_working_dir()
-	cwd = basename(cwd.file_path)
+	if cwd == nil then
+		cwd = " "
+	else
+		cwd = basename(cwd.file_path)
+	end
 
 	-- Left status (left of the tab line)
 	window:set_left_status(wezterm.format({
@@ -93,53 +104,6 @@ wezterm.on("update-status", function(window, pane)
 end)
 
 -- Session manager
-local sessionizer = {}
-sessionizer.toggle = function(window, pane)
-	local projects = {}
-	local success, stdout, stderr = wezterm.run_child_process({
-		"fdfind",
-		"-HI",
-		"^.git$",
-		"--max-depth=4",
-		"--prune",
-		os.getenv("HOME") .. "/Dev",
-	})
-
-	if not success then
-		logerr("Failed to run fd: " .. stderr)
-		return
-	end
-
-	for line in stdout:gmatch("([^\n]*)\n?") do
-		local project = line:gsub("/.git.*$", "")
-		local id = project
-		local label = project:gsub(".*/", "")
-		table.insert(projects, { label = tostring(label), id = tostring(id) })
-	end
-	table.insert(projects, { label = "Main", id = os.getenv("HOME") })
-	table.insert(projects, { label = "Wezterm", id = os.getenv("HOME") .. "/Dotfiles/config/wezterm" })
-	table.insert(projects, { label = "AwesomeWM", id = os.getenv("HOME") .. "/Dotfiles/config/awesome" })
-	table.insert(projects, { label = "Neovim", id = os.getenv("HOME") .. "/Dotfiles/config/nvim" })
-	table.insert(projects, { label = "Starship", id = os.getenv("HOME") .. "/Dotfiles/config/starship" })
-	table.insert(projects, { label = "Scripts", id = os.getenv("HOME") .. "/Dotfiles/bin" })
-
-	window:perform_action(
-		act.InputSelector({
-			action = act_cb(function(win, _, id, label)
-				if not id and not label then
-					loginfo("Cancelled")
-				else
-					loginfo("Selected " .. label)
-					win:perform_action(act.SwitchToWorkspace({ name = label, spawn = { cwd = id } }), pane)
-				end
-			end),
-			fuzzy = true,
-			title = "Select project",
-			choices = projects,
-		}),
-		pane
-	)
-end
 
 -- Keybindings
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
@@ -171,7 +135,96 @@ config.keys = {
 	{ key = "m", mods = "LEADER", action = act.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
 
 	-- workspaces
-	{ key = "f", mods = "LEADER", action = act_cb(sessionizer.toggle) },
+	{
+		key = "s",
+		mods = "LEADER",
+		action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
+	},
+	{
+		key = "f",
+		mods = "LEADER",
+		action = act_cb(function(window, pane)
+			local workspaces = {}
+			local home = os.getenv("HOME")
+			local success, stdout, stderr = wezterm.run_child_process({
+				"fdfind",
+				"-HI",
+				"^.git$",
+				"--max-depth=4",
+				"--prune",
+				os.getenv("HOME") .. "/Dev",
+			})
+
+			if not success then
+				logerr("Failed to run fdfind: " .. stderr)
+				return
+			end
+
+			for line in stdout:gmatch("([^\n]*)\n?") do
+				local workspace = line:gsub("/.git.*$", "")
+				local id = workspace
+				local label = workspace:gsub(".*/", "")
+				table.insert(workspaces, { label = tostring(label), id = tostring(id) })
+			end
+			table.insert(workspaces, { label = "Main", id = home })
+			table.insert(workspaces, {
+				label = "Wezterm",
+				id = home .. "/Dotfiles/config/wezterm",
+			})
+			table.insert(workspaces, { label = "AwesomeWM", id = home .. "/Dotfiles/config/awesome" })
+			table.insert(workspaces, { label = "Neovim", id = home .. "/Dotfiles/config/nvim" })
+			table.insert(workspaces, { label = "Starship", id = home .. "/Dotfiles/config/starship" })
+			table.insert(workspaces, { label = "Scripts", id = home .. "/Dotfiles/bin" })
+
+			window:perform_action(
+				act.InputSelector({
+					action = act_cb(function(inner_window, inner_pane, id, label)
+						if not id and not label then
+							loginfo("Cancelled")
+						else
+							loginfo("Selected " .. label)
+							inner_window:perform_action(
+								act.SwitchToWorkspace({
+									name = label,
+									spawn = {
+										label = "Workspace: " .. label,
+										cwd = id,
+									},
+								}),
+								inner_pane
+							)
+						end
+					end),
+					fuzzy = true,
+					title = "Select project",
+					fuzzy_description = "Select session: ",
+					choices = workspaces,
+				}),
+				pane
+			)
+		end),
+	},
+	{
+		key = "w",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = wezterm.format({
+				{ Attribute = { Intensity = "Bold" } },
+				{ Foreground = { AnsiColor = "Fuchsia" } },
+				{ Text = "Enter name for new workspace" },
+			}),
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:perform_action(
+						act.SwitchToWorkspace({
+							name = line,
+						}),
+						pane
+					)
+				end
+			end),
+		}),
+	},
 }
 
 for i = 1, 9 do
