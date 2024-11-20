@@ -10,7 +10,6 @@ read github_username
 echo "Github email:"
 read github_email
 
-
 # dossiers utilisateurs
 sudo apt install xdg-user-dirs -y
 xdg-user-dirs-update
@@ -77,9 +76,11 @@ mkdir ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games
 ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/bios ~/Games/PS2/BIOS
 ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games ~/Games/PS2/ROMS
 
+sudo apt install steam-installer -y
+
 # TODO: ajouter des fichiers de configurations pour firefox & qbittorent
 # App
-sudo apt install thunderbird dwarf-fortress firefox-esr libreoffice qbittorrent steam-installer -y
+sudo apt install thunderbird dwarf-fortress firefox-esr libreoffice qbittorrent -y
 
 # install de MEGA
 wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb"
@@ -91,7 +92,6 @@ sudo apt install exa zathura greetd mc mpv cmus tealdeer tmux -y
 # Wine
 sudo dpkg --add-architecture i386 && sudo apt update
 sudo apt install wine wine64 libwine libwine:i386 fonts-wine -y
-
 
 # Xorg install
 sudo apt install rofi picom awesome xorg -y
