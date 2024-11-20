@@ -30,7 +30,7 @@ disabled = true
 
 [directory]
 read_only = "[󰌾]"
-format = '[ $path](blue)[$read_only](red)'
+format = '[ $path ](blue)[$read_only](red)'
 # format = '[$read_only](red)'
 # disabled = true
 
