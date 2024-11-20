@@ -1,11 +1,5 @@
 # Zathura configuration file
-
-# zathurarc-dark
-
-
-
-
-set font "JetBrains Mono 15"
+set font "JetBrainsMono NFM 15"
 
 set notification-error-bg       "#282828" # bg0
 set notification-error-fg       "#ea6962" # red
@@ -45,8 +39,9 @@ set render-loading-fg           "#d4be98" # fg0
 # Recolor book content's color
 set recolor-lightcolor          "#282828" # bg0
 set recolor-darkcolor           "#d4be98" # fg0
+set recolor                     "true"
+set recolor-keephue             true      # keep original color
 
-set recolor "true"
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 map i recolor
