@@ -39,31 +39,31 @@ config.default_gui_startup_args = { "connect", "unix" }
 
 -- Tab bar
 config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = true
+-- config.tab_bar_at_bottom = true
 config.status_update_interval = 1000
 config.colors = {
 	tab_bar = {
-		background = "NONE",
+		background = "#282828",
 		active_tab = {
 			fg_color = "#D4be98",
-			bg_color = "NONE",
+			bg_color = "#282828",
 		},
 		inactive_tab = {
 			fg_color = "#665c54",
-			bg_color = "NONE",
+			bg_color = "#282828",
 		},
 		inactive_tab_hover = {
 			fg_color = "#D4be98",
-			bg_color = "NONE",
+			bg_color = "#282828",
 			italic = true,
 		},
 		new_tab = {
 			fg_color = "#665c54",
-			bg_color = "NONE",
+			bg_color = "#282828",
 		},
 		new_tab_hover = {
 			fg_color = "#D4be98",
-			bg_color = "NONE",
+			bg_color = "#282828",
 		},
 	},
 }
