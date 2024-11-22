@@ -146,13 +146,27 @@ config.keys = {
 		action = act_cb(function(window, pane)
 			local workspaces = {}
 			local home = os.getenv("HOME")
+			local dotfiles = home .. "/Dotfiles/config"
+			local dev = home .. "/Dev"
+
+			-- Default workspaces
+			table.insert(workspaces, { label = "Main", id = home })
+			table.insert(workspaces, { label = "Glow", id = home })
+			table.insert(workspaces, { label = "Ncspot", id = home })
+			table.insert(workspaces, { label = "Wezterm", id = dotfiles .. "/wezterm" })
+			table.insert(workspaces, { label = "AwesomeWM", id = dotfiles .. "/awesome" })
+			table.insert(workspaces, { label = "Neovim", id = dotfiles .. "/nvim" })
+			table.insert(workspaces, { label = "Starship", id = dotfiles .. "/starship" })
+			table.insert(workspaces, { label = "Scripts", id = home .. "/Dotfiles/bin" })
+
+			-- Git workspaces
 			local success, stdout, stderr = wezterm.run_child_process({
 				"fdfind",
 				"-HI",
 				"^.git$",
 				"--max-depth=4",
 				"--prune",
-				os.getenv("HOME") .. "/Dev",
+				dev,
 			})
 
 			if not success then
@@ -166,22 +180,29 @@ config.keys = {
 				local label = workspace:gsub(".*/", "")
 				table.insert(workspaces, { label = tostring(label), id = tostring(id) })
 			end
-			table.insert(workspaces, { label = "Main", id = home })
-			table.insert(workspaces, {
-				label = "Wezterm",
-				id = home .. "/Dotfiles/config/wezterm",
-			})
-			table.insert(workspaces, { label = "AwesomeWM", id = home .. "/Dotfiles/config/awesome" })
-			table.insert(workspaces, { label = "Neovim", id = home .. "/Dotfiles/config/nvim" })
-			table.insert(workspaces, { label = "Starship", id = home .. "/Dotfiles/config/starship" })
-			table.insert(workspaces, { label = "Scripts", id = home .. "/Dotfiles/bin" })
 
 			window:perform_action(
 				act.InputSelector({
 					action = act_cb(function(inner_window, inner_pane, id, label)
+						local args = {}
 						if not id and not label then
 							loginfo("Cancelled")
 						else
+							if label == "Ncspot" then
+								args = { "ncspot" }
+							end
+							if label == "Glow" then
+								args = { "glow" }
+							end
+							if label == "Neovim" then
+								args = { "nvim", "init.lua" }
+							end
+							if label == "AwesomeWM" then
+								args = { "nvim", "rc.lua" }
+							end
+							if label == "Wezterm" then
+								args = { "nvim", "wezterm.lua" }
+							end
 							loginfo("Selected " .. label)
 							inner_window:perform_action(
 								act.SwitchToWorkspace({
@@ -189,6 +210,7 @@ config.keys = {
 									spawn = {
 										label = "Workspace: " .. label,
 										cwd = id,
+										args = args,
 									},
 								}),
 								inner_pane

@@ -89,6 +89,8 @@ rm megasync-Debian_12_amd64.deb
 # Desktop env TODO: change exa for eza when it's available for Debian 13
 sudo apt install exa zathura greetd mc mpv cmus tealdeer tmux -y
 
+# TODO: install glow from .deb
+
 # Wine
 sudo dpkg --add-architecture i386 && sudo apt update
 sudo apt install wine wine64 libwine libwine:i386 fonts-wine -y
