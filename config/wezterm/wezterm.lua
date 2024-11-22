@@ -5,6 +5,7 @@ local act = wezterm.action
 local act_cb = wezterm.action_callback
 local loginfo = wezterm.log_info
 local logerr = wezterm.log_error
+local last_ws = "home"
 
 -- General appearance, colors, fonts, etc.
 config.font = wezterm.font({
@@ -185,6 +186,7 @@ config.keys = {
 				act.InputSelector({
 					action = act_cb(function(inner_window, inner_pane, id, label)
 						local args = {}
+						last_ws = window:active_workspace()
 						if not id and not label then
 							loginfo("Cancelled")
 						else
@@ -236,7 +238,7 @@ config.keys = {
 				{ Foreground = { AnsiColor = "Fuchsia" } },
 				{ Text = "Enter name for new workspace" },
 			}),
-			action = wezterm.action_callback(function(window, pane, line)
+			action = act_cb(function(window, pane, line)
 				if line then
 					window:perform_action(
 						act.SwitchToWorkspace({
@@ -248,7 +250,18 @@ config.keys = {
 			end),
 		}),
 	},
-	{ key = " ", mods = "LEADER", action = act.SwitchToWorkspace({ name = "home" }) },
+	{
+		key = " ",
+		mods = "LEADER",
+		action = act_cb(function(window, pane)
+			if window:active_workspace() == "home" then
+				window:perform_action(act.SwitchToWorkspace({ name = last_ws }), pane)
+			else
+				last_ws = window:active_workspace()
+				window:perform_action(act.SwitchToWorkspace({ name = "home" }), pane)
+			end
+		end),
+	},
 }
 
 for i = 1, 9 do
