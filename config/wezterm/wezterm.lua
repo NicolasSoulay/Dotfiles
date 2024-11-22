@@ -23,7 +23,7 @@ config.window_padding = {
 }
 config.window_close_confirmation = "NeverPrompt"
 config.scrollback_lines = 3000
-config.default_workspace = "Main"
+config.default_workspace = "home"
 config.max_fps = 100
 config.inactive_pane_hsb = {
 	saturation = 0.6,
@@ -150,14 +150,14 @@ config.keys = {
 			local dev = home .. "/Dev"
 
 			-- Default workspaces
-			table.insert(workspaces, { label = "Main", id = home })
-			table.insert(workspaces, { label = "Glow", id = home })
-			table.insert(workspaces, { label = "Ncspot", id = home })
-			table.insert(workspaces, { label = "Wezterm", id = dotfiles .. "/wezterm" })
-			table.insert(workspaces, { label = "AwesomeWM", id = dotfiles .. "/awesome" })
-			table.insert(workspaces, { label = "Neovim", id = dotfiles .. "/nvim" })
-			table.insert(workspaces, { label = "Starship", id = dotfiles .. "/starship" })
-			table.insert(workspaces, { label = "Scripts", id = home .. "/Dotfiles/bin" })
+			table.insert(workspaces, { label = "home", id = home })
+			table.insert(workspaces, { label = "glow", id = home })
+			table.insert(workspaces, { label = "ncspot", id = home })
+			table.insert(workspaces, { label = "wezterm", id = dotfiles .. "/wezterm" })
+			table.insert(workspaces, { label = "awesome", id = dotfiles .. "/awesome" })
+			table.insert(workspaces, { label = "nvim", id = dotfiles .. "/nvim" })
+			table.insert(workspaces, { label = "starship", id = dotfiles .. "/starship" })
+			table.insert(workspaces, { label = "scripts", id = home .. "/Dotfiles/bin" })
 
 			-- Git workspaces
 			local success, stdout, stderr = wezterm.run_child_process({
@@ -188,19 +188,19 @@ config.keys = {
 						if not id and not label then
 							loginfo("Cancelled")
 						else
-							if label == "Ncspot" then
+							if label == "ncspot" then
 								args = { "ncspot" }
 							end
-							if label == "Glow" then
+							if label == "glow" then
 								args = { "glow" }
 							end
-							if label == "Neovim" then
+							if label == "neovim" then
 								args = { "nvim", "init.lua" }
 							end
-							if label == "AwesomeWM" then
+							if label == "awesome" then
 								args = { "nvim", "rc.lua" }
 							end
-							if label == "Wezterm" then
+							if label == "wezterm" then
 								args = { "nvim", "wezterm.lua" }
 							end
 							loginfo("Selected " .. label)
@@ -215,6 +215,7 @@ config.keys = {
 								}),
 								inner_pane
 							)
+							inner_window:perform_action(act.SplitHorizontal())
 						end
 					end),
 					fuzzy = true,
@@ -247,6 +248,7 @@ config.keys = {
 			end),
 		}),
 	},
+	{ key = " ", mods = "LEADER", action = act.SwitchToWorkspace({ name = "home" }) },
 }
 
 for i = 1, 9 do
