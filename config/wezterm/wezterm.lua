@@ -94,12 +94,13 @@ wezterm.on("update-status", function(window, pane)
 
 	-- Left status (left of the tab line)
 	window:set_left_status(wezterm.format({
-		{ Foreground = { Color = stat_color } },
 		{ Text = " " },
+		{ Foreground = { Color = stat_color } },
 		{ Text = wezterm.nerdfonts.oct_table .. "  " .. status },
 		{ Text = " | " },
 		{ Foreground = { Color = "#e0af68" } },
-		{ Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
+		{ Text = wezterm.nerdfonts.oct_file_directory .. "  " .. cwd },
+		{ Text = " | " },
 		"ResetAttributes",
 	}))
 end)
