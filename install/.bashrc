@@ -66,6 +66,7 @@ alias fzf='sk'
 alias ps='procs --tree'
 alias htop='btm'
 alias dotupdate='cd ~/Dotfiles && git pull && cd ~'
+alias dotpush='cd ~/Dotfiles && gacp conf && cd ~'
 
 # I don't remember why, but I need this
 shopt -s globstar
