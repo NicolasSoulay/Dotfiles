@@ -108,7 +108,7 @@ sudo apt install wine wine64 libwine libwine:i386 fonts-wine -y
 sudo apt install rofi picom awesome xorg -y
 
 # Utils
-sudo apt install inotify-tools wget fzf bat gettext gh jq man awk w3m coreutils pavucontrol parallel findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl build-essential -y
+sudo apt install inotify-tools wget fzf bat gh jq man gawk w3m coreutils pavucontrol parallel findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl build-essential -y
 
 # Postgres
 sudo apt install postgresql postgresql-client -y
