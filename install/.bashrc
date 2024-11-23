@@ -46,13 +46,10 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export HISTSIZE=1000
 export HISTFILESIZE=1000
 
-# ls with exa
 alias ls='exa -lah --icons --group-directories-first --sort=ext'
 alias lst='exa -a --tree --icons --group-directories-first --sort=ext'
 alias lsd='exa -lah --icons --sort=mod' 
 alias lss='exa -lah --icons --sort=size'
-
-# neovim
 alias v='nvim'
 alias gog='lgogdownloader'
 alias grep='rg --color=auto'
@@ -68,6 +65,7 @@ alias cp='cpz'
 alias fzf='sk'
 alias ps='procs --tree'
 alias htop='btm'
+alias dotupdate='cd ~/Dotfiles && git pull && cd ~'
 
 # I don't remember why, but I need this
 shopt -s globstar
@@ -81,4 +79,3 @@ export NVM_DIR="$HOME/.config/nvm"
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
-
