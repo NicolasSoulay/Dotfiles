@@ -12,7 +12,7 @@ local theme = {}
 
 theme.font = "JetBrainsMono NFP"
 
-theme.useless_gap = dpi(30)
+theme.useless_gap = dpi(31)
 theme.border_width = dpi(1)
 
 theme.bg_systray = theme.bg_normal

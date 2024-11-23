@@ -5,9 +5,6 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
-
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="/usr/sbin:$PATH"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
@@ -28,6 +25,10 @@ export GCM_PLAINTEXT_STORE_PATH="$XDG_DATA_HOME"/gcm/store
 export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship/starship.toml
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/sbin:$PATH"
+. "$HOME/.local/share/cargo/env"
 
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 export MANROFFOPT="-c"
@@ -74,14 +75,13 @@ shopt -s globstar
 # case insensitive auto complete
 bind 'set completion-ignore-case on'
 
-. "$HOME/.local/share/cargo/env"
-
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)

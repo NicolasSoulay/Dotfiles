@@ -57,7 +57,6 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 # Clean du dossier home
 sudo rm ~/.bash_history
 sudo rm ~/.bash_logout
-sudo rm ~/.profile
 sudo rm ~/.wget-hsts
 
 source ~/.bashrc
@@ -99,7 +98,7 @@ wget -O glow.deb https://github.com/charmbracelet/glow/releases/download/v2.0.0/
 rm glow.deb
 
 # Desktop env TODO: change exa for eza when it's available for Debian 13
-sudo apt install exa zathura greetd mc mpv cmus tealdeer tmux -y
+sudo apt install exa zathura greetd mc mpv cmus tealdeer -y
 
 # Wine
 sudo dpkg --add-architecture i386 && sudo apt update
@@ -109,7 +108,7 @@ sudo apt install wine wine64 libwine libwine:i386 fonts-wine -y
 sudo apt install rofi picom awesome xorg -y
 
 # Utils
-sudo apt install inotify-tools wget fzf bat gh jq man awk w3m coreutils pavucontrol parallel findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl build-essential -y
+sudo apt install inotify-tools wget fzf bat gettext gh jq man awk w3m coreutils pavucontrol parallel findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl build-essential -y
 
 # Postgres
 sudo apt install postgresql postgresql-client -y
@@ -206,6 +205,15 @@ git clone "https://github.com/pystardust/ani-cli.git"
 sudo cp ani-cli/ani-cli /usr/local/bin
 rm -rf ani-cli
 
+# Starhip
+curl -sS https://starship.rs/install.sh | sh -s -- -y
+
+# Wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo apt update -y
+sudo apt install wezterm -y
+
 # Update final au cas ou, on remove des dependances obsoletes, on remove les fichier qui ne servent plus
 sudo rm ~/.wget-hsts
 sudo rm ~/.bash_history
@@ -230,4 +238,9 @@ sudo apt update -y
 sudo apt upgrade  -y
 sudo apt autoremove -y
 
-sudo reboot
+# Clean du dossier home
+sudo rm ~/.bash_history
+sudo rm ~/.bash_logout
+sudo rm ~/.wget-hsts
+
+# sudo reboot
