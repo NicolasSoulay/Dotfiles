@@ -38,6 +38,7 @@ cp ~/Dotfiles/config/nitrogen ~/.config/nitrogen
 ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
 ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
 ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
+ln -sf ~/Dotfiles/config/starship ~/.config/starship
 ln -sf ~/Dotfiles/config/wikiman ~/.config/wikiman
 ln -sf ~/Dotfiles/config/wezterm ~/.config/wezterm
 ln -sf ~/Dotfiles/config/zathura ~/.config/zathura
@@ -52,7 +53,7 @@ fc-cache -f -v
 
 # Flatpack
 sudo apt install flatpak -y
-sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sudo flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Clean du dossier home
 sudo rm ~/.bash_history
@@ -62,10 +63,10 @@ sudo rm ~/.wget-hsts
 source ~/.bashrc
 
 # Flatpak
-flatpak install flathub com.discordapp.Discord -y
-flatpak install flathub org.duckstation.DuckStation -y
-flatpak install flathub net.lutris.Lutris -y
-flatpak install net.pcsx2.PCSX2 -y
+flatpak install --user flathub com.discordapp.Discord -y
+flatpak install --user flathub org.duckstation.DuckStation -y
+flatpak install --user flathub net.lutris.Lutris -y
+flatpak install --user net.pcsx2.PCSX2 -y
 
 # Dossier pour emulateurs
 mkdir ~/.var/app/org.duckstation.DuckStation/config/duckstation/games
@@ -98,7 +99,7 @@ wget -O glow.deb https://github.com/charmbracelet/glow/releases/download/v2.0.0/
 rm glow.deb
 
 # Desktop env TODO: change exa for eza when it's available for Debian 13
-sudo apt install exa zathura greetd mc mpv cmus tealdeer -y
+sudo apt install exa zathura nitrogen greetd mc mpv cmus tealdeer -y
 
 # Wine
 sudo dpkg --add-architecture i386 && sudo apt update
