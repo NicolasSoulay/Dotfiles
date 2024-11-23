@@ -65,7 +65,7 @@ source ~/.bashrc
 # Flatpak
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub org.duckstation.DuckStation -y
-flatpak install flathub net.lutris.Lutris
+flatpak install flathub net.lutris.Lutris -y
 flatpak install net.pcsx2.PCSX2 -y
 
 # Dossier pour emulateurs
@@ -80,7 +80,7 @@ ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games ~/Games/PS2/ROMS
 sudo apt install steam-installer -y
 
 # Gog downloader
-sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build
+sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
 cd ~/Sources
 git clone https://github.com/Sude-/lgogdownloader
 cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
@@ -91,7 +91,7 @@ sudo ninja -C build install
 sudo apt install thunderbird dwarf-fortress firefox-esr libreoffice qbittorrent -y
 
 # install de MEGA
-wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb"
+wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb" -y
 rm megasync-Debian_12_amd64.deb
 
 #install de glow
