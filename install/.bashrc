@@ -53,6 +53,7 @@ alias lss='exa -lah --icons --sort=size'
 
 # neovim
 alias v='nvim'
+alias gog='lgogdownloader'
 alias grep='rg --color=auto'
 alias fgrep='rg -F --color=auto'
 alias egrep='egrep --color=auto'

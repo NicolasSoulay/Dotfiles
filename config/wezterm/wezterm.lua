@@ -12,6 +12,7 @@ config.font = wezterm.font({
 	family = "JetBrains Mono",
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 })
+config.font_size = 12
 
 config.color_scheme = "Gruvbox Material (Gogh)"
 -- config.window_background_opacity = 1.00
@@ -22,6 +23,7 @@ config.window_padding = {
 	top = "5px",
 	bottom = "0px",
 }
+config.window_decorations = "RESIZE"
 config.window_close_confirmation = "NeverPrompt"
 config.scrollback_lines = 3000
 config.default_workspace = "home"
@@ -40,31 +42,31 @@ config.default_gui_startup_args = { "connect", "unix" }
 
 -- Tab bar
 config.use_fancy_tab_bar = false
--- config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = true
 config.status_update_interval = 1000
 config.colors = {
 	tab_bar = {
-		background = "#282828",
+		background = "NONE",
 		active_tab = {
 			fg_color = "#D4be98",
-			bg_color = "#282828",
+			bg_color = "NONE",
 		},
 		inactive_tab = {
 			fg_color = "#665c54",
-			bg_color = "#282828",
+			bg_color = "NONE",
 		},
 		inactive_tab_hover = {
 			fg_color = "#D4be98",
-			bg_color = "#282828",
+			bg_color = "NONE",
 			italic = true,
 		},
 		new_tab = {
 			fg_color = "#665c54",
-			bg_color = "#282828",
+			bg_color = "NONE",
 		},
 		new_tab_hover = {
 			fg_color = "#D4be98",
-			bg_color = "#282828",
+			bg_color = "NONE",
 		},
 	},
 }
@@ -104,8 +106,6 @@ wezterm.on("update-status", function(window, pane)
 		"ResetAttributes",
 	}))
 end)
-
--- Session manager
 
 -- Keybindings
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }

@@ -22,6 +22,7 @@ mkdir -p ~/Games
 mkdir -p ~/Games/PS1
 mkdir -p ~/Games/PS2
 mkdir -p ~/Sources
+mkdir -p ~/Torrents
 touch  ~/.local/state/bash/history
 touch  ~/.local/share/wget-hsts
 
@@ -29,16 +30,16 @@ touch  ~/.local/share/wget-hsts
 rm ~/.bashrc
 rm ~/.bash_aliases
 cp ~/Dotfiles/install/.bashrc ~/.bashrc
+cp ~/Dotfiles/config/nitrogen ~/.config/nitrogen
 
 # Tous les fichier de config + les wallpapers
 # TODO: Créer un xinitrc ou xsession pour le desktop Xorg
-cp ~/Dotfiles/install/.xinitrc ~/.xinitrc
+# cp ~/Dotfiles/install/.xinitrc ~/.xinitrc
 ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
-ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
-ln -sf ~/Dotfiles/config/kitty ~/.config/kitty
-ln -sf ~/Dotfiles/config/mc ~/.config/mc
 ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
-ln -sf ~/Dotfiles/config/tmux ~/.config/tmux
+ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
+ln -sf ~/Dotfiles/config/wikiman ~/.config/wikiman
+ln -sf ~/Dotfiles/config/wezterm ~/.config/wezterm
 ln -sf ~/Dotfiles/config/zathura ~/.config/zathura
 ln -sf ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
 
@@ -78,6 +79,13 @@ ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games ~/Games/PS2/ROMS
 
 sudo apt install steam-installer -y
 
+# Gog downloader
+sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build
+cd ~/Sources
+git clone https://github.com/Sude-/lgogdownloader
+cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
+sudo ninja -C build install
+
 # TODO: ajouter des fichiers de configurations pour firefox & qbittorent
 # App
 sudo apt install thunderbird dwarf-fortress firefox-esr libreoffice qbittorrent -y
@@ -86,10 +94,12 @@ sudo apt install thunderbird dwarf-fortress firefox-esr libreoffice qbittorrent 
 wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb"
 rm megasync-Debian_12_amd64.deb
 
+#install de glow
+wget -O glow.deb https://github.com/charmbracelet/glow/releases/download/v2.0.0/glow_2.0.0_amd64.deb && sudo dpkg -i glow.deb
+rm glow.deb
+
 # Desktop env TODO: change exa for eza when it's available for Debian 13
 sudo apt install exa zathura greetd mc mpv cmus tealdeer tmux -y
-
-# TODO: install glow from .deb
 
 # Wine
 sudo dpkg --add-architecture i386 && sudo apt update
@@ -116,10 +126,6 @@ sudo apt install gcc g++ cmake clang ninja-build -y
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
-# Dependencies:
-sudo apt install libgit2-dev libcurll4-*-dev libssh-dev libssl-dev pkgconf -y # cargo-update
-sudo apt install libssl-dev libncurses-dev libncursesw5-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render0-dev libpulse-dev libxcb1-dev libdbus-1-dev -y # ncspot
-
 # Compte default git
 git config --global user.email "${github_email}"
 git config --global user.name "${github_username}"
@@ -144,14 +150,20 @@ cd ~
 
 source ~/.bashrc
 
-# TODO: Verifier les sources de wikiman
 # Wikiman
+sudo apt install parallel -y 
 cd ~/Sources/
 git clone 'https://github.com/filiparag/wikiman'
 cd ./wikiman
 git checkout $(git describe --tags | cut -d'-' -f1)
 make all
 sudo make install
+cd ..
+curl -L 'https://raw.githubusercontent.com/filiparag/wikiman/master/Makefile' -o 'wikiman-makefile'
+make -f ./wikiman-makefile source-arch
+sudo make -f ./wikiman-makefile source-install
+sudo make -f ./wikiman-makefile clean
+sudo rm ./wikiman-makefile
 cd ~
 
 # TUIGreet
@@ -178,8 +190,16 @@ sudo su - $USER -c 'nvm install-latest-npm'
 sudo su - $USER -c 'npm install -g @nestjs/cli neovim sass typescript'
 
 # Packages cargo
-cargo install skim uwuify cargo-update procs rmz cpz
-cargo install --locked zoxide bottom gitui ncspot
+cargo install skim uwuify procs rmz cpz
+cargo install --locked zoxide bottom gitui 
+
+#cargo-update
+cargo install --locked cargo-update
+sudo apt install libgit2-dev libcurll4-*-dev libssh-dev libssl-dev pkgconf -y 
+
+# ncspot
+sudo apt install libssl-dev libncurses-dev libncursesw5-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render0-dev libpulse-dev libxcb1-dev libdbus-1-dev -y 
+cargo install --locked ncspot
 
 # ani-cli
 git clone "https://github.com/pystardust/ani-cli.git"
