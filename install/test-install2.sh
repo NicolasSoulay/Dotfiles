@@ -99,7 +99,7 @@ wget -O glow.deb https://github.com/charmbracelet/glow/releases/download/v2.0.0/
 rm glow.deb
 
 # Desktop env TODO: change exa for eza when it's available for Debian 13
-sudo apt install exa zathura nitrogen greetd mc mpv cmus tealdeer -y
+sudo apt install exa thunar thunar-archive-plugin zathura nitrogen greetd mc mpv cmus tealdeer -y
 
 # Wine
 sudo dpkg --add-architecture i386 && sudo apt update
