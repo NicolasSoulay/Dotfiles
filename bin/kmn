@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-list=("Other" "TeckenESN" "NicolasSoulay")
+list=("Other" "NicolasSoulay")
 selected=$(printf "%s\n" "${list[@]}" | sk)
 
 if [[ -z $selected ]]; then
