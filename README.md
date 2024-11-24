@@ -22,7 +22,7 @@ no compose key
 service keyboard-setup restart
 ```
 
-reboot
+Reboot
 
 ## TuiGreet
 
