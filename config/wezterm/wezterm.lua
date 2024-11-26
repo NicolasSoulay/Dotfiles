@@ -29,8 +29,8 @@ config.scrollback_lines = 3000
 config.default_workspace = "home"
 config.max_fps = 100
 config.inactive_pane_hsb = {
-	saturation = 0.6,
-	brightness = 0.6,
+	saturation = 0.8,
+	brightness = 0.8,
 }
 
 config.unix_domains = {
