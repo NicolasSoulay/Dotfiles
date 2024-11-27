@@ -5,6 +5,6 @@
 XKBMODEL="pc105"
 XKBLAYOUT="us"
 XKBVARIANT="altgr-intl"
-XKBOPTIONS="lv3:ralt_switch"
+XKBOPTIONS="lv3:ralt_switch,caps:ctrl_modifier"
 
 BACKSPACE="guess"
