@@ -73,10 +73,10 @@ local globalkeys = gears.table.join(
 		awful.util.spawn(file_manager_gui)
 	end, { description = "open gui file manager", group = "launcher" }),
 
-	-- tmux sessionizer
+	-- wezterm mux
 	awful.key({ modkey }, "t", function()
-		awful.util.spawn(terminal .. " -e tmux-sessionizer")
-	end, { description = "open tmux-sessionizer", group = "launcher" }),
+		awful.util.spawn( "wezterm connect unix")
+	end, { description = "open wezterm mux", group = "launcher" }),
 
 	-- Browser
 	awful.key({ modkey }, "b", function()
