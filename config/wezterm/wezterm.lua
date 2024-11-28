@@ -33,11 +33,11 @@ config.inactive_pane_hsb = {
 	brightness = 0.8,
 }
 
--- config.unix_domains = {
--- 	{
--- 		name = "unix",
--- 	},
--- }
+config.unix_domains = {
+	{
+		name = "unix",
+	},
+}
 -- config.default_gui_startup_args = { "connect", "unix" }
 
 -- Tab bar
