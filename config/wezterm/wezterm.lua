@@ -15,8 +15,8 @@ config.font = wezterm.font({
 config.font_size = 12
 
 config.color_scheme = "Gruvbox Material (Gogh)"
--- config.window_background_opacity = 1.00
-config.window_background_opacity = 0.95
+config.window_background_opacity = 1.00
+-- config.window_background_opacity = 0.95
 config.window_padding = {
 	left = "10px",
 	right = "10px",
