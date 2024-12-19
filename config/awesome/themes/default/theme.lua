@@ -1,7 +1,3 @@
------------------------------
--- Lacerda's awesome theme --
------------------------------
-
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
@@ -20,27 +16,27 @@ theme.master_fill_policy = "master_width_factor"
 
 theme.bg_systray = theme.bg_normal
 
-theme.bg_normal = os.getenv("BASE16_00") or "#282828"
-theme.fg_normal = os.getenv("BASE16_07") or "#ddc7a1"
+theme.bg_normal = "#282828"
+theme.fg_normal = "#ddc7a1"
 
-theme.bg_focus = os.getenv("BASE16_03") or "#bdae93"
-theme.fg_focus = os.getenv("BASE16_07") or "#282828"
+theme.bg_focus = "#bdae93"
+theme.fg_focus = "#282828"
 
-theme.bg_urgent = os.getenv("BASE16_08") or "#ea6962"
-theme.fg_urgent = os.getenv("BASE16_07") or "#282828"
+theme.bg_urgent = "#ea6962"
+theme.fg_urgent = "#282828"
 
-theme.bg_minimize = os.getenv("BASE16_04") or "#282828"
-theme.fg_minimize = os.getenv("BASE16_07") or "#d4be98"
+theme.bg_minimize = "#282828"
+theme.fg_minimize = "#d4be98"
 
-theme.border_normal = os.getenv("BASE16_00") or "#282828"
-theme.border_focus = os.getenv("BASE16_02") or "#bdae93"
-theme.border_marked = os.getenv("BASE16_00") or "#282828"
+theme.border_normal = "#282828"
+theme.border_focus = "#bdae93"
+theme.border_marked = "#282828"
 
-theme.tasklist_bg_focus = os.getenv("BASE16_00") or "#282828"
-theme.tasklist_fg_focus = os.getenv("BASE16_00") or "#ddc7a1"
+theme.tasklist_bg_focus = "#282828"
+theme.tasklist_fg_focus = "#ddc7a1"
 
-theme.titlebar_bg_normal = os.getenv("BASE16_00") or "#282828"
-theme.titlebar_bg_focus = os.getenv("BASE16_00") or "#282828"
+theme.titlebar_bg_normal = "#282828"
+theme.titlebar_bg_focus = "#282828"
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(5)
