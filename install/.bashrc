@@ -46,10 +46,10 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export HISTSIZE=1000
 export HISTFILESIZE=1000
 
-alias ls='exa -lah --icons --group-directories-first --sort=ext'
-alias lst='exa -a --tree --icons --group-directories-first --sort=ext'
-alias lsd='exa -lah --icons --sort=mod' 
-alias lss='exa -lah --icons --sort=size'
+alias ls='eza -lah --icons --group-directories-first --sort=ext'
+alias lst='eza -a --tree --icons --group-directories-first --sort=ext'
+alias lsd='eza -lah --icons --sort=mod' 
+alias lss='eza -lah --icons --sort=size'
 alias v='nvim'
 alias gog='lgogdownloader'
 alias grep='rg --color=auto'
@@ -58,15 +58,13 @@ alias egrep='egrep --color=auto'
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 alias cd='z'
 alias cat='batcat --paging=never'
-alias bat='batcat'
 alias fd='fdfind'
-alias rm='rmz'
 alias cp='cpz'
 alias fzf='sk'
 alias ps='procs --tree'
 alias htop='btm'
-alias dotupdate='cd ~/Dotfiles && git pull && cd ~'
-alias dotpush='cd ~/Dotfiles && gacp conf && cd ~'
+alias dotupdate='cd ~/Dotfiles && git pull && cd -'
+alias dotpush='cd ~/Dotfiles && gacp conf && cd -'
 
 # I don't remember why, but I need this
 shopt -s globstar

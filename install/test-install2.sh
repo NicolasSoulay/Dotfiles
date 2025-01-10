@@ -18,6 +18,8 @@ mkdir -p ~/.local/state/bash
 mkdir -p ~/.cache
 mkdir -p ~/.config/nvm
 mkdir -p ~/.local/share
+mkdir -p ~/.local/share/themes
+mkdir -p ~/.local/share/icons
 mkdir -p ~/Games
 mkdir -p ~/Games/PS1
 mkdir -p ~/Games/PS2
@@ -34,7 +36,6 @@ cp ~/Dotfiles/config/nitrogen ~/.config/nitrogen
 
 # Tous les fichier de config + les wallpapers
 # TODO: Créer un xinitrc ou xsession pour le desktop Xorg
-# cp ~/Dotfiles/install/.xinitrc ~/.xinitrc
 ln -sf ~/Dotfiles/config/awesome ~/.config/awesome
 ln -sf ~/Dotfiles/config/nvim ~/.config/nvim
 ln -sf ~/Dotfiles/config/rofi ~/.config/rofi
@@ -65,7 +66,8 @@ source ~/.bashrc
 # Flatpak
 flatpak install --user flathub com.discordapp.Discord -y
 flatpak install --user flathub org.duckstation.DuckStation -y
-flatpak install --user flathub net.lutris.Lutris -y
+flatpak install --user flathub org.kde.krita -y
+# flatpak install --user flathub net.lutris.Lutris -y
 flatpak install --user net.pcsx2.PCSX2 -y
 
 # Dossier pour emulateurs
@@ -86,20 +88,63 @@ git clone https://github.com/Sude-/lgogdownloader
 cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
 sudo ninja -C build install
 
-# TODO: ajouter des fichiers de configurations pour firefox & qbittorent
+# TODO: ajouter des fichiers de configurations pour qbittorent
 # App
-sudo apt install thunderbird dwarf-fortress firefox-esr libreoffice qbittorrent -y
+sudo apt install thunderbird firefox-esr libreoffice qbittorrent -y
 
 # install de MEGA
 wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb" -y
 rm megasync-Debian_12_amd64.deb
 
-#install de glow
-wget -O glow.deb https://github.com/charmbracelet/glow/releases/download/v2.0.0/glow_2.0.0_amd64.deb && sudo dpkg -i glow.deb
-rm glow.deb
+# Desktop env
+sudo apt install zathura nitrogen greetd mc mpv cmus tealdeer -y
+sudo apt install thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin thunar-vcs-plugin -y
 
-# Desktop env TODO: change exa for eza when it's available for Debian 13
-sudo apt install exa thunar thunar-archive-plugin zathura nitrogen greetd mc mpv cmus tealdeer -y
+# Custom Firefox
+FIREFOX_PROFILE_DIR=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default*" | head -n 1)
+cd ~/Sources
+git clone https://github.com/adriankarlen/textfox
+git clone https://github.com/arkenfox/user.js
+ln -sf ~/Sources/textfox/chrome  "$FIREFOX_PROFILE_DIR/chrome"
+ln -sf ~/Sources/user.js/user.js "$FIREFOX_PROFILE_DIR/user.js"
+ln -sf ~/Dotfiles/install/user-overrides.js "$FIREFOX_PROFILE_DIR/user-overrides.js"
+ln -sf ~/Dotfiles/install/config.css ~/Sources/textfox/chrome/config.css
+cd ~
+
+# Themes
+mkdir -p ~/.config/gtk-3.0
+cat > ~/.config/gtk-3.0/settings.ini <<EOF
+[Settings]
+gtk-theme-name=Gruvbox-Dark-Medium
+gtk-icon-theme-name=Gruvbox-Plus-Dark
+gtk-font-name=Sans 10
+gtk-cursor-theme-name=Nordzy-cursors-white
+gtk-cursor-theme-size=24
+EOF
+mkdir -p ~/.config/gtk-4.0
+cat > ~/.config/gtk-4.0/settings.ini <<EOF
+[Settings]
+gtk-theme-name=Gruvbox-Dark-Medium
+gtk-icon-theme-name=Gruvbox-Plus-Dark
+gtk-font-name=Sans 10
+gtk-cursor-theme-name=Nordzy-cursors-white
+gtk-cursor-theme-size=24
+EOF
+mkdir -p ~/.config/gtk-2.0
+cat > ~/.config/gtk-2.0/gtkrc <<EOF
+gtk-theme-name="Gruvbox-Dark-Medium"
+gtk-icon-theme-name="Gruvbox-Plus-Dark"
+gtk-cursor-theme-name="Nordzy-cursors-white"
+gtk-cursor-theme-size=24
+EOF
+git clone https://github.com/guillaumeboehm/Nordzy-cursors.git ~/Sources/Nordzy-cursors
+git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git ~/Sources/gruvbox-plus-icon-pack
+ln -sf ~/Sources/Nordzy-cursors/xcursors/Nordzy-cursors-white ~/.local/share/icons/Nordzy-cursors-white
+ln -sf ~/Sources/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/Gruvbox-Plus-Dark
+ln -sf ~/Dotfiles/gtk-theme ~/.local/share/themes/Gruvbox-Dark-Medium
+for file in ~/Dotfiles/gtk-theme/Gruvbox-Dark-Medium/gtk-4.0/*; do
+    ln -sfn "$file" "~/.config/gtk-4.0/$(basename "$file")"
+done
 
 # Wine
 sudo dpkg --add-architecture i386 && sudo apt update
@@ -190,7 +235,7 @@ sudo su - $USER -c 'nvm install-latest-npm'
 sudo su - $USER -c 'npm install -g @nestjs/cli neovim sass typescript'
 
 # Packages cargo
-cargo install skim uwuify procs rmz cpz
+cargo install skim uwuify procs cpz eza
 cargo install --locked zoxide bottom gitui 
 
 #cargo-update
