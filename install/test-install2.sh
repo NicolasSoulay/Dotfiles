@@ -101,7 +101,10 @@ sudo apt install zathura nitrogen greetd mc mpv cmus tealdeer -y
 sudo apt install thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin thunar-vcs-plugin -y
 
 # Custom Firefox
-FIREFOX_PROFILE_DIR=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default*" | head -n 1)
+firefox --headless &
+sleep 5
+pkill firefox
+FIREFOX_PROFILE_DIR=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default-esr*" | head -n 1)
 cd ~/Sources
 git clone https://github.com/adriankarlen/textfox
 git clone https://github.com/arkenfox/user.js
@@ -141,7 +144,9 @@ git clone https://github.com/guillaumeboehm/Nordzy-cursors.git ~/Sources/Nordzy-
 git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git ~/Sources/gruvbox-plus-icon-pack
 ln -sf ~/Sources/Nordzy-cursors/xcursors/Nordzy-cursors-white ~/.local/share/icons/Nordzy-cursors-white
 ln -sf ~/Sources/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/Gruvbox-Plus-Dark
-ln -sf ~/Dotfiles/gtk-theme ~/.local/share/themes/Gruvbox-Dark-Medium
+for file in ~/Dotfiles/gtk-theme/*; do
+    ln -sfn "$file" "~/.local/share/themes/$(basename "$file")"
+done
 for file in ~/Dotfiles/gtk-theme/Gruvbox-Dark-Medium/gtk-4.0/*; do
     ln -sfn "$file" "~/.config/gtk-4.0/$(basename "$file")"
 done
@@ -289,4 +294,4 @@ sudo rm ~/.bash_history
 sudo rm ~/.bash_logout
 sudo rm ~/.wget-hsts
 
-# sudo reboot
+sudo reboot
