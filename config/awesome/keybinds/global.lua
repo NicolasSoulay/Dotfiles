@@ -56,7 +56,7 @@ local globalkeys = gears.table.join(
 	end, { description = "decrease master width factor", group = "layout" }),
 
 	awful.key({ modkey }, "r", function()
-		awful.util.spawn("rofi -show run")
+		awful.util.spawn("rofi -modi drun -show drun -show-icons -no-click-to-exit")
 	end, { description = "run rofi", group = "launcher" }),
 
 	-- Rofi window

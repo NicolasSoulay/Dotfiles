@@ -1,3 +1,0 @@
-#!/usr/bin/bash
-
-flatpak run net.pcsx2.PCSX2

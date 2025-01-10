@@ -206,7 +206,7 @@ awful.rules.rules = {
 	},
 
 	{
-		rule_any = { name = { "EVE Online Launcher" } },
+		rule_any = { name = { "EVE Launcher" } },
 		properties = { tag = "", floating = true },
 	},
 
