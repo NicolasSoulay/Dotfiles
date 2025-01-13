@@ -4,11 +4,16 @@ cd ~
 sudo apt update -y
 sudo apt upgrade -y
 
-echo "Github username:"
-read github_username
-
-echo "Github email:"
-read github_email
+read -p "Github username: " github_username
+if [ -z "$github_username" ]; then
+    echo "The Github username can't be empty !"
+    exit 1
+fi
+read -p "Github email: " github_email
+if [ -z "$github_email" ]; then
+    echo "The Github email can't be empty !"
+    exit 1
+fi
 
 # dossiers utilisateurs
 sudo apt install xdg-user-dirs -y
@@ -199,6 +204,26 @@ sudo make install
 cd ~
 
 source ~/.bashrc
+
+# Pyfa
+APPIMAGE_PATH=~/Sources/Pyfa/Pyfa.AppImage
+DESKTOP_FILE_PATH=~/.local/share/applications/pyfa.desktop
+curl -s https://api.github.com/repos/pyfa-org/Pyfa/releases/latest | \
+grep -oP '"browser_download_url": "\K(.*?Pyfa.*?AppImage)(?=")' | \
+xargs -n 1 curl -L -o "$APPIMAGE_PATH"
+chmod +x "$APPIMAGE_PATH"
+ln -sf "$APPIMAGE_PATH" ~/.local/bin/pyfa
+mkdir -p ~/.local/share/applications
+cat > "$DESKTOP_FILE_PATH" <<EOF
+[Desktop Entry]
+Name=Pyfa
+Comment=Python Fitting Assistant for EVE Online
+Exec=$APPIMAGE_PATH
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Game;
+EOF
 
 # Wikiman
 sudo apt install parallel -y 
