@@ -154,8 +154,6 @@ config.keys = {
 			-- Default workspaces
 			table.insert(workspaces, { label = "home", id = home })
 			table.insert(workspaces, { label = "awesome", id = dotfiles .. "/awesome" })
-			table.insert(workspaces, { label = "glow", id = home })
-			table.insert(workspaces, { label = "mc", id = home })
 			table.insert(workspaces, { label = "ncspot", id = home })
 			table.insert(workspaces, { label = "nvim", id = dotfiles .. "/nvim" })
 			table.insert(workspaces, { label = "scripts", id = home .. "/Dotfiles/bin" })
