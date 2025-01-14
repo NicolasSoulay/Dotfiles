@@ -84,8 +84,6 @@ mkdir ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games
 ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/bios ~/Games/PS2/BIOS
 ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games ~/Games/PS2/ROMS
 
-sudo apt install steam-installer -y
-
 # Gog downloader
 sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
 cd ~/Sources
@@ -93,9 +91,12 @@ git clone https://github.com/Sude-/lgogdownloader
 cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
 sudo ninja -C build install
 
-# TODO: ajouter des fichiers de configurations pour qbittorent
+# TODO: ajouter des fichiers de configurations pour qbittorent ou changer par deluge
 # App
-sudo apt install thunderbird firefox-esr libreoffice qbittorrent -y
+sudo apt install thunderbird firefox-esr qbittorrent -y
+
+# large apps
+sudo apt install steam-installer libreoffice blender -y
 
 # install de MEGA
 wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb" -y
@@ -150,10 +151,10 @@ git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git ~/Sources/gruv
 ln -sf ~/Sources/Nordzy-cursors/xcursors/Nordzy-cursors-white ~/.local/share/icons/Nordzy-cursors-white
 ln -sf ~/Sources/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/Gruvbox-Plus-Dark
 for file in ~/Dotfiles/gtk-theme/*; do
-    ln -sfn "$file" "~/.local/share/themes/$(basename "$file")"
+    ln -sf "$file" "~/.local/share/themes/$(basename "$file")"
 done
 for file in ~/Dotfiles/gtk-theme/Gruvbox-Dark-Medium/gtk-4.0/*; do
-    ln -sfn "$file" "~/.config/gtk-4.0/$(basename "$file")"
+    ln -sf "$file" "~/.config/gtk-4.0/$(basename "$file")"
 done
 
 # Wine
@@ -206,19 +207,19 @@ cd ~
 source ~/.bashrc
 
 # Pyfa
-APPIMAGE_PATH=~/Sources/Pyfa/Pyfa.AppImage
-DESKTOP_FILE_PATH=~/.local/share/applications/pyfa.desktop
+APPIMAGE_PATH_PYFA=~/Sources/Pyfa/Pyfa.AppImage
+DESKTOP_FILE_PATH_PYFA=~/.local/share/applications/pyfa.desktop
 curl -s https://api.github.com/repos/pyfa-org/Pyfa/releases/latest | \
 grep -oP '"browser_download_url": "\K(.*?Pyfa.*?AppImage)(?=")' | \
-xargs -n 1 curl -L -o "$APPIMAGE_PATH"
-chmod +x "$APPIMAGE_PATH"
-ln -sf "$APPIMAGE_PATH" ~/.local/bin/pyfa
+xargs -n 1 curl -L -o "$APPIMAGE_PATH_PYFA"
+chmod +x "$APPIMAGE_PATH_PYFA"
+ln -sf "$APPIMAGE_PATH_PYFA" ~/.local/bin/pyfa
 mkdir -p ~/.local/share/applications
-cat > "$DESKTOP_FILE_PATH" <<EOF
+cat > "$DESKTOP_FILE_PATH_PYFA" <<EOF
 [Desktop Entry]
 Name=Pyfa
 Comment=Python Fitting Assistant for EVE Online
-Exec=$APPIMAGE_PATH
+Exec=$APPIMAGE_PATH_PYFA
 Icon=utilities-terminal
 Terminal=false
 Type=Application
@@ -277,9 +278,9 @@ sudo apt install libssl-dev libncurses-dev libncursesw5-dev libxcb-xfixes0-dev l
 cargo install --locked ncspot
 
 # ani-cli
+cd ~/Sources
 git clone "https://github.com/pystardust/ani-cli.git"
-sudo cp ani-cli/ani-cli /usr/local/bin
-rm -rf ani-cli
+ln -sf ~/Sources/ani-cli/ani-cli ~/.local/bin/ani-cli
 
 # Starhip
 curl -sS https://starship.rs/install.sh | sh -s -- -y

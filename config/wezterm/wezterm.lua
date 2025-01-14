@@ -154,10 +154,10 @@ config.keys = {
 			-- Default workspaces
 			table.insert(workspaces, { label = "home", id = home })
 			table.insert(workspaces, { label = "awesome", id = dotfiles .. "/awesome" })
+			table.insert(workspaces, { label = "install", id = dotfiles .. "/../install" })
 			table.insert(workspaces, { label = "ncspot", id = home })
 			table.insert(workspaces, { label = "nvim", id = dotfiles .. "/nvim" })
 			table.insert(workspaces, { label = "scripts", id = home .. "/Dotfiles/bin" })
-			table.insert(workspaces, { label = "starship", id = dotfiles .. "/starship" })
 			table.insert(workspaces, { label = "wezterm", id = dotfiles .. "/wezterm" })
 
 			-- Git workspaces
