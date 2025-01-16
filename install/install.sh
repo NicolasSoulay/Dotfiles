@@ -226,6 +226,9 @@ Type=Application
 Categories=Game;
 EOF
 
+# Reaper TODO: dl ok, need to add install commands
+wget -O reaper_latest_x86_64.tar.xz "https://www.reaper.fm/$(curl -s https://www.reaper.fm/download.php | grep -oP 'href="\Kfiles/[0-9]+\.[xX]/reaper[0-9]+_linux_x86_64\.tar\.xz' | head -n 1)"
+
 # Wikiman
 sudo apt install parallel -y 
 cd ~/Sources/
