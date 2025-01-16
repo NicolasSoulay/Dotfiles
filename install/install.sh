@@ -91,12 +91,11 @@ git clone https://github.com/Sude-/lgogdownloader
 cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
 sudo ninja -C build install
 
-# TODO: ajouter des fichiers de configurations pour qbittorent ou changer par deluge
 # App
-sudo apt install thunderbird firefox-esr qbittorrent -y
+sudo apt install thunderbird firefox-esr -y
 
 # large apps
-sudo apt install steam-installer libreoffice blender -y
+sudo apt install steam-installer libreoffice blender deluge -y
 
 # install de MEGA
 wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb" -y
@@ -226,8 +225,12 @@ Type=Application
 Categories=Game;
 EOF
 
-# Reaper TODO: dl ok, need to add install commands
+# Reaper
 wget -O reaper_latest_x86_64.tar.xz "https://www.reaper.fm/$(curl -s https://www.reaper.fm/download.php | grep -oP 'href="\Kfiles/[0-9]+\.[xX]/reaper[0-9]+_linux_x86_64\.tar\.xz' | head -n 1)"
+# mkdir -p ~/Sources/reaper
+# tar -xf reaper_latest_x86_64.tar.xz -C ~/Sources
+# rm reaper_latest_x86_64.tar.xz
+# ./~/Sources/reaper_linux_x86_64/install-reaper.sh
 
 # Wikiman
 sudo apt install parallel -y 
