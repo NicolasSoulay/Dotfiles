@@ -95,7 +95,7 @@ sudo ninja -C build install
 sudo apt install thunderbird firefox-esr -y
 
 # large apps
-sudo apt install steam-installer libreoffice blender deluge -y
+# sudo apt install steam-installer libreoffice blender deluge -y
 
 # install de MEGA
 wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb" -y
