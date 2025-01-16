@@ -57,7 +57,7 @@ ln -sf ~/Dotfiles/bin ~/.local/bin
 ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
 fc-cache -f -v
 
-# Flatpack
+# Flatpack TODO: verifier les chemins de configs des applis en mode --user
 sudo apt install flatpak -y
 sudo flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
@@ -119,7 +119,7 @@ ln -sf ~/Dotfiles/install/user-overrides.js "$FIREFOX_PROFILE_DIR/user-overrides
 ln -sf ~/Dotfiles/install/config.css ~/Sources/textfox/chrome/config.css
 cd ~
 
-# Themes
+# Themes TODO: verifier pourquoi les liens ne se créent pas
 mkdir -p ~/.config/gtk-3.0
 cat > ~/.config/gtk-3.0/settings.ini <<EOF
 [Settings]
@@ -272,12 +272,8 @@ sudo su - $USER -c 'nvm install-latest-npm'
 sudo su - $USER -c 'npm install -g @nestjs/cli neovim sass typescript'
 
 # Packages cargo
-cargo install skim uwuify procs cpz eza
-cargo install --locked zoxide bottom gitui 
-
-#cargo-update
-sudo apt install libgit2-dev libcurll4-*-dev libssh-dev libssl-dev pkgconf -y 
-cargo install --locked cargo-update
+cargo install skim cpz eza
+cargo install --locked zoxide bottom 
 
 # ncspot
 sudo apt install libssl-dev libncurses-dev libncursesw5-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render0-dev libpulse-dev libxcb1-dev libdbus-1-dev -y 
