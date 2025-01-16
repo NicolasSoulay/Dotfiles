@@ -227,9 +227,9 @@ EOF
 
 # Reaper
 wget -O reaper_latest_x86_64.tar.xz "https://www.reaper.fm/$(curl -s https://www.reaper.fm/download.php | grep -oP 'href="\Kfiles/[0-9]+\.[xX]/reaper[0-9]+_linux_x86_64\.tar\.xz' | head -n 1)"
-# mkdir -p ~/Sources/reaper
-# tar -xf reaper_latest_x86_64.tar.xz -C ~/Sources
-# rm reaper_latest_x86_64.tar.xz
+mkdir -p ~/Sources/reaper
+tar -xf reaper_latest_x86_64.tar.xz -C ~/Sources
+rm reaper_latest_x86_64.tar.xz
 # ./~/Sources/reaper_linux_x86_64/install-reaper.sh
 
 # Wikiman
@@ -276,8 +276,8 @@ cargo install skim uwuify procs cpz eza
 cargo install --locked zoxide bottom gitui 
 
 #cargo-update
-cargo install --locked cargo-update
 sudo apt install libgit2-dev libcurll4-*-dev libssh-dev libssl-dev pkgconf -y 
+cargo install --locked cargo-update
 
 # ncspot
 sudo apt install libssl-dev libncurses-dev libncursesw5-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render0-dev libpulse-dev libxcb1-dev libdbus-1-dev -y 
