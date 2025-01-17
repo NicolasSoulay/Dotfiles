@@ -56,6 +56,8 @@ link_dotfiles() {
     ln -sf ~/Dotfiles/bin ~/.local/bin
     ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
     fc-cache -f -v
+
+    source ~/.bashrc
 }
 
 # Function: Install essential tools
@@ -82,6 +84,8 @@ install_code_tools() {
 
     # Rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+    source ~/.bashrc
 
     # Install de symfony
     curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
