@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+touch ~/install.log
 LOG_FILE=~/install.log
 exec > >(tee -a "$LOG_FILE") 2>&1
 
