@@ -119,11 +119,13 @@ setup_flatpak() {
     flatpak install --user flathub com.discordapp.Discord org.duckstation.DuckStation org.kde.krita net.pcsx2.PCSX2 -y
 
     # Dossier pour emulateurs
-    mkdir ~/.var/app/org.duckstation.DuckStation/config/duckstation/games
+    mkdir -p ~/.var/app/org.duckstation.DuckStation/config/duckstation/bios
+    mkdir -p ~/.var/app/org.duckstation.DuckStation/config/duckstation/games
     ln -sf ~/.var/app/org.duckstation.DuckStation/config/duckstation/bios ~/Games/PS1/BIOS
     ln -sf ~/.var/app/org.duckstation.DuckStation/config/duckstation/games ~/Games/PS1/ROMS
 
-    mkdir ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games
+    mkdir -p ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/bios
+    mkdir -p ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games
     ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/bios ~/Games/PS2/BIOS
     ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games ~/Games/PS2/ROMS
 
