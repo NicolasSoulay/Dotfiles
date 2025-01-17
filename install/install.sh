@@ -305,7 +305,6 @@ EOF
     echo ".php-cs-fixer.cache" >> ~/.config/git/.gitignore_global
     git config --global core.excludesfile ~/.config/git/.gitignore_global
 
-    # TODO: verifier si on a pas d'autres lignes à supprimer dans le bashrc ou bash_profile
     sed -i '$ d' ~/.bashrc
 
     # Config du greeter tuigreet + greetd

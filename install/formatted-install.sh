@@ -48,7 +48,7 @@ link_dotfiles() {
     echo "==== Linking dotfiles and config files ===="
     rm -f ~/.bashrc ~/.bash_aliases
     cp ~/Dotfiles/install/.bashrc ~/.bashrc
-    cp ~/Dotfiles/config/nitrogen ~/.config/nitrogen
+    cp -r ~/Dotfiles/config/nitrogen ~/.config/nitrogen
 
     ln -sf ~/Dotfiles/config/{awesome,nvim,rofi,starship,wikiman,wezterm,zathura} ~/.config/
     ln -sf ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
@@ -113,8 +113,9 @@ install_desktop_environment() {
 
 # Function: Install and configure Flatpak
 setup_flatpak() {
+    echo "=== Installing Flatpak ==="
     sudo apt install flatpak -y
-    sudo flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     flatpak install --user flathub com.discordapp.Discord org.duckstation.DuckStation org.kde.krita net.pcsx2.PCSX2 -y
 
     # Dossier pour emulateurs
@@ -242,17 +243,22 @@ EOF
     sudo apt update -y
     sudo apt install wezterm-nightly -y
 
+    # Starhip
+    curl -sS https://starship.rs/install.sh | sh -s -- -y
+
     # Gog downloader
     sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
     cd ~/Sources
     git clone https://github.com/Sude-/lgogdownloader
+    cd lgogdownloader
     cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
     sudo ninja -C build install
+    cd ~
 }
 
 # Function: Install custom themes
 install_themes() {
-    # Themes TODO: verifier pourquoi les liens ne se créent pas
+    # Themes
     mkdir -p ~/.config/gtk-3.0
     cat > ~/.config/gtk-3.0/settings.ini <<EOF
 [Settings]
@@ -282,6 +288,7 @@ EOF
     git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git ~/Sources/gruvbox-plus-icon-pack
     ln -sf ~/Sources/Nordzy-cursors/xcursors/Nordzy-cursors-white ~/.local/share/icons/Nordzy-cursors-white
     ln -sf ~/Sources/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/Gruvbox-Plus-Dark
+    #TODO: verifier pourquoi les liens ne se créent pas
     for file in ~/Dotfiles/gtk-theme/*; do
         ln -sf "$file" "~/.local/share/themes/$(basename "$file")"
     done
@@ -318,6 +325,8 @@ cleanup() {
     echo "==== Cleaning up ===="
     sudo apt autoremove -y
     sudo rm -f ~/.bash_history ~/.bash_logout ~/.wget-hsts
+    sudo rm -r ~/.npm
+    sed -i '$ d' ~/.bashrc
 }
 
 # Main script execution
