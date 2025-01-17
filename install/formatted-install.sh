@@ -291,10 +291,10 @@ EOF
     ln -sf ~/Sources/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/Gruvbox-Plus-Dark
     #TODO: verifier pourquoi les liens ne se créent pas
     for file in ~/Dotfiles/gtk-theme/*; do
-        ln -sf "$file" "~/.local/share/themes/$(basename "$file")"
+        ln -sf "$file" "$HOME/.local/share/themes/$(basename "$file")"
     done
     for file in ~/Dotfiles/gtk-theme/Gruvbox-Dark-Medium/gtk-4.0/*; do
-        ln -sf "$file" "~/.config/gtk-4.0/$(basename "$file")"
+        ln -sf "$file" "$HOME/.config/gtk-4.0/$(basename "$file")"
     done
 
     # Custom Firefox
