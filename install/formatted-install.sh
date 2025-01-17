@@ -48,10 +48,9 @@ link_dotfiles() {
     echo "==== Linking dotfiles and config files ===="
     rm -f ~/.bashrc ~/.bash_aliases
     cp ~/Dotfiles/install/.bashrc ~/.bashrc
-    cp -r ~/Dotfiles/config/nitrogen ~/.config/nitrogen
 
     ln -sf ~/Dotfiles/config/{awesome,nvim,rofi,starship,wikiman,wezterm,zathura} ~/.config/
-    ln -sf ~/Dotfiles/wallpapers ~/Pictures/Wallpapers
+    ln -sf ~/Dotfiles/Wallpapers ~/Pictures/Wallpapers
     ln -sf ~/Dotfiles/Screenshots ~/Pictures/Screenshots
     ln -sf ~/Dotfiles/bin ~/.local/bin
     ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
