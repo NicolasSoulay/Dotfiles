@@ -272,7 +272,7 @@ EOF
     sudo apt update -y
     sudo apt install wezterm-nightly -y
 
-    # Starhip
+    # Starship
     echo "==== Installing Starship ===="
     curl -sS https://starship.rs/install.sh | sh -s -- -y
 
