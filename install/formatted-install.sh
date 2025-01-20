@@ -47,7 +47,7 @@ create_user_directories() {
 link_dotfiles() {
     echo "==== Linking dotfiles and config files ===="
     rm -f ~/.bashrc ~/.bash_aliases
-    cp ~/Dotfiles/install/.bashrc ~/.bashrc
+    cp ~/Dotfiles/install/conf-files/general/.bashrc ~/.bashrc
 
     ln -sf ~/Dotfiles/config/{awesome,nvim,rofi,starship,wikiman,wezterm,zathura} ~/.config/
     ln -sf ~/Dotfiles/Wallpapers ~/Pictures/Wallpapers
@@ -263,6 +263,8 @@ EOF
 
 # Function: Install custom themes
 install_themes() {
+    echo "==== Installing custom themes ===="
+
     # Themes
     mkdir -p ~/.config/gtk-3.0
     cat > ~/.config/gtk-3.0/settings.ini <<EOF
@@ -294,10 +296,10 @@ EOF
     ln -sf ~/Sources/Nordzy-cursors/xcursors/Nordzy-cursors-white ~/.local/share/icons/Nordzy-cursors-white
     ln -sf ~/Sources/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/Gruvbox-Plus-Dark
     #TODO: verifier pourquoi les liens ne se créent pas
-    for file in ~/Dotfiles/gtk-theme/*; do
+    for file in ~/Dotfiles/install/conf-files/gtk-theme/*; do
         ln -sf "$file" "$HOME/.local/share/themes/$(basename "$file")"
     done
-    for file in ~/Dotfiles/gtk-theme/Gruvbox-Dark-Medium/gtk-4.0/*; do
+    for file in ~/Dotfiles/install/conf-files/gtk-theme/Gruvbox-Dark-Medium/gtk-4.0/*; do
         ln -sf "$file" "$HOME/.config/gtk-4.0/$(basename "$file")"
     done
 
@@ -310,19 +312,20 @@ EOF
     git clone https://github.com/adriankarlen/textfox
     git clone https://github.com/arkenfox/user.js
     ln -sf ~/Sources/textfox/chrome  "$FIREFOX_PROFILE_DIR/chrome"
-    ln -sf ~/Sources/user.js/user.js "$FIREFOX_PROFILE_DIR/user.js"
-    ln -sf ~/Dotfiles/install/user-overrides.js "$FIREFOX_PROFILE_DIR/user-overrides.js"
-    ln -sf ~/Dotfiles/install/config.css ~/Sources/textfox/chrome/config.css
+    cp ~/Sources/user.js/updater.sh "$FIREFOX_PROFILE_DIR/updater.sh"
+    ln -sf ~/Dotfiles/install/conf-files/firefox/user-overrides.js "$FIREFOX_PROFILE_DIR/user-overrides.js"
+    ln -sf ~/Dotfiles/install/conf-files/firefox/config.css ~/Sources/textfox/chrome/config.css
     cd ~
+    exec $FIREFOX_PROFILE_DIR/updater.sh -e
 }
 
 # Function: Greeter and keyboard configuration
 greeter_config() {
     echo "==== Greeter and keyboard configuration ===="
-    sudo cp ~/Dotfiles/install/greetd_tuigreet_config /etc/greetd/config.toml 
-    sudo cp ~/Dotfiles/install/keyboard /etc/modprobe.d/hid_apple.conf
-    sudo cp ~/Dotfiles/install/quiet_greeter /etc/sysctl.d/20-quiet-printk.conf
-    sudo cp ~/Dotfiles/install/keyboard_config /etc/default/keyboard
+    sudo cp ~/Dotfiles/install/conf-files/greeter/greetd_tuigreet_config /etc/greetd/config.toml 
+    sudo cp ~/Dotfiles/install/conf-files/keyboard/keyboard /etc/modprobe.d/hid_apple.conf
+    sudo cp ~/Dotfiles/install/conf-files/greeter/quiet_greeter /etc/sysctl.d/20-quiet-printk.conf
+    sudo cp ~/Dotfiles/install/conf-files/keyboard/keyboard_config /etc/default/keyboard
 }
 
 # Function: Cleanup and finalize
