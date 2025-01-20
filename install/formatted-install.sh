@@ -108,6 +108,10 @@ install_desktop_environment() {
     sudo apt install thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin thunar-vcs-plugin -y
     sudo apt install thunderbird firefox-esr -y
     tldr --update
+
+    mkdir -p ~/.config/xfce4
+    touch ~/.config/xfce4/helpers.rc
+    echo "TerminalEmulator=wezterm" >> ~/.config/xfce4/helpers.rc
 }
 
 # Function: Install and configure Flatpak
