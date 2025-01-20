@@ -345,7 +345,7 @@ EOF
     ln -sf ~/Dotfiles/install/conf-files/firefox/user-overrides.js "$FIREFOX_PROFILE_DIR/user-overrides.js"
     ln -sf ~/Dotfiles/install/conf-files/firefox/config.css ~/Sources/textfox/chrome/config.css
     cd ~
-    exec $FIREFOX_PROFILE_DIR/updater.sh -e
+    # exec $FIREFOX_PROFILE_DIR/updater.sh -e
 }
 
 # Function: Greeter and keyboard configuration
