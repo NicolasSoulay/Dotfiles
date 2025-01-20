@@ -46,10 +46,8 @@ create_user_directories() {
 # Function: Link dotfiles and config files
 link_dotfiles() {
     echo "==== Linking dotfiles and config files ===="
-    rm -f ~/.bashrc ~/.bash_aliases ~/.profile
+    rm -f ~/.bashrc ~/.bash_aliases  
     cp ~/Dotfiles/install/conf-files/general/.bashrc ~/.bashrc
-    cp ~/Dotfiles/install/conf-files/general/.bash_aliases ~/.bash_aliases
-    cp ~/Dotfiles/install/conf-files/general/.profile ~/.profile
 
     ln -sf ~/Dotfiles/config/{awesome,nvim,rofi,starship,wikiman,wezterm,zathura} ~/.config/
     ln -sf ~/Dotfiles/Wallpapers ~/Pictures/Wallpapers
@@ -345,7 +343,7 @@ EOF
     ln -sf ~/Dotfiles/install/conf-files/firefox/user-overrides.js "$FIREFOX_PROFILE_DIR/user-overrides.js"
     ln -sf ~/Dotfiles/install/conf-files/firefox/config.css ~/Sources/textfox/chrome/config.css
     cd ~
-    # exec $FIREFOX_PROFILE_DIR/updater.sh -e
+    (exec $FIREFOX_PROFILE_DIR/updater.sh -es)
 }
 
 # Function: Greeter and keyboard configuration
