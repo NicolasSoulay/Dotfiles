@@ -32,10 +32,11 @@ export XCURSOR_PATH=/usr/share/icons:$XDG_DATA_HOME/icons
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
-. "$HOME/.local/share/cargo/env"
 
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 export MANROFFOPT="-c"
+
+. "$HOME/.local/share/cargo/env"
 
 # Don't put duplicate lines in the history
 export HISTCONTROL=ignoredups
@@ -50,23 +51,9 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export HISTSIZE=1000
 export HISTFILESIZE=1000
 
-alias ls='eza -lah --icons --group-directories-first --sort=ext'
-alias lst='eza -a --tree --icons --group-directories-first --sort=ext'
-alias lsd='eza -lah --icons --sort=mod' 
-alias lss='eza -lah --icons --sort=size'
-alias v='nvim'
-alias gog='lgogdownloader'
-alias grep='rg --color=auto'
-alias fgrep='rg -F --color=auto'
-alias egrep='egrep --color=auto'
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
-alias cd='z'
-alias cat='batcat --paging=never'
-alias fd='fdfind'
-alias cp='cpz'
-alias fzf='sk'
-alias ps='procs --tree'
-alias htop='btm'
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 # I don't remember why, but I need this
 shopt -s globstar

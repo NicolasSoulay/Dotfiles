@@ -48,6 +48,7 @@ link_dotfiles() {
     echo "==== Linking dotfiles and config files ===="
     rm -f ~/.bashrc ~/.bash_aliases  
     cp ~/Dotfiles/install/conf-files/general/.bashrc ~/.bashrc
+    cp ~/Dotfiles/install/conf-files/general/.bash_aliases ~/.bash_aliases
 
     ln -sf ~/Dotfiles/config/{awesome,nvim,rofi,starship,wikiman,wezterm,zathura} ~/.config/
     ln -sf ~/Dotfiles/Wallpapers ~/Pictures/Wallpapers
@@ -257,7 +258,7 @@ EOF
 
     # Cargo applications
     echo "==== Installing Cargo applications ===="
-    cargo install skim cpz eza
+    cargo install skim eza
     cargo install --locked zoxide bottom 
 
     # Ncspot
