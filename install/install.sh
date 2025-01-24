@@ -378,13 +378,13 @@ cleanup() {
 
 # Main script execution
 main() {
-    read -p "Do you want to save the log to a file? [y/n]: " confirm && [[ $confirm == [yY] ]] && SAVE_LOG=true
-    read -p "Do you want to install heavy applications? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_APPLICATIONS=true
-    read -p "Do you want to install Mega? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_MEGA=true
-    read -p "Do you want to install Pyfa? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_PYFA=true
-    read -p "Do you want to install Gog downloader? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_GOG=true
-    read -p "Do you want to setup Flaptak, Flathub ans some Flatpak apps? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_FLAPTAK=true
-    read -p "Do you want to install custom GTK and Firefox themes? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_THEMES=true
+    read -p "Do you want to save the log to a file? [y/N]: " confirm && [[ $confirm == [yY] ]] && SAVE_LOG=true
+    read -p "Do you want to install heavy applications? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_APPLICATIONS=true
+    read -p "Do you want to install Mega? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_MEGA=true
+    read -p "Do you want to install Pyfa? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_PYFA=true
+    read -p "Do you want to install Gog downloader? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_GOG=true
+    read -p "Do you want to setup Flaptak, Flathub ans some Flatpak apps? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_FLAPTAK=true
+    read -p "Do you want to install custom GTK and Firefox themes? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_THEMES=true
     if $SAVE_LOG; then
         save_log
         echo "---- Log saved to ~/install.log ----"
@@ -406,7 +406,7 @@ main() {
     fi
     greeter_config
     cleanup
-    read -p "Reboot now? (y/N): " confirm && [[ $confirm == [yY] ]] && sudo reboot
+    read -p "Reboot now? [y/N]: " confirm && [[ $confirm == [yY] ]] && sudo reboot
 }
 
 main
