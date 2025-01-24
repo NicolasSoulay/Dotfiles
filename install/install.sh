@@ -1,8 +1,11 @@
 #!/usr/bin/bash
 
-touch ~/install.log
-LOG_FILE=~/install.log
-exec > >(tee -a "$LOG_FILE") 2>&1
+# Functioon: Save log to file
+save_log() {
+    touch ~/install.log
+    LOG_FILE=~/install.log
+    exec > >(tee -a "$LOG_FILE") 2>&1
+}
 
 update_system() {
     sudo apt update -y
@@ -170,13 +173,18 @@ configure_git() {
 
 # Function: Install applications
 install_applications() {
-    echo "==== Installing applications ===="
-    # sudo apt install steam-installer libreoffice blender deluge -y
+    if $INSTALL_APPLICATIONS; then
+        echo "==== Installing applications ===="
+        sudo apt install steam-installer libreoffice blender deluge -y
+    fi
+
 
     # install de MEGA
-    echo "==== Installing MEGA ===="
-    wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb" -y
-    rm megasync-Debian_12_amd64.deb
+    if $INSTALL_MEGA; then
+        echo "==== Installing MEGA ===="
+        wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb" -y
+        rm megasync-Debian_12_amd64.deb
+    fi
 
     # Install de neovim stable depuis les sources
     echo "==== Installing Neovim ===="
@@ -189,16 +197,17 @@ install_applications() {
     cd ~
 
     # Pyfa
-    echo "==== Installing Pyfa ===="
-    APPIMAGE_PATH_PYFA=~/Sources/Pyfa/Pyfa.AppImage
-    DESKTOP_FILE_PATH_PYFA=~/.local/share/applications/pyfa.desktop
-    curl -s https://api.github.com/repos/pyfa-org/Pyfa/releases/latest | \
-    grep -oP '"browser_download_url": "\K(.*?Pyfa.*?AppImage)(?=")' | \
-    xargs -n 1 curl -L -o "$APPIMAGE_PATH_PYFA"
-    chmod +x "$APPIMAGE_PATH_PYFA"
-    ln -sf "$APPIMAGE_PATH_PYFA" ~/.local/bin/pyfa
-    mkdir -p ~/.local/share/applications
-    cat > "$DESKTOP_FILE_PATH_PYFA" <<EOF
+    if $INSTALL_PYFA; then
+        echo "==== Installing Pyfa ===="
+        APPIMAGE_PATH_PYFA=~/Sources/Pyfa/Pyfa.AppImage
+        DESKTOP_FILE_PATH_PYFA=~/.local/share/applications/pyfa.desktop
+        curl -s https://api.github.com/repos/pyfa-org/Pyfa/releases/latest | \
+        grep -oP '"browser_download_url": "\K(.*?Pyfa.*?AppImage)(?=")' | \
+        xargs -n 1 curl -L -o "$APPIMAGE_PATH_PYFA"
+        chmod +x "$APPIMAGE_PATH_PYFA"
+        ln -sf "$APPIMAGE_PATH_PYFA" ~/.local/bin/pyfa
+        mkdir -p ~/.local/share/applications
+        cat > "$DESKTOP_FILE_PATH_PYFA" <<EOF
 [Desktop Entry]
 Name=Pyfa
 Comment=Python Fitting Assistant for EVE Online
@@ -208,6 +217,7 @@ Terminal=false
 Type=Application
 Categories=Game;
 EOF
+    fi
 
     # Wine
     echo "==== Installing Wine ===="
@@ -278,14 +288,16 @@ EOF
     curl -sS https://starship.rs/install.sh | sh -s -- -y
 
     # Gog downloader
-    echo "==== Installing Gog Downloader ===="
-    sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
-    cd ~/Sources
-    git clone https://github.com/Sude-/lgogdownloader
-    cd lgogdownloader
-    cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
-    sudo ninja -C build install
-    cd ~
+    if $INSTALL_GOG; then
+        echo "==== Installing Gog Downloader ===="
+        sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
+        cd ~/Sources
+        git clone https://github.com/Sude-/lgogdownloader
+        cd lgogdownloader
+        cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
+        sudo ninja -C build install
+        cd ~
+    fi
 }
 
 # Function: Install custom themes
@@ -366,6 +378,17 @@ cleanup() {
 
 # Main script execution
 main() {
+    read -p "Do you want to save the log to a file? [y/n]: " confirm && [[ $confirm == [yY] ]] && SAVE_LOG=true
+    read -p "Do you want to install heavy applications? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_APPLICATIONS=true
+    read -p "Do you want to install Mega? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_MEGA=true
+    read -p "Do you want to install Pyfa? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_PYFA=true
+    read -p "Do you want to install Gog downloader? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_GOG=true
+    read -p "Do you want to setup Flaptak, Flathub ans some Flatpak apps? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_FLAPTAK=true
+    read -p "Do you want to install custom GTK and Firefox themes? [y/n]: " confirm && [[ $confirm == [yY] ]] && INSTALL_THEMES=true
+    if $SAVE_LOG; then
+        save_log
+        echo "---- Log saved to ~/install.log ----"
+    fi
     update_system
     setup_github_credentials
     create_user_directories
@@ -373,10 +396,14 @@ main() {
     install_essential_tools
     install_code_tools
     install_desktop_environment
-    setup_flatpak
+    if $INSTALL_FLAPTAK; then
+        setup_flatpak
+    fi
     configure_git
     install_applications
-    install_themes
+    if $INSTALL_THEMES; then
+        install_themes
+    fi
     greeter_config
     cleanup
     read -p "Reboot now? (y/N): " confirm && [[ $confirm == [yY] ]] && sudo reboot
