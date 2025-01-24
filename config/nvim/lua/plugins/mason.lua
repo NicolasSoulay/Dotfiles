@@ -24,6 +24,7 @@ return {
 				"ts_ls",
 				"glint",
 				"bashls",
+				"csharp_ls",
 				"jsonls",
 				"rust_analyzer",
 				"clangd",

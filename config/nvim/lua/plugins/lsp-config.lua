@@ -50,6 +50,7 @@ function M.config()
 		"emmet_language_server",
 		"ts_ls",
 		"bashls",
+        "csharp_ls",
 		"jsonls",
 		"rust_analyzer",
 		"clangd",
