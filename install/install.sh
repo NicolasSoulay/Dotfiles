@@ -174,14 +174,14 @@ configure_git() {
 
 # Function: Install applications
 install_applications() {
-    if $INSTALL_APPLICATIONS; then
+    if [ "$INSTALL_APPLICATIONS" = true ] ; then
         echo "==== Installing applications ===="
         sudo apt install steam-installer libreoffice blender deluge -y
     fi
 
 
     # install de MEGA
-    if $INSTALL_MEGA; then
+    if [ "$INSTALL_MEGA" = true ] ; then
         echo "==== Installing MEGA ===="
         wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb" -y
         rm megasync-Debian_12_amd64.deb
@@ -198,7 +198,7 @@ install_applications() {
     cd ~
 
     # Pyfa
-    if $INSTALL_PYFA; then
+    if [ "$INSTALL_PYFA" = true ] ; then
         echo "==== Installing Pyfa ===="
         APPIMAGE_PATH_PYFA=~/Sources/Pyfa/Pyfa.AppImage
         DESKTOP_FILE_PATH_PYFA=~/.local/share/applications/pyfa.desktop
@@ -289,7 +289,7 @@ EOF
     curl -sS https://starship.rs/install.sh | sh -s -- -y
 
     # Gog downloader
-    if $INSTALL_GOG; then
+    if [ "$INSTALL_GOG" = true ] ; then
         echo "==== Installing Gog Downloader ===="
         sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
         cd ~/Sources
@@ -386,7 +386,7 @@ main() {
     read -p "Do you want to install Gog downloader? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_GOG=true
     read -p "Do you want to setup Flaptak, Flathub ans some Flatpak apps? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_FLAPTAK=true
     read -p "Do you want to install custom GTK and Firefox themes? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_THEMES=true
-    if $SAVE_LOG; then
+    if [ "$SAVE_LOG" = true ] ; then
         save_log
         echo "---- Log saved to ~/install.log ----"
     fi
@@ -397,12 +397,12 @@ main() {
     install_essential_tools
     install_code_tools
     install_desktop_environment
-    if $INSTALL_FLAPTAK; then
+    if [ "$INSTALL_FLAPTAK" = true ] ; then
         setup_flatpak
     fi
     configure_git
     install_applications
-    if $INSTALL_THEMES; then
+    if [ "$INSTALL_THEMES" = true ] ; then
         install_themes
     fi
     greeter_config
