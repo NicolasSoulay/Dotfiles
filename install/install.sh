@@ -1,12 +1,13 @@
 #!/usr/bin/bash
 
-# Functioon: Save log to file
+# Function: Save log to file
 save_log() {
     touch ~/install.log
     LOG_FILE=~/install.log
     exec > >(tee -a "$LOG_FILE") 2>&1
 }
 
+# Function: update
 update_system() {
     sudo apt update -y
     sudo apt upgrade -y
