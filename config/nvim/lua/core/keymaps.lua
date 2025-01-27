@@ -57,7 +57,7 @@ keymap("n", "<Leader>/", "gcc", {silent = true, remap = true})
 -- INSERT --
 -- Press jk fast to go back to normal mode
 keymap("i", "jk", "<ESC>", opts)
-keymap("v", "jk", "<ESC>", opts)
+-- keymap("v", "jk", "<ESC>", opts)
 
 -- VISUAL --
 -- Stay in indent mode
