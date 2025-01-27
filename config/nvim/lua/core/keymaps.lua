@@ -65,8 +65,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move block up/down
-keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
-keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
+keymap("x", "J", ":m '>+1<CR><CR>gv=gv", opts)
+keymap("x", "K", ":m '<-2<CR><CR>gv=gv", opts)
 
 -- Comment selection
 keymap("x", "<Leader>/", "gc", {silent = true, remap = true})
