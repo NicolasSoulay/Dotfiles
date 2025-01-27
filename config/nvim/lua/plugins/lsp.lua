@@ -5,6 +5,12 @@ local M = {
 		{
 			"folke/neodev.nvim",
 		},
+        {
+            "williamboman/mason-lspconfig.nvim",
+            dependencies = {
+                "williamboman/mason.nvim",
+            },
+        }
 	},
 }
 
@@ -39,9 +45,10 @@ M.toggle_inlay_hints = function()
 end
 
 function M.config()
+    local icons = require("core.icons")
 	local lspconfig = require("lspconfig")
-	local icons = require("core.icons")
-
+    local mason = require("mason")
+    local mason_lsp_config = require("mason-lspconfig")
 	local servers = {
 		"lua_ls",
 		"phpactor",
@@ -57,6 +64,15 @@ function M.config()
 		"marksman",
 		"glint",
 	}
+    mason.setup({
+        ui = {
+            border = "rounded",
+        },
+    })
+    mason_lsp_config.setup({
+        ensure_installed = servers,
+    })
+
 
 	local default_diagnostic_config = {
 		signs = {

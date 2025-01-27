@@ -20,10 +20,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
           nnoremap <silent> <buffer> q :close<CR>
           set nobuflisted
         ]])
-
-        -- Disable buffer navigation while in these buffers
-        vim.keymap.set("n", "<S-l>", "", { silent = true })
-        vim.keymap.set("n", "<S-h>", "", { silent = true })
 	end,
 })
 
@@ -46,4 +42,28 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 			vim.cmd([[silent! lua require("luasnip").unlink_current()]])
 		end
 	end,
+})
+
+-- Change directory to root of current project
+vim.api.nvim_create_autocmd('BufEnter', {
+    callback = function()
+        -- Get directory path to start search from
+        local path = vim.api.nvim_buf_get_name(0)
+        -- If path is empty, return
+        if path == '' then return end
+        -- if path start with  oil:// then trim it
+        if path:match("^oil://") then path = path:sub(7) end
+
+        path = vim.fs.dirname(path)
+
+        local root_file = vim.fs.find(
+            {".git", "Makefile", "package.json", "Cargo.toml"},
+            { path = path, upward = true }
+        )[1]
+        if root_file == nil then return end
+        local root = vim.fs.dirname(root_file)
+
+        -- Set current directory
+        vim.fn.chdir(root)
+    end
 })

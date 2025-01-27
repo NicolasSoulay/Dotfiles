@@ -16,8 +16,6 @@ vim.opt.relativenumber = false -- do not show the line number
 
 vim.opt.cmdheight = 0 -- hide the command line
 
-vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
-
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8 -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`

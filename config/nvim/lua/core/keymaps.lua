@@ -49,7 +49,10 @@ keymap("n", "<Leader>h", "<C-w>s", opts)
 keymap("n", "J", "mzJ`z", opts)
 
 -- Make current file executable
-keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts)
+keymap("n", "<Leader>x", "<cmd>!chmod +x %<CR>", opts)
+
+-- Comment line
+keymap("n", "<Leader>/", "gcc", {silent = true, remap = true})
 
 -- INSERT --
 -- Press jk fast to go back to normal mode
@@ -65,5 +68,8 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 
+-- Comment selection
+keymap("x", "<Leader>/", "gc", {silent = true, remap = true})
+
 -- Paste and keep in buffer
--- keymap("x", "<leader>p", "\"_dP", opts)
+-- keymap("x", "<Leader>p", "\"_dP", opts)

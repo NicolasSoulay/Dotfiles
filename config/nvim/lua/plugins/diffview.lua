@@ -23,19 +23,5 @@ return {
 			":DiffviewFileHistory<CR>",
 			{ desc = "Open diffview file history window for this buffer" }
 		)
-
-        -- Autocommands to invoke DiffviewClose when using q if the file name start with "diffview:"
-        vim.api.nvim_create_autocmd("BufEnter", {
-            pattern = "diffview:*/*",
-            callback = function()
-                vim.cmd([[
-                    nnoremap <silent> <buffer> q :DiffviewClose<CR>
-                    set nobuflisted
-                ]])
-                -- Disable buffer navigation while in diffview
-                vim.keymap.set("n", "<S-l>", "", { silent = true })
-                vim.keymap.set("n", "<S-h>", "", { silent = true })
-            end,
-        })
 	end,
 }

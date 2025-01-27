@@ -9,9 +9,7 @@ return {
             end,
 	},
 	config = function()
-		local treesitter = require("nvim-treesitter")
 		local configs = require("nvim-treesitter.configs")
-		local commentstring = require("ts_context_commentstring")
 
 		configs.setup({
 			ensure_installed = {
@@ -42,9 +40,10 @@ return {
 				"toml",
 				"regex",
 			},
+            ignore_install = {},
 			sync_install = false,
 			auto_install = true,
-
+            modules = {},
 			highlight = {
 				enable = true,
 				disable = { "" },
@@ -56,12 +55,6 @@ return {
 			indent = {
 				enable = true,
 				disable = { "" },
-			},
-		})
-		commentstring.setup({
-			enable_autocmd = false,
-			languages = {
-				typescript = "// %s",
 			},
 		})
 	end,
