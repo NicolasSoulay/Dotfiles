@@ -73,8 +73,18 @@ return {
 
 		local builtin = require("telescope.builtin")
 
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find file in current working directory" })
-		vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Search for word in current working directory" })
+		vim.keymap.set(
+            "n",
+            "<leader>ff",
+            builtin.find_files,
+            { desc = "Find file in current working directory" }
+        )
+		vim.keymap.set(
+            "n",
+            "<leader>fg",
+            builtin.live_grep,
+            { desc = "Search for word in current working directory" }
+        )
 		vim.keymap.set(
 			"v",
 			"<leader>fg",
@@ -92,18 +102,6 @@ return {
 			"<leader>gb",
 			builtin.git_branches,
 			{ desc = "Search for git branches on current working directory" }
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>gh",
-			builtin.git_bcommits,
-			{ desc = "Search for git commits on current buffer and preview them" }
-		)
-		vim.keymap.set(
-			"v",
-			"<leader>gh",
-			builtin.git_bcommits_range,
-			{ desc = "Git commits on this range of lines and preview them" }
 		)
 	end,
 }
