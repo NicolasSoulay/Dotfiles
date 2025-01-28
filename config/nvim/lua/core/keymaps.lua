@@ -45,6 +45,11 @@ keymap("n", "<Leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 keymap("n", "<Leader>v", "<C-w>v", opts)
 keymap("n", "<Leader>h", "<C-w>s", opts)
 
+-- Open terminal
+keymap("n", "<Leader>\\", "<cmd>15split<CR><cmd>terminal<CR>a", opts)
+keymap("t", "<Leader>\\", "<cmd>bdelete!<CR>", opts)
+keymap("t", "<Esc>", "<C-\\><C-n>", opts)
+
 -- Stay in place when append line
 keymap("n", "J", "mzJ`z", opts)
 
