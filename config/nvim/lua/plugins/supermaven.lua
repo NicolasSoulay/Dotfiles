@@ -11,7 +11,7 @@ return {
 			},
 			-- ignore_filetypes = { cpp = true }, -- or { "cpp", }
 			color = {
-				suggestion_color = os.getenv("BASE16_0F") or "#e78a4e",
+				suggestion_color = "#e78a4e",
 				cterm = 244,
 			},
 			log_level = "info", -- set to "off" to disable logging completely
