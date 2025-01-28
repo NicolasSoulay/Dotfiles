@@ -223,9 +223,11 @@ client.connect_signal("manage", function(c)
 		awful.client.setslave(c)
 	end
 
-	-- if c.floating then
-	c.shape = gears.shape.rounded_rect
-	-- end
+	if c.maximized then
+		c.shape = gears.shape.rectangle
+    else
+        c.shape = gears.shape.rounded_rect
+    end
 
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
 		-- Prevent clients from being unreachable after screen count changes.
