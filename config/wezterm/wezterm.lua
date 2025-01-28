@@ -110,6 +110,8 @@ end)
 -- Keybindings
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
+    { key = "j", mods = "ALT", action = act.SendKey({ key = "DownArrow"} ) },
+    { key = "k", mods = "ALT", action = act.SendKey({ key = "UpArrow"} ) },
 	-- Panes
 	{
 		key = "a",
@@ -131,8 +133,8 @@ config.keys = {
 
 	-- Tabs
 	{ key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "H", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-	{ key = "L", mods = "LEADER", action = act.ActivateTabRelative(1) },
+	{ key = "h", mods = "ALT", action = act.ActivateTabRelative(-1) },
+	{ key = "l", mods = "ALT", action = act.ActivateTabRelative(1) },
 	{ key = "e", mods = "LEADER", action = act.ShowTabNavigator },
 	{ key = "m", mods = "LEADER", action = act.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
 
