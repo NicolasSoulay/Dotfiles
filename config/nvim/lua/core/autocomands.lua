@@ -20,6 +20,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
           nnoremap <silent> <buffer> q :close<CR>
           set nobuflisted
         ]])
+        -- Disable buffer navigation while in these buffers
+        vim.keymap.set("n", "<S-l>", "", { silent = true, buffer = true })
+        vim.keymap.set("n", "<S-h>", "", { silent = true, buffer = true })
 	end,
 })
 

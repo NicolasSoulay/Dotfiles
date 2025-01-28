@@ -6,7 +6,7 @@ return {
 
 		oil.setup({
 			float = {
-				max_height = 20,
+				max_height = 30,
 				max_width = 60,
 			},
 			delete_to_trash = true,
@@ -16,7 +16,7 @@ return {
             },
 		})
 
-		vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+		vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open Oil.nvim in parent directory" })
 		vim.keymap.set("n", "<leader>e", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 
         vim.api.nvim_create_autocmd({ "FileType" }, {

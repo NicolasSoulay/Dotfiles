@@ -10,9 +10,7 @@ vim.opt.tabstop = 4 -- insert 4 spaces for a tab
 vim.opt.softtabstop = 4 -- insert 4 spaces for a tab (when pressing <Tab>)
 vim.opt.shiftwidth = 4 -- an auto command will indent/format the current line
 vim.opt.showtabline = 1 -- always show the tabs
-vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 vim.opt.smartindent = true -- make indenting smarter again
-vim.opt.relativenumber = false -- do not show the line number
 
 vim.opt.cmdheight = 0 -- hide the command line
 
