@@ -70,13 +70,13 @@ return {
                 "n",
                 "<leader>gh",
                 ":DiffviewFileHistory %<CR>",
-                { desc = "Open diffview file history window for this buffer" }
+                { desc = "Open diffview file history for this buffer" }
             )
             vim.keymap.set(
                 "n",
                 "<leader>gg",
                 ":DiffviewFileHistory<CR>",
-                { desc = "Open diffview file history window for this buffer" }
+                { desc = "Open diffview file history" }
             )
 
             -- Autocommands to invoke DiffviewClose when using q if the file name start with "diffview:"
