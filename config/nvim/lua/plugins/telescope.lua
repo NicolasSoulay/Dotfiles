@@ -2,7 +2,7 @@ return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"},
 	},
 	config = function()
 		local icons = require("core.icons")
@@ -103,5 +103,6 @@ return {
 			builtin.git_branches,
 			{ desc = "Search for git branches on current working directory" }
 		)
+        require('telescope').load_extension('fzf')
 	end,
 }

@@ -39,7 +39,7 @@ keymap("n", "<Leader>v", "<C-w>v", opts)
 keymap("n", "<Leader>h", "<C-w>s", opts)
 
 -- Open terminal
-keymap("n", "<Leader>\\", "<cmd>15split<CR><cmd>terminal<CR>a", opts)
+keymap("n", "<Leader>\\", "<cmd>15split<CR><cmd>terminal<CR>:set filetype=terminal<CR>a", opts)
 keymap("t", "<Leader>\\", "<cmd>bdelete!<CR>", opts)
 keymap("t", "<Esc>", "<C-\\><C-n>", opts)
 
@@ -55,7 +55,6 @@ keymap("n", "<Leader>/", "gcc", {silent = true, remap = true})
 -- INSERT --
 -- Press jk fast to go back to normal mode
 keymap("i", "jk", "<ESC>", opts)
--- keymap("v", "jk", "<ESC>", opts)
 
 -- VISUAL --
 -- Stay in indent mode

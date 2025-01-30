@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		"lir",
 		"DressingSelect",
 		"tsplayground",
+		"terminal",
 		"",
 	},
 	callback = function()
@@ -21,8 +22,28 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
           set nobuflisted
         ]])
         -- Disable buffer navigation while in these buffers
-        vim.keymap.set("n", "<S-l>", "", { silent = true, buffer = true })
-        vim.keymap.set("n", "<S-h>", "", { silent = true, buffer = true })
+        vim.keymap.set("n", "<S-l>", "<nop>", { silent = true, buffer = true })
+        vim.keymap.set("n", "<S-h>", "<nop>", { silent = true, buffer = true })
+	end,
+})
+
+-- Use esc or q to close terminal buffers
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = {
+		"terminal",
+	},
+	callback = function()
+		vim.cmd([[
+          nnoremap <silent> <buffer> q <cmd>bdelete!<CR>
+          set nobuflisted
+        ]])
+		vim.cmd([[
+          nnoremap <silent> <buffer> <Esc> <cmd>bdelete!<CR>
+          set nobuflisted
+        ]])
+        -- Disable buffer navigation while in these buffers
+        vim.keymap.set("n", "<S-l>", "<nop>", { silent = true, buffer = true })
+        vim.keymap.set("n", "<S-h>", "<nop>", { silent = true, buffer = true })
 	end,
 })
 
