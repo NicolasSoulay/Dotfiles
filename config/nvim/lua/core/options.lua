@@ -12,8 +12,6 @@ vim.opt.shiftwidth = 4 -- an auto command will indent/format the current line
 vim.opt.showtabline = 1 -- always show the tabs
 vim.opt.smartindent = true -- make indenting smarter again
 
-vim.opt.cmdheight = 0 -- hide the command line
-
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8 -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
