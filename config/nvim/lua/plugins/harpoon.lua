@@ -3,7 +3,6 @@ return {
 	branch = "harpoon2",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
-		{ "nvim-telescope/telescope.nvim" },
 	},
 	config = function()
 		local harpoon = require("harpoon")
@@ -16,7 +15,6 @@ return {
 		vim.keymap.set("n", "<leader>fh", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end, { desc = "Open harpoon window" })
-
 		vim.keymap.set("n", "<leader>1", function()
 			harpoon:list(harpoon:list():select(1))
 		end, { desc = "Switch to the first element in harpoon list" })
