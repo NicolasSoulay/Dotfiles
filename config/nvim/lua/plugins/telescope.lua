@@ -97,12 +97,6 @@ return {
 			":Telescope buffers<CR>",
 			{ desc = "Search for all currently open buffer in this session" }
 		)
-		vim.keymap.set(
-			"n",
-			"<leader>gb",
-			builtin.git_branches,
-			{ desc = "Search for git branches on current working directory" }
-		)
         require('telescope').load_extension('fzf')
 	end,
 }
