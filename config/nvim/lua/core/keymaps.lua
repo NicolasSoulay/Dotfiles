@@ -2,11 +2,7 @@ local keymap = vim.keymap.set
 local opts = { silent = true }
 
 -- NORMAL --
--- Disable arrow keys and other stuff
-keymap("n", "<Left>", "<nop>", opts)
-keymap("n", "<Right>", "<nop>", opts)
-keymap("n", "<Up>", "<nop>", opts)
-keymap("n", "<Down>", "<nop>", opts)
+-- Disable anoying stuff
 keymap("n", "q:", "<nop>", opts)
 keymap("n", "q", "<nop>", opts)
 

@@ -56,20 +56,27 @@ return {
 		{
 			"hrsh7th/cmp-nvim-lua",
 		},
+        {
+            "windwp/nvim-autopairs",
+            config = function()
+                require("nvim-autopairs").setup({
+                    check_ts = true,
+                    disable_filetype = { "TelescopePrompt", "spectre_panel" },
+                })
+            end,
+        }
 	},
 	config = function()
 		local cmp = require("cmp")
+        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 		local luasnip = require("luasnip")
+        local icons = require("core.icons")
 		require("luasnip/loaders/from_vscode").lazy_load()
 
-		vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
-
-		local check_backspace = function()
-			local col = vim.fn.col(".") - 1
-			return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-		end
-
-		local icons = require("core.icons")
+        cmp.event:on(
+          'confirm_done',
+          cmp_autopairs.on_confirm_done()
+        )
 
 		cmp.setup({
 			snippet = {
@@ -80,13 +87,7 @@ return {
 			mapping = {
 				["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 				["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<C-y>"] = cmp.mapping(
-					cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Insert,
-						select = true,
-					}),
-					{ "i", "c" }
-				),
+				["<C-y>"] = cmp.mapping( cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true, }), { "i", "c" }),
 			},
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
@@ -117,10 +118,6 @@ return {
 				{ name = "path" },
 				{ name = "calc" },
 			},
-			-- confirm_opts = {
-			-- 	behavior = cmp.ConfirmBehavior.Replace,
-			-- 	select = false,
-			-- },
 			window = {
 				completion = {
 					border = "rounded",
@@ -130,9 +127,6 @@ return {
 					border = "rounded",
 				},
 			},
-			-- experimental = {
-			-- 	ghost_text = false,
-			-- },
 		})
 
 		vim.keymap.set({ "i", "s" }, "<C-n>", function()
