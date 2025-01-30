@@ -3,10 +3,19 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	build = ":TSUpdate",
 	dependencies = {
+        {
             "windwp/nvim-ts-autotag",
             config = function()
                 require("nvim-ts-autotag").setup()
             end,
+        },
+        {
+            'MeanderingProgrammer/render-markdown.nvim',
+            dependencies = { 'nvim-tree/nvim-web-devicons' },
+            ---@module 'render-markdown'
+            ---@type render.md.UserConfig
+            opts = {},
+        }
 	},
 	config = function()
 		local configs = require("nvim-treesitter.configs")
