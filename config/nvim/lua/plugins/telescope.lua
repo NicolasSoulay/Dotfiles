@@ -21,8 +21,8 @@ return {
 				vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--hidden", "--glob=!.git/", },
 				mappings = {
 					i = {
-						["<C-h>"] = actions.cycle_history_next,
-						["<C-l>"] = actions.cycle_history_prev,
+						["<C-l>"] = actions.cycle_history_next,
+						["<C-h>"] = actions.cycle_history_prev,
 						["<C-j>"] = actions.move_selection_next,
 						["<C-k>"] = actions.move_selection_previous,
                         ["<esc>"] = actions.close,
