@@ -9,7 +9,7 @@ alias fgrep='rg -F --color=auto'
 alias egrep='egrep --color=auto'
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 alias cd='z'
-alias cat='batcat --paging=never'
+alias cat='batcat --paging=never --theme=gruvbox-material-dark'
 alias fd='fdfind'
 alias fzf='sk'
 alias htop='btm'

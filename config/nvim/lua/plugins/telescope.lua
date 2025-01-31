@@ -18,31 +18,14 @@ return {
 				selection_strategy = "reset",
 				path_display = { "smart" },
 				color_devicons = true,
-				vimgrep_arguments = {
-					"rg",
-					"--color=never",
-					"--no-heading",
-					"--with-filename",
-					"--line-number",
-					"--column",
-					"--smart-case",
-					"--hidden",
-					"--glob=!.git/",
-				},
-
+				vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--hidden", "--glob=!.git/", },
 				mappings = {
 					i = {
-						["<C-n>"] = actions.cycle_history_next,
-						["<C-p>"] = actions.cycle_history_prev,
-
+						["<C-h>"] = actions.cycle_history_next,
+						["<C-l>"] = actions.cycle_history_prev,
 						["<C-j>"] = actions.move_selection_next,
 						["<C-k>"] = actions.move_selection_previous,
-					},
-					n = {
-						["<esc>"] = actions.close,
-						["j"] = actions.move_selection_next,
-						["k"] = actions.move_selection_previous,
-						["q"] = actions.close,
+                        ["<esc>"] = actions.close,
 					},
 				},
 			},
@@ -52,12 +35,8 @@ return {
 					previewer = false,
 					initial_mode = "normal",
 					mappings = {
-						i = {
-							["<C-d>"] = actions.delete_buffer,
-						},
-						n = {
-							["dd"] = actions.delete_buffer,
-						},
+						i = { ["<C-d>"] = actions.delete_buffer, },
+						n = { ["dd"] = actions.delete_buffer, },
 					},
 				},
 			},
@@ -73,30 +52,10 @@ return {
 
 		local builtin = require("telescope.builtin")
 
-		vim.keymap.set(
-            "n",
-            "<leader>ff",
-            builtin.find_files,
-            { desc = "Find file in current working directory" }
-        )
-		vim.keymap.set(
-            "n",
-            "<leader>fg",
-            builtin.live_grep,
-            { desc = "Search for word in current working directory" }
-        )
-		vim.keymap.set(
-			"v",
-			"<leader>fg",
-			builtin.grep_string,
-			{ desc = "Search for selected word in current working directory" }
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>fb",
-			":Telescope buffers<CR>",
-			{ desc = "Search for all currently open buffer in this session" }
-		)
+		vim.keymap.set( "n", "<leader>ff", builtin.find_files, { desc = "Find file in current working directory" })
+		vim.keymap.set( "n", "<leader>fg", builtin.live_grep, { desc = "Search for word in current working directory" })
+		vim.keymap.set( "v", "<leader>fg", builtin.grep_string, { desc = "Search for selected word in current working directory" })
+		vim.keymap.set( "n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Search for all currently open buffer in this session" })
         require('telescope').load_extension('fzf')
 	end,
 }
