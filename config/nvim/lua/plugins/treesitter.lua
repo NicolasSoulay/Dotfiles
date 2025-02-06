@@ -3,17 +3,17 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	build = ":TSUpdate",
 	dependencies = {
-        {
-            "windwp/nvim-ts-autotag",
-            opts = {},
-        },
-        {
-            'MeanderingProgrammer/render-markdown.nvim',
-            dependencies = { 'nvim-tree/nvim-web-devicons' },
-            ---@module 'render-markdown'
-            ---@type render.md.UserConfig
-            opts = { latex = { enabled = false } },
-        }
+		{
+			"windwp/nvim-ts-autotag",
+			opts = {},
+		},
+		{
+			"MeanderingProgrammer/render-markdown.nvim",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			---@module 'render-markdown'
+			---@type render.md.UserConfig
+			opts = { latex = { enabled = false } },
+		},
 	},
 	config = function()
 		local configs = require("nvim-treesitter.configs")
@@ -47,10 +47,10 @@ return {
 				"toml",
 				"regex",
 			},
-            ignore_install = {},
+			ignore_install = {},
 			sync_install = false,
 			auto_install = true,
-            modules = {},
+			modules = {},
 			highlight = {
 				enable = true,
 				disable = { "" },

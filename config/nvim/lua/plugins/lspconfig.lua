@@ -11,7 +11,14 @@ local servers = {
     "rust_analyzer",
     "clangd",
     "marksman",
-    "glint",
+}
+
+local tools = {
+    "prettierd",
+    "stylua",
+    "php-cs-fixer",
+    "twig-cs-fixer",
+    "clang-format",
 }
 
 return {
@@ -20,6 +27,32 @@ return {
     dependencies = {
         { "williamboman/mason.nvim", lazy = false, opts = { ui = { border = "rounded"} } },
         { "williamboman/mason-lspconfig.nvim", opts = { ensure_installed = servers } },
+        { "WhoIsSethDaniel/mason-tool-installer.nvim", opts = { ensure_installed = tools } },
+        {
+            "stevearc/conform.nvim",
+            config = function()
+                require("conform").setup({
+                    formatters_by_ft = {
+                        cpp = { "clang-format" },
+                        css = { "prettierd" },
+                        html = { "prettierd" },
+                        json = { "prettierd" },
+                        lua = { "stylua" },
+                        markdown = { "prettierd" },
+                        php = { "php_cs_fixer" },
+                        twig = { "twig-cs-fixer", "djlint" },
+                        yaml = { "prettierd" },
+                    },
+                })
+                vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+                    require("conform").format({
+                        lsp_fallback = true,
+                        async = false,
+                        timeout_ms = 5000,
+                    })
+                end, { desc = "Format file or range (in visual mode)" })
+            end
+        },
         {
             'saghen/blink.cmp',
             dependencies = 'rafamadriz/friendly-snippets',
