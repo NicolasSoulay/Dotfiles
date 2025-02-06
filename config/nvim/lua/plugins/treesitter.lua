@@ -5,16 +5,14 @@ return {
 	dependencies = {
         {
             "windwp/nvim-ts-autotag",
-            config = function()
-                require("nvim-ts-autotag").setup()
-            end,
+            opts = {},
         },
         {
             'MeanderingProgrammer/render-markdown.nvim',
             dependencies = { 'nvim-tree/nvim-web-devicons' },
             ---@module 'render-markdown'
             ---@type render.md.UserConfig
-            opts = {},
+            opts = { latex = { enabled = false } },
         }
 	},
 	config = function()
