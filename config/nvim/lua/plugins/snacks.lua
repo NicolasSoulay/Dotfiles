@@ -1,6 +1,11 @@
 return {
     "folke/snacks.nvim",
-    opts = { picker = {} },
+    lazy = false,
+    priority = 1000,
+    opts = {
+        picker = {},
+        indent = { animate = { enabled = false } },
+    },
     keys = {
         { "<leader>ff", function() Snacks.picker.smart() end, desc = "Find Files" },
         { "<leader>fg", function() Snacks.picker.grep() end, desc = "Find Grep" },

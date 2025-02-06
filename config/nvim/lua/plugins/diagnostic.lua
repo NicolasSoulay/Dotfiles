@@ -8,7 +8,7 @@ return {
 		tiny_diagnostics.setup({
 			preset = "powerline",
 			options = {
-                use_icons_from_diagnostic = true,
+				use_icons_from_diagnostic = true,
 				multilines = {
 					enabled = true,
 					always_show = true,
