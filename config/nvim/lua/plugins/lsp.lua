@@ -18,7 +18,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        { "williamboman/mason.nvim", opts = { ui = { border = "rounded"} } },
+        { "williamboman/mason.nvim", lazy = false, opts = { ui = { border = "rounded"} } },
         { "williamboman/mason-lspconfig.nvim", opts = { ensure_installed = servers } },
         {
             'saghen/blink.cmp',
