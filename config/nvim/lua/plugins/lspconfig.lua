@@ -65,11 +65,11 @@ return {
                     local opts = { noremap = true, silent = true }
                     local keymap = vim.api.nvim_buf_set_keymap
 
-                    keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-                    keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+                    keymap(bufnr, "n", "gD", "<cmd>lua require('snacks').picker.lsp_declarations()<CR>", opts)
+                    keymap(bufnr, "n", "gd", "<cmd>lua require('snacks').picker.lsp_definitions()<CR>", opts)
+                    keymap(bufnr, "n", "gI", "<cmd>lua require('snacks').picker.lsp_implementations()<CR>", opts)
+                    keymap(bufnr, "n", "gr", "<cmd>lua require('snacks').picker.lsp_references()<CR>", opts)
                     keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-                    keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-                    keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
                     keymap(bufnr, "n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
                     if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
