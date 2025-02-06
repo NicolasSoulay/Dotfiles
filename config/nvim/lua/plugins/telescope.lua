@@ -5,14 +5,11 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"},
 	},
 	config = function()
-		local icons = require("core.icons")
 		local actions = require("telescope.actions")
 		local telescope = require("telescope")
 
 		telescope.setup({
 			defaults = {
-				prompt_prefix = icons.ui.Telescope .. " ",
-				selection_caret = icons.ui.Forward .. " ",
 				entry_prefix = "   ",
 				initial_mode = "insert",
 				selection_strategy = "reset",
