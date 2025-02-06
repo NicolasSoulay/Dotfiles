@@ -192,8 +192,8 @@ install_applications() {
     cd ~/Sources
     git clone https://github.com/neovim/neovim.git
     cd neovim
-    git checkout stable
-    make CMAKE_BUILD_TYPE=Release
+    git checkout nightly    
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
     sudo make install
     cd ~
 

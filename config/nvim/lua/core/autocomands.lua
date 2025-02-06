@@ -81,7 +81,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
         path = vim.fs.dirname(path)
 
         local root_file = vim.fs.find(
-            {".git", "Makefile", "package.json", "Cargo.toml"},
+            {".git", "Makefile", "package.json"},
             { path = path, upward = true }
         )[1]
         if root_file == nil then return end
