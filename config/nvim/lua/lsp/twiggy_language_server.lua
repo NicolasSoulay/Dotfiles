@@ -1,6 +1,4 @@
 return {
-    on_attach = on_attach,
-    capabilities = capabilities,
     settings = {
         twiggy = {
             -- before 0.8.0:

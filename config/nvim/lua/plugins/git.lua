@@ -1,3 +1,4 @@
+local keymap = vim.keymap.set
 return {
 	{
 		"lewis6991/gitsigns.nvim",
@@ -25,8 +26,7 @@ return {
 					col = 1,
 				},
 				on_attach = function(bufnr)
-					local keymap = vim.keymap.set
-					keymap("n", "<Leader>tb", gitsigns.toggle_current_line_blame, { buffer = bufnr })
+					keymap("n", "<Leader>gb", gitsigns.toggle_current_line_blame, { buffer = bufnr })
 				end,
 			})
 		end,
@@ -35,14 +35,13 @@ return {
 		"sindrets/diffview.nvim",
 		config = function()
 			local diffview = require("diffview")
-			local keymap = vim.keymap.set
 			local opts = { silent = true, buffer = true }
 
 			diffview.setup({})
 
-			vim.keymap.set("n", "<leader>dv", ":DiffviewOpen<CR>", { desc = "Open diffview window" })
-			vim.keymap.set( "n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Open diffview file history for this buffer" })
-			vim.keymap.set("n", "<leader>gg", ":DiffviewFileHistory<CR>", { desc = "Open diffview file history" })
+			keymap("n", "<leader>dv", ":DiffviewOpen<CR>", { desc = "Open diffview window" })
+			keymap("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Open diffview file history for this buffer" })
+			keymap("n", "<leader>gg", ":DiffviewFileHistory<CR>", { desc = "Open diffview file history" })
 
 			-- Autocommands to invoke DiffviewClose when using q if the file name start with "diffview:"
 			vim.api.nvim_create_autocmd("BufEnter", {
