@@ -175,7 +175,7 @@ local function worker()
 			popup.visible = not popup.visible
 		else
 			awful.placement.bottom(popup, {
-				margins = { bottom = 50 },
+				margins = {left = 3000, bottom = 50 },
 				parent = awful.screen.focused(),
 			})
 

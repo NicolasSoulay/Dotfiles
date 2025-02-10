@@ -50,19 +50,9 @@ awful.layout.layouts = {
 	awful.layout.suit.tile.left,
 }
 
--- Calendar widget
-local calendar_widget = require("widgets.calendar")
-local cw = calendar_widget({})
-
 -- {{{ Wibar
 -- Create a textclock widget
-local mytextclock = wibox.widget.textclock("  %H:%M  ")
-mytextclock:connect_signal("button::press", function(_, _, _, button)
-	if button == 1 then
-		cw.toggle()
-	end
-end)
-
+local mytextclock = wibox.widget.textclock()
 local mysystray = wibox.widget.systray()
 
 -- Volume control widget
@@ -70,6 +60,48 @@ local volume_widget = require("widgets.volume")
 local myvolume = volume_widget({
 	widget_type = "arc",
 })
+
+local taglist_buttons = gears.table.join(
+	awful.button({}, 1, function(t)
+		t:view_only()
+	end),
+	awful.button({ modkey }, 1, function(t)
+		if client.focus then
+			client.focus:move_to_tag(t)
+		end
+	end),
+	awful.button({}, 3, awful.tag.viewtoggle),
+	awful.button({ modkey }, 3, function(t)
+		if client.focus then
+			client.focus:toggle_tag(t)
+		end
+	end),
+	awful.button({}, 4, function(t)
+		awful.tag.viewnext(t.screen)
+	end),
+	awful.button({}, 5, function(t)
+		awful.tag.viewprev(t.screen)
+	end)
+)
+
+local tasklist_buttons = gears.table.join(
+	awful.button({}, 1, function(c)
+		if c == client.focus then
+			c.minimized = true
+		else
+			c:emit_signal("request::activate", "tasklist", { raise = true })
+		end
+	end),
+	awful.button({}, 3, function()
+		awful.menu.client_list({ theme = { width = 250 } })
+	end),
+	awful.button({}, 4, function()
+		awful.client.focus.byidx(1)
+	end),
+	awful.button({}, 5, function()
+		awful.client.focus.byidx(-1)
+	end)
+)
 
 awful.screen.connect_for_each_screen(function(s)
 	-- Each screen has its own tag table.
@@ -85,7 +117,8 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Create a tasklist widget
 	s.mytasklist = awful.widget.tasklist({
 		screen = s,
-		filter = awful.widget.tasklist.filter.focused,
+		filter = awful.widget.tasklist.filter.currenttags,
+		buttons = tasklist_buttons,
 	})
 
 	-- Create the wibox
@@ -101,14 +134,14 @@ awful.screen.connect_for_each_screen(function(s)
 			wibox.container.margin(s.mytaglist, 8, 0, 0, 0),
 			s.mytasklist,
 		},
-		-- { -- Middle widget
-		-- 	layout = wibox.layout.align.horizontal,
-		mytextclock,
-		-- },
+		{ -- Middle widget
+			layout = wibox.layout.align.horizontal,
+		},
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			mysystray,
-			wibox.container.margin(myvolume, 0, 10, 0, 0),
+			mytextclock,
+			myvolume,
+			wibox.container.margin(mysystray, 0, 10, 0, 0),
 		},
 	})
 end)
@@ -225,9 +258,9 @@ client.connect_signal("manage", function(c)
 
 	if c.maximized then
 		c.shape = gears.shape.rectangle
-    else
-        c.shape = gears.shape.rounded_rect
-    end
+	else
+		c.shape = gears.shape.rounded_rect
+	end
 
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
 		-- Prevent clients from being unreachable after screen count changes.
