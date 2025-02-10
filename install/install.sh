@@ -68,7 +68,8 @@ link_dotfiles() {
 # Function: Install essential tools
 install_essential_tools() {
     echo "==== Installing essential tools ===="
-    sudo apt install inotify-tools wget fzf bat gh jq man gawk w3m coreutils pavucontrol parallel findutils fd-find gettext unzip curl ripgrep xsel pavucontrol playerctl build-essential -y
+    sudo apt install inotify-tools wget fzf bat gh jq man gawk w3m coreutils parallel findutils fd-find gettext unzip curl ripgrep xsel playerctl build-essential -y
+    sudo apt install pipewire-audio pipewire-jack wireplumber -y
 }
 
 # Function: Install code related tools
