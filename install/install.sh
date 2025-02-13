@@ -278,7 +278,7 @@ EOF
 
     # Cargo applications
     echo "==== Installing Cargo applications ===="
-    cargo install skim eza
+    cargo install eza
     cargo install --locked zoxide bottom 
 
     # Ncspot
