@@ -29,10 +29,10 @@ keymap("n", "<S-q>", ":bdelete<CR>", opts)
 keymap("n", "<Leader>q", "<C-w>q", opts)
 
 -- Replace all on current word and ask confirmation
-keymap("n", "<Leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left><Left>]], opts)
+keymap("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left><Left>]], opts)
 
 -- Replace all on current word
-keymap("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
+keymap("n", "<Leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
 
 -- Split window vertical/horizontal
 keymap("n", "<Leader>v", "<C-w>v", opts)

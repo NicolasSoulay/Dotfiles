@@ -1,5 +1,6 @@
 local servers = {
 	"lua_ls",
+	"taplo",
 	"phpactor",
 	"twiggy_language_server",
 	"yamlls",
