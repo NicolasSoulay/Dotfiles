@@ -15,11 +15,11 @@ local servers = {
 }
 
 local tools = {
-    "clang-format",
-    "djlint",
-    "prettierd",
+	"clang-format",
+	"djlint",
+	"prettierd",
 	"php-cs-fixer",
-    "stylua",
+	"stylua",
 	"twig-cs-fixer",
 }
 
@@ -68,18 +68,28 @@ return {
 				appearance = {
 					nerd_font_variant = "mono",
 				},
-				signature = { enabled = true },
+				signature = {
+					enabled = true,
+					window = {
+						border = "rounded",
+						show_documentation = false,
+					},
+				},
 				sources = {
 					default = { "lsp", "path", "snippets", "buffer" },
-					cmdline = {},
 				},
+				cmdline = {},
 				completion = {
 					accept = { auto_brackets = { enabled = true } },
-					documentation = { window = { border = "single" } },
+					documentation = {
+						auto_show = true,
+						auto_show_delay_ms = 100,
+						window = { border = "rounded" },
+					},
+					list = { selection = { preselect = false, auto_insert = false } },
 					menu = {
 						draw = { columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind" } } },
 					},
-					list = { selection = { preselect = false, auto_insert = false } },
 				},
 			},
 			opts_extend = { "sources.default" },
@@ -106,7 +116,7 @@ return {
 					keymap(bufnr, "n", "gd", "<cmd>lua require('snacks').picker.lsp_definitions()<CR>", opts)
 					keymap(bufnr, "n", "gI", "<cmd>lua require('snacks').picker.lsp_implementations()<CR>", opts)
 					keymap(bufnr, "n", "gr", "<cmd>lua require('snacks').picker.lsp_references()<CR>", opts)
-					keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+					keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover({border = 'rounded'})<CR>", opts)
 					keymap(bufnr, "n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
 					if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
