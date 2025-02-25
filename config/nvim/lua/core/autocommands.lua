@@ -31,9 +31,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		"terminal",
 	},
 	callback = function()
-		keymap("n", "<Esc>", "<cmd>bdelete!<CR>", { silent = true, buffer = true })
-		keymap("n", "q", "<cmd>bdelete!<CR>", { silent = true, buffer = true })
-		keymap("n", "<Leader>\\", "<cmd>bdelete!<CR>", { silent = true, buffer = true })
 		keymap("n", "<S-l>", "<nop>", { silent = true, buffer = true })
 		keymap("n", "<S-h>", "<nop>", { silent = true, buffer = true })
 	end,
