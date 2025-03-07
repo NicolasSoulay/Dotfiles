@@ -120,7 +120,7 @@ install_code_tools() {
 # Function: Install desktop environment
 install_desktop_environment() {
     echo "==== Installing desktop environment ===="
-    sudo apt install rofi picom awesome xorg -y
+    sudo apt install rofi picom awesome eza xorg -y
     sudo apt install zathura nitrogen greetd mpv cmus tealdeer -y
     sudo apt install thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin thunar-vcs-plugin -y
     sudo apt install thunderbird firefox-esr -y
@@ -276,9 +276,10 @@ EOF
     git clone "https://github.com/pystardust/ani-cli.git"
     ln -sf ~/Sources/ani-cli/ani-cli ~/.local/bin/ani-cli
 
-    # Cargo applications
-    echo "==== Installing Cargo applications ===="
-    cargo install eza
+    # commented because Trixie has the eza package
+    # # Cargo applications
+    # echo "==== Installing Cargo applications ===="
+    # cargo install eza
 
     # Ncspot
     echo "==== Installing Ncspot ===="
