@@ -41,6 +41,7 @@ create_user_directories() {
     xdg-user-dirs-update
     mkdir -p ~/.local/{state/bash,cache,share/themes,share/icons}
     mkdir -p ~/.config/nvm
+    mkdir -p ~/Dev
     mkdir -p ~/Games/{PS1,PS2}
     mkdir -p ~/Sources ~/Torrents
     touch ~/.local/state/bash/history
@@ -120,7 +121,7 @@ install_code_tools() {
 install_desktop_environment() {
     echo "==== Installing desktop environment ===="
     sudo apt install rofi picom awesome xorg -y
-    sudo apt install zathura nitrogen greetd mc mpv cmus tealdeer -y
+    sudo apt install zathura nitrogen greetd mpv cmus tealdeer -y
     sudo apt install thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin thunar-vcs-plugin -y
     sudo apt install thunderbird firefox-esr -y
     tldr --update
@@ -148,7 +149,6 @@ setup_flatpak() {
     mkdir -p ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games
     ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/bios ~/Games/PS2/BIOS
     ln -sf ~/.var/app/net.pcsx2.PCSX2/config/PCSX2/games ~/Games/PS2/ROMS
-
 }
 
 # Function: Configure Git
@@ -279,7 +279,6 @@ EOF
     # Cargo applications
     echo "==== Installing Cargo applications ===="
     cargo install eza
-    cargo install --locked zoxide bottom 
 
     # Ncspot
     echo "==== Installing Ncspot ===="
