@@ -373,8 +373,9 @@ greeter_config() {
     echo "==== Greeter and keyboard configuration ===="
     sudo cp ~/Dotfiles/install/conf-files/greeter/greetd_tuigreet_config /etc/greetd/config.toml 
     sudo cp ~/Dotfiles/install/conf-files/keyboard/keyboard /etc/modprobe.d/hid_apple.conf
-    sudo cp ~/Dotfiles/install/conf-files/greeter/quiet_greeter /etc/sysctl.d/20-quiet-printk.conf
     sudo cp ~/Dotfiles/install/conf-files/keyboard/keyboard_config /etc/default/keyboard
+    sudo cp ~/Dotfiles/install/conf-files/keyboard/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+    sudo cp ~/Dotfiles/install/conf-files/greeter/quiet_greeter /etc/sysctl.d/20-quiet-printk.conf
 }
 
 # Function: Cleanup and finalize

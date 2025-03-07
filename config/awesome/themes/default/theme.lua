@@ -8,11 +8,11 @@ local theme = {}
 
 theme.font = "JetBrainsMono NFP"
 
-theme.useless_gap = dpi(31)
+theme.useless_gap = dpi(11)
 theme.gap_single_client = dpi(31)
 theme.border_width = dpi(1)
-theme.master_width_factor = 0.75
-theme.master_fill_policy = "master_width_factor"
+-- theme.master_width_factor = 0.75
+-- theme.master_fill_policy = "master_width_factor"
 
 theme.bg_systray = theme.bg_normal
 
