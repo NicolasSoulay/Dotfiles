@@ -26,6 +26,9 @@ git clone https://github.com/NicolasSoulay/Dotfiles
 - add system tray bluetooth control
 - add system tray network control
 - add system tray battery control
+- add system tray mail
+- bring back sound
+- customize notifications
 - add media keys shortcuts
 - add music display in the status bar
 - add control for multiple screens
