@@ -4,6 +4,13 @@ return {
 		event = "InsertEnter",
 		config = true,
 	},
+        {
+        "FerretDetective/oil-git-signs.nvim",
+        ft = "oil",
+        ---@module "oil_git_signs"
+        ---@type oil_git_signs.Config
+        opts = {},
+    },
 	{
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "VeryLazy",
