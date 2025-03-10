@@ -17,10 +17,13 @@ local servers = {
 local tools = {
 	"clang-format",
 	"djlint",
+    "eslint_d",
 	"prettierd",
 	"php-cs-fixer",
+    "phpstan",
 	"stylua",
 	"twig-cs-fixer",
+	"twigcs",
 }
 
 return {
@@ -30,70 +33,8 @@ return {
 		{ "williamboman/mason.nvim", lazy = false, opts = { ui = { border = "rounded" } } },
 		{ "williamboman/mason-lspconfig.nvim", opts = { ensure_installed = servers } },
 		{ "WhoIsSethDaniel/mason-tool-installer.nvim", opts = { ensure_installed = tools } },
-		{
-			"stevearc/conform.nvim",
-			config = function()
-				require("conform").setup({
-					formatters_by_ft = {
-						cpp = { "clang-format" },
-						css = { "prettierd" },
-						html = { "prettierd" },
-						json = { "prettierd" },
-						lua = { "stylua" },
-						markdown = { "prettierd" },
-						php = { "php_cs_fixer" },
-						twig = { "twig-cs-fixer", "djlint" },
-						yaml = { "prettierd" },
-					},
-				})
-				vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-					require("conform").format({
-						lsp_fallback = true,
-						async = false,
-						timeout_ms = 5000,
-					})
-				end, { desc = "Format file or range (in visual mode)" })
-			end,
-		},
-		{
-			"saghen/blink.cmp",
-			dependencies = "rafamadriz/friendly-snippets",
-			version = "*",
-			opts = {
-				keymap = {
-					preset = "default",
-					["<C-k>"] = { "select_prev", "fallback" },
-					["<C-j>"] = { "select_next", "fallback" },
-				},
-				appearance = {
-					nerd_font_variant = "mono",
-				},
-				signature = {
-					enabled = true,
-					window = {
-						border = "rounded",
-						show_documentation = false,
-					},
-				},
-				sources = {
-					default = { "lsp", "path", "snippets", "buffer" },
-				},
-				cmdline = {},
-				completion = {
-					accept = { auto_brackets = { enabled = true } },
-					documentation = {
-						auto_show = true,
-						auto_show_delay_ms = 100,
-						window = { border = "rounded" },
-					},
-					list = { selection = { preselect = false, auto_insert = false } },
-					menu = {
-						draw = { columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind" } } },
-					},
-				},
-			},
-			opts_extend = { "sources.default" },
-		},
+        { "folke/snacks.nvim" },
+		{ "saghen/blink.cmp" },
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
