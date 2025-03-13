@@ -1,5 +1,6 @@
-alias ls='eza -lah --icons --group-directories-first --sort=ext'
-alias lst='eza -a --tree --icons --group-directories-first --sort=ext'
+alias ls='eza -laah --icons=auto --git --group-directories-first --sort=Extension --follow-symlinks'
+alias lsd='eza -laahD --icons=auto --sort=Extension --follow-symlinks --show-symlinks' 
+alias lsf='eza -laahf --icons=auto --git --group-directories-first --sort=Extension --follow-symlinks --show-symlinks'
 alias v='nvim'
 alias gog='lgogdownloader'
 alias grep='rg --color=auto'
