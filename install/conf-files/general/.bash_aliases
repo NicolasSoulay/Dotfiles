@@ -1,6 +1,7 @@
 alias cat='batcat --paging=never --theme=gruvbox-material-dark'
 alias egrep='egrep --color=auto'
 alias fd='fdfind'
+alias find='fdfind'
 alias fgrep='rg -F --color=auto'
 alias gog='lgogdownloader'
 alias grep='rg --color=auto'
