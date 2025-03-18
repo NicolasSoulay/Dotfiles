@@ -48,7 +48,7 @@ seems good for now
 
 ### NVIM
 
- seems good for now
+ - NPM not in path for nvim, maybe time to try things with .profile and .bashrc
  
 ### Firefox
 
