@@ -70,7 +70,7 @@ link_dotfiles() {
 install_essential_tools() {
     echo "==== Installing essential tools ===="
     sudo apt install inotify-tools wget fzf bat gh jq man gawk w3m coreutils parallel findutils fd-find gettext unzip curl ripgrep xsel playerctl build-essential -y
-    sudo apt install pipewire-audio pipewire-jack wireplumber -y
+    sudo apt install pipewire-audio pipewire-jack wireplumber pulseaudio-utils pavucontrol -y
 }
 
 # Function: Install code related tools
@@ -136,7 +136,7 @@ setup_flatpak() {
     echo "=== Installing Flatpak ==="
     sudo apt install flatpak -y
     flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    flatpak install --user flathub com.discordapp.Discord org.duckstation.DuckStation org.kde.krita net.pcsx2.PCSX2 -y
+    flatpak install --user flathub com.discordapp.Discord org.duckstation.DuckStation org.kde.krita net.pcsx2.PCSX2 org.pipewire.Helvum -y
 
     # Dossier pour emulateurs
     echo "==== Creating emulator directories ===="
