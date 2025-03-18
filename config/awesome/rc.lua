@@ -58,7 +58,7 @@ local mysystray = wibox.widget.systray()
 -- Volume control widget
 local volume_widget = require("widgets.volume")
 local myvolume = volume_widget({
-	widget_type = "arc",
+	widget_type = "horizontal_bar",
 })
 
 local taglist_buttons = gears.table.join(

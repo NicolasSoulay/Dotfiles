@@ -166,7 +166,6 @@ local function worker(user_args)
 	local mixer_cmd = args.mixer_cmd or "pavucontrol"
 	local widget_type = args.widget_type
 	local refresh_rate = args.refresh_rate or 1
-	local step = args.step or 5
 	local device = args.device or "@DEFAULT_SINK@"
 	local tooltip = args.tooltip or false
 
@@ -189,13 +188,13 @@ local function worker(user_args)
 		end
 	end
 
-	function volume:inc(s)
-		pactl.volume_increase(device, s or step)
+	function volume:inc()
+        spawn("pactl set-sink-volume " .. device .. " +5%", false)
 		update_graphic(volume.widget)
 	end
 
-	function volume:dec(s)
-		pactl.volume_decrease(device, s or step)
+	function volume:dec()
+        spawn("pactl set-sink-volume " .. device .. " -5%", false)
 		update_graphic(volume.widget)
 	end
 

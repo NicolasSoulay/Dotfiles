@@ -32,7 +32,7 @@ function widget.get_widget(widgets_args)
                 widget = wibox.widget.imagebox,
             },
             valign = 'center',
-            visible = with_icon,
+            visible = true,
             layout = wibox.container.place,
         },
         {
