@@ -31,27 +31,4 @@ return {
 			})
 		end,
 	},
-	{
-		"sindrets/diffview.nvim",
-		config = function()
-			local diffview = require("diffview")
-			local opts = { silent = true, buffer = true }
-
-			diffview.setup({})
-
-			keymap("n", "<leader>dv", ":DiffviewOpen<CR>", { desc = "Open diffview window" })
-			keymap("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "Open diffview file history for this buffer" })
-			keymap("n", "<leader>gg", ":DiffviewFileHistory<CR>", { desc = "Open diffview file history" })
-
-			-- Autocommands to invoke DiffviewClose when using q if the file name start with "diffview:"
-			vim.api.nvim_create_autocmd("BufEnter", {
-				pattern = "diffview:*/*",
-				callback = function()
-					keymap("n", "q", "<cmd>DiffviewClose<CR>", opts)
-					keymap("n", "<S-l>", "<nop>", opts)
-					keymap("n", "<S-h>", "<nop>", opts)
-				end,
-			})
-		end,
-	},
 }

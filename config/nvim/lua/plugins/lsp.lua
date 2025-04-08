@@ -1,29 +1,14 @@
 local servers = {
 	"lua_ls",
 	"taplo",
-	"phpactor",
-	"twiggy_language_server",
-	"yamlls",
-	"emmet_language_server",
-	"ts_ls",
 	"bashls",
-	"csharp_ls",
 	"jsonls",
 	"rust_analyzer",
-	"clangd",
 	"marksman",
 }
 
 local tools = {
-	"clang-format",
-	"djlint",
-    "eslint_d",
-	"prettierd",
-	"php-cs-fixer",
-    "phpstan",
 	"stylua",
-	"twig-cs-fixer",
-	"twigcs",
 }
 
 return {

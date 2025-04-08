@@ -20,10 +20,7 @@ return {
 
 		configs.setup({
 			ensure_installed = {
-				"javascript",
-				"html",
 				"bash",
-				"css",
 				"comment",
 				"gitignore",
 				"git_config",
@@ -33,14 +30,7 @@ return {
 				"lua",
 				"markdown",
 				"markdown_inline",
-				"php",
-				"phpdoc",
 				"rust",
-				"scss",
-				"sql",
-				"tsx",
-				"typescript",
-				"twig",
 				"vim",
 				"vimdoc",
 				"yaml",

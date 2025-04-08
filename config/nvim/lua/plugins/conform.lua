@@ -3,15 +3,7 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				cpp = { "clang-format" },
-				css = { "prettierd" },
-				html = { "prettierd" },
-				json = { "prettierd" },
 				lua = { "stylua" },
-				markdown = { "prettierd" },
-				php = { "php_cs_fixer" },
-				twig = { "twig-cs-fixer", "djlint" },
-				yaml = { "prettierd" },
 			},
 		})
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
