@@ -77,22 +77,6 @@ install_essential_tools() {
 install_code_tools() {
     echo "==== Installing code related tools ===="
 
-    # Postgres
-    echo "==== Installing Postgres ===="
-    sudo apt install postgresql postgresql-client -y
-
-    # PHP
-    echo "==== Installing PHP ===="
-    sudo apt install php php-mysql php-curl php-common libapache2-mod-php php-cli php-xml php-zip composer php-symfony-console php-gd php-pgsql -y
-
-    # Python
-    echo "==== Installing Python ===="
-    sudo apt install python3 python3-pip python3-venv python3-pynvim -y
-
-    # C/C++
-    echo "==== Installing C/C++ ===="
-    sudo apt install gcc g++ cmake clang ninja-build -y
-
     # Rust
     echo "==== Installing Rust ===="
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -100,21 +84,6 @@ install_code_tools() {
     echo "==== Source bashrc ===="
     source ~/.bashrc
 
-    # Install de symfony
-    echo "==== Installing Symfony ===="
-    curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
-    sudo apt install symfony-cli -y
-
-    # Install de NodeJs et NPM
-    echo "==== Installing NodeJs & NPM ===="
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-    # Install de packages NPM
-    echo "==== Installing NPM packages ===="
-    sudo su - $USER -c 'nvm install --lts'
-    sudo su - $USER -c 'nvm install-latest-npm'
-    sudo su - $USER -c 'npm install -g @nestjs/cli neovim sass typescript'
 }
 
 # Function: Install desktop environment
@@ -136,7 +105,7 @@ setup_flatpak() {
     echo "=== Installing Flatpak ==="
     sudo apt install flatpak -y
     flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    flatpak install --user flathub com.discordapp.Discord org.duckstation.DuckStation org.kde.krita net.pcsx2.PCSX2 org.pipewire.Helvum -y
+    flatpak install --user flathub com.discordapp.Discord org.duckstation.DuckStation org.kde.krita net.pcsx2.PCSX2 -y
 
     # Dossier pour emulateurs
     echo "==== Creating emulator directories ===="
@@ -177,15 +146,7 @@ configure_git() {
 install_applications() {
     if [ "$INSTALL_APPLICATIONS" = true ] ; then
         echo "==== Installing applications ===="
-        sudo apt install steam-installer libreoffice blender deluge -y
-    fi
-
-
-    # install de MEGA
-    if [ "$INSTALL_MEGA" = true ] ; then
-        echo "==== Installing MEGA ===="
-        wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb && sudo apt install "$PWD/megasync-Debian_12_amd64.deb" -y
-        rm megasync-Debian_12_amd64.deb
+        sudo apt install steam-installer libreoffice deluge -y
     fi
 
     # Install de neovim stable depuis les sources
@@ -198,49 +159,10 @@ install_applications() {
     sudo make install
     cd ~
 
-    # Install de lazygit pour neovim
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf lazygit.tar.gz lazygit
-    sudo install lazygit -D -t /usr/local/bin/
-    mkdir -p ~/.config/lazygit
-    touch ~/.config/lazygit/config.yml
-
-    # Pyfa
-    if [ "$INSTALL_PYFA" = true ] ; then
-        echo "==== Installing Pyfa ===="
-        APPIMAGE_PATH_PYFA=~/Sources/Pyfa/Pyfa.AppImage
-        DESKTOP_FILE_PATH_PYFA=~/.local/share/applications/pyfa.desktop
-        curl -s https://api.github.com/repos/pyfa-org/Pyfa/releases/latest | \
-        grep -oP '"browser_download_url": "\K(.*?Pyfa.*?AppImage)(?=")' | \
-        xargs -n 1 curl -L -o "$APPIMAGE_PATH_PYFA"
-        chmod +x "$APPIMAGE_PATH_PYFA"
-        ln -sf "$APPIMAGE_PATH_PYFA" ~/.local/bin/pyfa
-        mkdir -p ~/.local/share/applications
-        cat > "$DESKTOP_FILE_PATH_PYFA" <<EOF
-[Desktop Entry]
-Name=Pyfa
-Comment=Python Fitting Assistant for EVE Online
-Exec=$APPIMAGE_PATH_PYFA
-Icon=utilities-terminal
-Terminal=false
-Type=Application
-Categories=Game;
-EOF
-    fi
-
     # Wine
     echo "==== Installing Wine ===="
     sudo dpkg --add-architecture i386 && sudo apt update
     sudo apt install wine wine64 libwine libwine:i386 fonts-wine -y
-
-    # Reaper
-    echo "==== Downloading Reaper ===="
-    wget -O reaper_latest_x86_64.tar.xz "https://www.reaper.fm/$(curl -s https://www.reaper.fm/download.php | grep -oP 'href="\Kfiles/[0-9]+\.[xX]/reaper[0-9]+_linux_x86_64\.tar\.xz' | head -n 1)"
-    mkdir -p ~/Sources/reaper
-    tar -xf reaper_latest_x86_64.tar.xz -C ~/Sources/reaper
-    rm reaper_latest_x86_64.tar.xz
-    # ./~/Sources/reaper_linux_x86_64/install-reaper.sh
 
     # Wikiman
     echo "==== Installing Wikiman ===="
@@ -275,16 +197,6 @@ EOF
     cd ~/Sources
     git clone "https://github.com/pystardust/ani-cli.git"
     ln -sf ~/Sources/ani-cli/ani-cli ~/.local/bin/ani-cli
-
-    # commented because Trixie has the eza package
-    # # Cargo applications
-    # echo "==== Installing Cargo applications ===="
-    # cargo install eza
-
-    # Ncspot
-    echo "==== Installing Ncspot ===="
-    sudo apt install libssl-dev libncurses-dev libncursesw5-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render0-dev libpulse-dev libxcb1-dev libdbus-1-dev -y 
-    cargo install --locked ncspot
 
     # Wezterm
     echo "==== Installing Wezterm ===="
@@ -391,8 +303,6 @@ cleanup() {
 main() {
     read -p "Do you want to save the log to a file? [y/N]: " confirm && [[ $confirm == [yY] ]] && SAVE_LOG=true
     read -p "Do you want to install heavy applications? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_APPLICATIONS=true
-    read -p "Do you want to install Mega? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_MEGA=true
-    read -p "Do you want to install Pyfa? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_PYFA=true
     read -p "Do you want to install Gog downloader? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_GOG=true
     read -p "Do you want to setup Flaptak, Flathub ans some Flatpak apps? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_FLAPTAK=true
     read -p "Do you want to install custom GTK and Firefox themes? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_THEMES=true
