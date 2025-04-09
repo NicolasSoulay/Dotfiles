@@ -2,9 +2,7 @@ local servers = {
 	"lua_ls",
 	"taplo",
 	"bashls",
-	"jsonls",
 	"rust_analyzer",
-	"marksman",
 }
 
 local tools = {

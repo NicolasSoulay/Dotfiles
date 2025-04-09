@@ -1,10 +1,11 @@
 local keymap = vim.keymap.set
 local opts = { silent = true }
 
--- NORMAL --
 -- Disable anoying stuff
 keymap("n", "q:", "<nop>", opts)
 keymap("n", "q", "<nop>", opts)
+keymap("v", "q:", "<nop>", opts)
+keymap("v", "q", "<nop>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -47,11 +48,9 @@ keymap("n", "<Leader>x", "<cmd>!chmod +x %<CR>", opts)
 -- Comment line
 keymap("n", "<Leader>/", "gcc", { silent = true, remap = true })
 
--- INSERT --
 -- Press jk fast to go back to normal mode
 keymap("i", "jk", "<ESC>", opts)
 
--- VISUAL --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)

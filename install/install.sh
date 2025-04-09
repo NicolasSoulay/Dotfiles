@@ -16,8 +16,8 @@ update_system() {
 # Function: Prompt for GitHub credentials
 setup_github_credentials() {
     while :; do
-        read -p "GitHub username: " github_username
-        if [ -n "$github_username" ]; then
+        read -p "Git username: " git_username
+        if [ -n "$git_username" ]; then
             break
         fi
         echo "The GitHub username can't be empty! Please try again."
@@ -25,8 +25,8 @@ setup_github_credentials() {
 
     email_regex="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
     while :; do
-        read -p "GitHub email: " github_email
-        if [[ "$github_email" =~ $email_regex ]]; then
+        read -p "Git email: " git_email
+        if [[ "$git_email" =~ $email_regex ]]; then
             break
         fi
         echo "Invalid email format! Please enter a valid email address."
@@ -69,7 +69,7 @@ link_dotfiles() {
 # Function: Install essential tools
 install_essential_tools() {
     echo "==== Installing essential tools ===="
-    sudo apt install inotify-tools wget fzf bat gh jq man gawk w3m coreutils parallel findutils fd-find gettext unzip curl ripgrep xsel playerctl build-essential -y
+    sudo apt install wget fzf bat gh jq man gawk coreutils parallel findutils fd-find gettext unzip curl ripgrep xsel playerctl build-essential -y
     sudo apt install pipewire-audio pipewire-jack wireplumber pulseaudio-utils pavucontrol -y
 }
 
@@ -123,8 +123,8 @@ setup_flatpak() {
 # Function: Configure Git
 configure_git() {
     echo "==== Configure Git ===="
-    git config --global user.email "$github_email"
-    git config --global user.name "$github_username"
+    git config --global user.email "$git_email"
+    git config --global user.name "$git_username"
     git config --global init.defaultBranch main
 
     echo "==== Installing Git Credential Manager ===="
@@ -151,6 +151,8 @@ install_applications() {
 
     # Install de neovim stable depuis les sources
     echo "==== Installing Neovim ===="
+    # dependencies
+    sudo apt install ninja-build gettext cmake unzip curl -y
     cd ~/Sources
     git clone https://github.com/neovim/neovim.git
     cd neovim
@@ -225,6 +227,15 @@ install_applications() {
 # Function: Install custom themes
 install_themes() {
     echo "==== Installing custom themes ===="
+
+    # Bat config
+    echo "==== Installing bat theme ===="
+    mkdir ~/.config/bat
+    mkdir ~/.config/bat/themes
+    cd ~/.config/bat/themes
+    git clone https://github.com/molchalin/gruvbox-material-bat
+    batcat cache --build
+    cd ~
 
     # Themes
     echo "==== Installing custom GTK themes ===="

@@ -1,16 +1,16 @@
+local last_ws = "home"
 local wezterm = require("wezterm")
 local loginfo = wezterm.log_info
 local logerr = wezterm.log_error
 local act = wezterm.action
 local act_cb = wezterm.action_callback
-local workspaces = {}
 local home = os.getenv("HOME")
 local dotfiles = home .. "/Dotfiles/config"
 local dev = home .. "/Dev"
-local last_ws = "home"
 
 return {
 	sessionizer = function(window, pane)
+        local workspaces = {}
 		-- Default workspaces
 		table.insert(workspaces, { label = "home", id = home })
 		table.insert(workspaces, { label = "awesome", id = dotfiles .. "/awesome" })
