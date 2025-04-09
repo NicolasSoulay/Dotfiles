@@ -147,7 +147,7 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
 	awful.button({}, 1, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 	end),
