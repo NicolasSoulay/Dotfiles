@@ -5,6 +5,8 @@ local opts = { silent = true }
 -- Disable anoying stuff
 keymap("n", "q:", "<nop>", opts)
 keymap("n", "q", "<nop>", opts)
+keymap("v", "q:", "<nop>", opts)
+keymap("v", "q", "<nop>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
