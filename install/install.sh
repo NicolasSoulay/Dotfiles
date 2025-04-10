@@ -40,7 +40,6 @@ create_user_directories() {
     sudo apt install xdg-user-dirs -y
     xdg-user-dirs-update
     mkdir -p ~/.local/{state/bash,cache,share/themes,share/icons}
-    mkdir -p ~/.config/nvm
     mkdir -p ~/Dev
     mkdir -p ~/Games/{PS1,PS2}
     mkdir -p ~/Sources ~/Torrents
@@ -69,7 +68,7 @@ link_dotfiles() {
 # Function: Install essential tools
 install_essential_tools() {
     echo "==== Installing essential tools ===="
-    sudo apt install wget fzf bat gh jq man gawk coreutils parallel findutils fd-find gettext unzip curl ripgrep xsel playerctl build-essential -y
+    sudo apt install wget fzf bat jq man gawk coreutils parallel findutils fd-find gettext unzip curl ripgrep xsel playerctl build-essential -y
     sudo apt install pipewire-audio pipewire-jack wireplumber pulseaudio-utils pavucontrol -y
 }
 
@@ -127,27 +126,15 @@ configure_git() {
     git config --global user.name "$git_username"
     git config --global init.defaultBranch main
 
-    echo "==== Installing Git Credential Manager ===="
-    wget "https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.6.1/gcm-linux_amd64.2.6.1.deb" -O gcm.deb
-    sudo dpkg -i gcm.deb
-    git config --global credential.credentialStore plaintext
-    git-credential-manager configure
-    sudo rm gcm.deb
-
     echo "==== Clean up Git config ===="
     mkdir -p ~/.config/git
     mv ~/.gitconfig ~/.config/git/config
-    touch ~/.config/git/.gitignore_global
-    echo ".php-cs-fixer.cache" >> ~/.config/git/.gitignore_global
-    git config --global core.excludesfile ~/.config/git/.gitignore_global
 }
 
 # Function: Install applications
 install_applications() {
-    if [ "$INSTALL_APPLICATIONS" = true ] ; then
-        echo "==== Installing applications ===="
-        sudo apt install steam-installer libreoffice deluge -y
-    fi
+    echo "==== Installing applications ===="
+    sudo apt install steam-installer libreoffice deluge -y
 
     # Install de neovim stable depuis les sources
     echo "==== Installing Neovim ===="
@@ -175,7 +162,7 @@ install_applications() {
     git checkout $(git describe --tags | cut -d'-' -f1)
     make all
     sudo make install
-    cd ..
+    cd ~/Sources
     curl -L 'https://raw.githubusercontent.com/filiparag/wikiman/master/Makefile' -o 'wikiman-makefile'
     make -f ./wikiman-makefile source-arch
     sudo make -f ./wikiman-makefile source-install
@@ -212,16 +199,14 @@ install_applications() {
     curl -sS https://starship.rs/install.sh | sh -s -- -y
 
     # Gog downloader
-    if [ "$INSTALL_GOG" = true ] ; then
-        echo "==== Installing Gog Downloader ===="
-        sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
-        cd ~/Sources
-        git clone https://github.com/Sude-/lgogdownloader
-        cd lgogdownloader
-        cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
-        sudo ninja -C build install
-        cd ~
-    fi
+    echo "==== Installing Gog Downloader ===="
+    sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
+    cd ~/Sources
+    git clone https://github.com/Sude-/lgogdownloader
+    cd lgogdownloader
+    cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
+    sudo ninja -C build install
+    cd ~
 }
 
 # Function: Install custom themes
@@ -313,10 +298,6 @@ cleanup() {
 # Main script execution
 main() {
     read -p "Do you want to save the log to a file? [y/N]: " confirm && [[ $confirm == [yY] ]] && SAVE_LOG=true
-    read -p "Do you want to install heavy applications? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_APPLICATIONS=true
-    read -p "Do you want to install Gog downloader? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_GOG=true
-    read -p "Do you want to setup Flaptak, Flathub ans some Flatpak apps? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_FLAPTAK=true
-    read -p "Do you want to install custom GTK and Firefox themes? [y/N]: " confirm && [[ $confirm == [yY] ]] && INSTALL_THEMES=true
     if [ "$SAVE_LOG" = true ] ; then
         save_log
         echo "---- Log saved to ~/install.log ----"
@@ -328,14 +309,10 @@ main() {
     install_essential_tools
     install_code_tools
     install_desktop_environment
-    if [ "$INSTALL_FLAPTAK" = true ] ; then
-        setup_flatpak
-    fi
+    setup_flatpak
     configure_git
     install_applications
-    if [ "$INSTALL_THEMES" = true ] ; then
-        install_themes
-    fi
+    install_themes
     greeter_config
     cleanup
     read -p "Reboot now? [y/N]: " confirm && [[ $confirm == [yY] ]] && sudo reboot
