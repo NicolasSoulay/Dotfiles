@@ -288,5 +288,3 @@ end)
 -- Autostart Applications
 awful.spawn.with_shell("xrandr --output DisplayPort-2 --primary --mode 3440x1440 --rate 100")
 awful.spawn.with_shell("nitrogen --restore")
--- awful.spawn.with_shell("wezterm connect unix")
--- awful.spawn.with_shell("wezterm-mux-server --daemonize")
