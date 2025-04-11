@@ -6,9 +6,9 @@ return {
 	font = "JetBrainsMono NFP",
 
 	useless_gap = dpi(11),
-	gap_single_client = dpi(31),
 	border_width = dpi(1),
-	master_width_factor = 0.75,
+
+	master_width_factor = 0.72,
 	master_fill_policy = "master_width_factor",
 
 	bg_systray = "#282828",

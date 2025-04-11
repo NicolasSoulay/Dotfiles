@@ -9,7 +9,7 @@ config.font = wezterm.font({
 	family = "JetBrains Mono",
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 })
-config.font_size = 12
+config.font_size = 16
 
 config.color_scheme = "Gruvbox Material (Gogh)"
 config.window_background_opacity = 1.00
@@ -104,6 +104,10 @@ config.keys = {
 	{ key = "h", mods = "LEADER", action = act.ActivateTabRelative(-1) },
 	{ key = "l", mods = "LEADER", action = act.ActivateTabRelative(1) },
 	{ key = "m", mods = "LEADER", action = act.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
+	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
 
 	-- Workspaces
 	{ key = "f", mods = "LEADER", action = act_cb(workspaces.sessionizer) },

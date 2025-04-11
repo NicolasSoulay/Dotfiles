@@ -82,7 +82,7 @@ local tasklist_buttons = gears.table.join(
 		end
 	end),
 	awful.button({}, 2, function(c)
-        c:kill()
+		c:kill()
 	end)
 )
 
@@ -258,11 +258,22 @@ client.connect_signal("focus", function(c)
 	local t = awful.tag.selected(c.screen)
 	if #t:clients() > 1 then
 		c.border_color = beautiful.border_focus
+		t.master_width_factor = 0.5
 	end
 end)
+
 client.connect_signal("unfocus", function(c)
 	c.border_color = beautiful.border_normal
 end)
+
+client.connect_signal("untagged", function(c)
+	local t = awful.tag.selected(c.screen)
+	if #t:clients() <= 1 then
+		c.border_color = beautiful.border_focus
+		t.master_width_factor = beautiful.master_width_factor
+	end
+end)
+
 -- }}}
 
 -- Autostart Applications

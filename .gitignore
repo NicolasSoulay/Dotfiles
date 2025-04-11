@@ -1,2 +1,4 @@
 /bin/pyfa
 /bin/ani-cli
+bin/lua-language-server
+bin/stylua
