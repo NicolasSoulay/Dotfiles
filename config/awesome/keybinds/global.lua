@@ -13,14 +13,6 @@ local globalkeys = gears.table.join(
 		awful.tag.viewnext()
 	end, { description = "view next", group = "tag" }),
 
-	-- awful.key({ modkey }, "=", function()
-	-- 	volume_widget:inc(5)
-	-- end, { description = "volume up", group = "awesome" }),
-	--
-	-- awful.key({ modkey }, "-", function()
-	-- 	volume_widget:dec(5)
-	-- end, { description = "volume down", group = "awesome" }),
-
 	awful.key({ modkey }, "l", function()
 		awful.client.focus.byidx(1)
 	end, { description = "focus next by index", group = "client" }),
@@ -40,8 +32,8 @@ local globalkeys = gears.table.join(
 
 	-- Standard program
 	awful.key({ modkey }, "Return", function()
-		awful.spawn(terminal)
-	end, { description = "open a terminal", group = "launcher" }),
+		awful.util.spawn( "wezterm connect unix")
+	end, { description = "open wezterm in multiplexer mode", group = "launcher" }),
 
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 
@@ -68,11 +60,6 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey }, "f", function()
 		awful.util.spawn(file_manager_gui)
 	end, { description = "open gui file manager", group = "launcher" }),
-
-	-- wezterm mux
-	awful.key({ modkey }, "t", function()
-		awful.util.spawn( "wezterm connect unix")
-	end, { description = "open wezterm mux", group = "launcher" }),
 
 	-- Browser
 	awful.key({ modkey }, "b", function()

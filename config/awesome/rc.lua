@@ -256,8 +256,17 @@ end)
 
 client.connect_signal("focus", function(c)
 	local t = awful.tag.selected(c.screen)
+	local x = 0
+	for _, cl in pairs(t:clients()) do
+		if not cl.floating then
+			x = x + 1
+		end
+	end
 	if #t:clients() > 1 then
 		c.border_color = beautiful.border_focus
+	end
+
+	if x > 1 then
 		t.master_width_factor = 0.5
 	end
 end)
@@ -277,7 +286,7 @@ end)
 -- }}}
 
 -- Autostart Applications
-awful.spawn.with_shell("nitrogen --restore")
--- awful.spawn.with_shell("picom")
 awful.spawn.with_shell("xrandr --output DisplayPort-2 --primary --mode 3440x1440 --rate 100")
--- awful.spawn.with_shell("xrdb ~/.Xresources")
+awful.spawn.with_shell("nitrogen --restore")
+-- awful.spawn.with_shell("wezterm connect unix")
+-- awful.spawn.with_shell("wezterm-mux-server --daemonize")

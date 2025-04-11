@@ -1,5 +1,6 @@
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
+local gears = require("gears")
 local dpi = xresources.apply_dpi
 
 return {
@@ -33,6 +34,7 @@ return {
 	tasklist_fg_focus = "#ddc7a1",
 
     hotkeys_modifiers_fg = "#d8a657",
+    hotkeys_shape = gears.shape.rounded_rect,
 
 	taglist_squares_sel = theme_assets.taglist_squares_sel(dpi(5), "#282828"),
 	taglist_squares_unsel = theme_assets.taglist_squares_unsel(dpi(5), "#ddc7a1"),
