@@ -22,5 +22,7 @@ return {
         { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
         { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
         { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+        { "<S-q>", function() Snacks.bufdelete() end, desc = "Close current buffer" },
+        { "<leader>co", function() Snacks.bufdelete.other() end, desc = "Close current buffer" },
 	},
 }
