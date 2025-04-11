@@ -1,47 +1,27 @@
-local servers = {
-	"lua_ls",
-	"taplo",
-	"bashls",
-	"rust_analyzer",
-}
-
-local tools = {
-	"stylua",
-}
-
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "williamboman/mason.nvim", lazy = false, opts = { ui = { border = "rounded" } } },
-		{ "williamboman/mason-lspconfig.nvim", opts = { ensure_installed = servers } },
-		{ "WhoIsSethDaniel/mason-tool-installer.nvim", opts = { ensure_installed = tools } },
-        { "folke/snacks.nvim" },
+		{ "folke/snacks.nvim" },
 		{ "saghen/blink.cmp" },
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
-		local signs = { ERROR = "", WARN = "", INFO = "", HINT = "󰌶" }
 
-		local diagnostic_signs = {}
-		for type, icon in pairs(signs) do
-			diagnostic_signs[vim.diagnostic.severity[type]] = icon
-		end
-		vim.diagnostic.config({ signs = { text = diagnostic_signs } })
-
+		local servers = {
+			"lua_ls",
+			"rust_analyzer",
+		}
 		for _, server in pairs(servers) do
 			local opts = {
 				on_attach = function(client, bufnr)
 					local opts = { noremap = true, silent = true }
 					local keymap = vim.api.nvim_buf_set_keymap
 
-					keymap(bufnr, "n", "gD", "<cmd>lua require('snacks').picker.lsp_declarations()<CR>", opts)
-					keymap(bufnr, "n", "gd", "<cmd>lua require('snacks').picker.lsp_definitions()<CR>", opts)
-					keymap(bufnr, "n", "gI", "<cmd>lua require('snacks').picker.lsp_implementations()<CR>", opts)
-					keymap(bufnr, "n", "gr", "<cmd>lua require('snacks').picker.lsp_references()<CR>", opts)
 					keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover({border = 'rounded'})<CR>", opts)
 					keymap(bufnr, "n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+					keymap(bufnr, "n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
 					if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 						vim.lsp.inlay_hint.enable(true)

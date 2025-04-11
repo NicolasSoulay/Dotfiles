@@ -28,3 +28,12 @@ vim.opt.updatetime = 300 -- faster completion (4000ms default)
 
 vim.g.loaded_netrw = 0 -- disable netrw
 vim.g.loaded_netrwPlugin = 0 -- disable netrw
+
+-- Set diagnostic signs
+local signs = { ERROR = "", WARN = "", INFO = "", HINT = "󰌶" }
+local diagnostic_signs = {}
+for type, icon in pairs(signs) do
+	diagnostic_signs[vim.diagnostic.severity[type]] = icon
+end
+vim.diagnostic.config({ signs = { text = diagnostic_signs } })
+

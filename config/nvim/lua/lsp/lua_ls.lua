@@ -24,12 +24,11 @@ return {
 			},
 			workspace = {
 				checkThirdParty = false,
-				library = vim.tbl_deep_extend("force", vim.api.nvim_get_runtime_file("", true), {
-					"${3rd}/luv/library",
-					"${3rd}/busted/library",
+				library = {
+                    vim.env.VIMRUNTIME,
 					"/usr/share/awesome/lib",
 					"/usr/share/lua",
-				}),
+				},
 			},
 			hint = {
 				enable = false,

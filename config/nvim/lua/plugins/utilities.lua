@@ -12,6 +12,9 @@ return {
 		opts = {},
 	},
 	{
+		"tpope/vim-fugitive",
+	},
+	{
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "VeryLazy",
 		priority = 1000,
