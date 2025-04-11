@@ -7,13 +7,6 @@ return {
 			"windwp/nvim-ts-autotag",
 			opts = {},
 		},
-		{
-			"MeanderingProgrammer/render-markdown.nvim",
-			dependencies = { "nvim-tree/nvim-web-devicons" },
-			---@module 'render-markdown'
-			---@type render.md.UserConfig
-			opts = { latex = { enabled = false } },
-		},
 	},
 	config = function()
 		local configs = require("nvim-treesitter.configs")
@@ -25,15 +18,12 @@ return {
 				"gitignore",
 				"git_config",
 				"git_rebase",
-				"json",
-				"json5",
 				"lua",
 				"markdown",
 				"markdown_inline",
 				"rust",
 				"vim",
 				"vimdoc",
-				"yaml",
 				"toml",
 				"regex",
 			},
