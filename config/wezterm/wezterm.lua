@@ -95,7 +95,9 @@ config.keys = {
 
 	-- Panes
 	{ key = "a", mods = "LEADER|CTRL", action = act.SendKey({ key = "a", mods = "CTRL" }) },
-	{ key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
+    { key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
 
 	-- Tabs
 	{ key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },

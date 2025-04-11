@@ -222,44 +222,6 @@ install_themes() {
     batcat cache --build
     cd ~
 
-    # Themes
-    echo "==== Installing custom GTK themes ===="
-    mkdir -p ~/.config/gtk-3.0
-    cat > ~/.config/gtk-3.0/settings.ini <<EOF
-[Settings]
-gtk-theme-name=Gruvbox-Dark-Medium
-gtk-icon-theme-name=Gruvbox-Plus-Dark
-gtk-font-name=Sans 10
-gtk-cursor-theme-name=Nordzy-cursors-white
-gtk-cursor-theme-size=24
-EOF
-    mkdir -p ~/.config/gtk-4.0
-    cat > ~/.config/gtk-4.0/settings.ini <<EOF
-[Settings]
-gtk-theme-name=Gruvbox-Dark-Medium
-gtk-icon-theme-name=Gruvbox-Plus-Dark
-gtk-font-name=Sans 10
-gtk-cursor-theme-name=Nordzy-cursors-white
-gtk-cursor-theme-size=24
-EOF
-    mkdir -p ~/.config/gtk-2.0
-    cat > ~/.config/gtk-2.0/gtkrc <<EOF
-gtk-theme-name="Gruvbox-Dark-Medium"
-gtk-icon-theme-name="Gruvbox-Plus-Dark"
-gtk-cursor-theme-name="Nordzy-cursors-white"
-gtk-cursor-theme-size=24
-EOF
-    git clone https://github.com/guillaumeboehm/Nordzy-cursors.git ~/Sources/Nordzy-cursors
-    git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git ~/Sources/gruvbox-plus-icon-pack
-    ln -sf ~/Sources/Nordzy-cursors/xcursors/Nordzy-cursors-white ~/.local/share/icons/Nordzy-cursors-white
-    ln -sf ~/Sources/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/Gruvbox-Plus-Dark
-    for file in ~/Dotfiles/install/conf-files/gtk-theme/*; do
-        ln -sf "$file" "$HOME/.local/share/themes/$(basename "$file")"
-    done
-    for file in ~/Dotfiles/install/conf-files/gtk-theme/Gruvbox-Dark-Medium/gtk-4.0/*; do
-        ln -sf "$file" "$HOME/.config/gtk-4.0/$(basename "$file")"
-    done
-
     # Custom Firefox
     echo "==== Installing Firefox theme & config ===="
     firefox --headless &
