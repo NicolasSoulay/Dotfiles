@@ -15,10 +15,10 @@ return {
 			view_options = {
 				show_hidden = true,
 			},
-            win_options = {
-                signcolumn = "yes:2",
-                statuscolumn = "",
-            }
+			win_options = {
+				signcolumn = "yes:2",
+				statuscolumn = "",
+			},
 		})
 
 		keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open Oil.nvim in parent directory" })
@@ -28,6 +28,14 @@ return {
 			pattern = "oil",
 			callback = function()
 				keymap("n", "<leader>e", ":close<CR>", { buffer = true, silent = true })
+			end,
+		})
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "OilActionsPost",
+			callback = function(event)
+				if event.data.actions.type == "move" then
+					Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+				end
 			end,
 		})
 	end,

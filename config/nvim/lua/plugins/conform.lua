@@ -10,6 +10,8 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettierd" },
 				php = { "php_cs_fixer" },
+				rust = { "rustfmt", lsp_format = "fallback" },
+
 				twig = { "twig-cs-fixer", "djlint" },
 				yaml = { "prettierd" },
 			},
