@@ -13,13 +13,13 @@ local globalkeys = gears.table.join(
 		awful.tag.viewnext()
 	end, { description = "view next", group = "tag" }),
 
-	awful.key({ modkey }, "=", function()
-		volume_widget:inc(5)
-	end, { description = "volume up", group = "awesome" }),
-
-	awful.key({ modkey }, "-", function()
-		volume_widget:dec(5)
-	end, { description = "volume down", group = "awesome" }),
+	-- awful.key({ modkey }, "=", function()
+	-- 	volume_widget:inc(5)
+	-- end, { description = "volume up", group = "awesome" }),
+	--
+	-- awful.key({ modkey }, "-", function()
+	-- 	volume_widget:dec(5)
+	-- end, { description = "volume down", group = "awesome" }),
 
 	awful.key({ modkey }, "l", function()
 		awful.client.focus.byidx(1)
