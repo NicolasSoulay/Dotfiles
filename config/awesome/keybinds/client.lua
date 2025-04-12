@@ -1,5 +1,16 @@
 local awful = require("awful")
 local gears = require("gears")
+local sound_folder = "~/.config/awesome/themes/default/sounds/"
+
+local navigation_left = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_left.wav")
+end
+local navigation_right = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_right.wav")
+end
+local close = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "close.wav")
+end
 
 local clientkeys = gears.table.join(
 	awful.key({ modkey, "Control" }, "f", function(c)
@@ -14,9 +25,10 @@ local clientkeys = gears.table.join(
 
 	awful.key({ modkey, "Shift" }, "c", function(c)
 		c:kill()
+		close()
 	end, { description = "close", group = "client" }),
 
-	awful.key({ modkey, "Control" }, "space",
+	awful.key( { modkey, "Control" }, "space",
 		awful.client.floating.toggle,
 		{ description = "toggle floating", group = "client" }
 	),
@@ -34,6 +46,7 @@ local clientkeys = gears.table.join(
 				screen.tags[idx]:view_only()
 			end
 		end
+		navigation_right()
 	end, { description = "move focused client to next tag and view tag", group = "client" }),
 
 	awful.key({ modkey, "Control", "Mod1" }, "h", function()
@@ -49,6 +62,7 @@ local clientkeys = gears.table.join(
 				screen.tags[idx]:view_only()
 			end
 		end
+		navigation_left()
 	end, { description = "move focused client to previous tag and view tag", group = "client" })
 )
 

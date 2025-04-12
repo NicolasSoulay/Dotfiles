@@ -13,15 +13,15 @@ local spawn = require("awful.spawn")
 local gears = require("gears")
 local beautiful = require("beautiful")
 
-local pactl = require("widgets.pactl")
-local utils = require("widgets.utils")
+local pactl = require("widgets.volume.pactl")
+local utils = require("widgets.volume.utils")
 
 local widget_types = {
-	icon_and_text = require("widgets.widgets.icon-and-text-widget"),
-	icon = require("widgets.widgets.icon-widget"),
-	arc = require("widgets.widgets.arc-widget"),
-	horizontal_bar = require("widgets.widgets.horizontal-bar-widget"),
-	vertical_bar = require("widgets.widgets.vertical-bar-widget"),
+	icon_and_text = require("widgets.volume.widgets.icon-and-text-widget"),
+	icon = require("widgets.volume.widgets.icon-widget"),
+	arc = require("widgets.volume.widgets.arc-widget"),
+	horizontal_bar = require("widgets.volume.widgets.horizontal-bar-widget"),
+	vertical_bar = require("widgets.volume.widgets.vertical-bar-widget"),
 }
 local volume = {}
 

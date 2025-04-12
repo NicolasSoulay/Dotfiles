@@ -1,17 +1,31 @@
 local awful = require("awful")
 local gears = require("gears")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local volume = require("widgets.volume")
+local sound_folder = "~/.config/awesome/themes/default/sounds/"
+
+local navigation_left = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_left.wav")
+end
+local navigation_right = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_right.wav")
+end
+local volume_change = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "volume_change.wav")
+end
 
 local globalkeys = gears.table.join(
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 
 	awful.key({ modkey, "Control" }, "h", function()
 		awful.tag.viewprev()
-	end, { description = "view previous", group = "tag" }),
+        navigation_left()
+	end, { description = "view previous tag", group = "tag" }),
 
 	awful.key({ modkey, "Control" }, "l", function()
 		awful.tag.viewnext()
-	end, { description = "view next", group = "tag" }),
+        navigation_right()
+	end, { description = "view next tag", group = "tag" }),
 
 	awful.key({ modkey }, "l", function()
 		awful.client.focus.byidx(1)
@@ -32,7 +46,7 @@ local globalkeys = gears.table.join(
 
 	-- Standard program
 	awful.key({ modkey }, "Return", function()
-		awful.util.spawn( "wezterm connect unix")
+		awful.util.spawn("wezterm connect unix")
 	end, { description = "open wezterm in multiplexer mode", group = "launcher" }),
 
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
@@ -64,7 +78,22 @@ local globalkeys = gears.table.join(
 	-- Browser
 	awful.key({ modkey }, "b", function()
 		awful.util.spawn(web_browser)
-	end, { description = "open your web browser", group = "launcher" })
+	end, { description = "open your web browser", group = "launcher" }),
+
+	awful.key({}, "XF86AudioRaiseVolume", function()
+		volume:inc()
+        volume_change()
+	end, { description = "raise volume", group = "launcher" }),
+
+	awful.key({}, "XF86AudioLowerVolume", function()
+		volume:dec()
+        volume_change()
+	end, { description = "lower volume", group = "launcher" }),
+
+	awful.key({}, "XF86AudioMute", function()
+		volume:toggle()
+        volume_change()
+	end, { description = "mute volume", group = "launcher" })
 )
 
 for i = 1, 9 do

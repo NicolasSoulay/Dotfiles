@@ -34,6 +34,26 @@ do
 	end)
 end
 -- }}}
+local sound_folder = "~/.config/awesome/themes/default/sounds/"
+
+local startup_sound = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "startup.wav")
+end
+local notification = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "notification.wav")
+end
+local close = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "close.wav")
+end
+-- local screenshot = function()
+-- 	awful.spawn.with_shell("paplay " .. sound_folder .. "screenshot.wav")
+-- end
+
+function naughty.config.notify_callback(args)
+    notification()
+    return args
+end
+
 
 -- {{{ Variable definitions
 beautiful.init("~/.config/awesome/themes/default/theme.lua")
@@ -83,6 +103,7 @@ local tasklist_buttons = gears.table.join(
 	end),
 	awful.button({}, 2, function(c)
 		c:kill()
+        close()
 	end)
 )
 
@@ -145,13 +166,14 @@ local clientbuttons = gears.table.join(
 	awful.button({ modkey }, 2, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 		c:kill()
+        close()
 	end)
 )
 
 -- Set keys
 local globalkeys = require("keybinds.global")
-local clientkeys = require("keybinds.client")
 root.keys(globalkeys)
+local clientkeys = require("keybinds.client")
 -- }}}
 
 -- {{{ Rules
@@ -256,23 +278,26 @@ end)
 
 client.connect_signal("focus", function(c)
 	local t = awful.tag.selected(c.screen)
+	if #t:clients() > 1 then
+		c.border_color = beautiful.border_focus
+	end
+end)
+
+client.connect_signal("unfocus", function(c)
+	c.border_color = beautiful.border_normal
+end)
+
+client.connect_signal("tagged", function(c)
+	local t = awful.tag.selected(c.screen)
 	local x = 0
 	for _, cl in pairs(t:clients()) do
 		if not cl.floating then
 			x = x + 1
 		end
 	end
-	if #t:clients() > 1 then
-		c.border_color = beautiful.border_focus
-	end
-
 	if x > 1 then
 		t.master_width_factor = 0.5
 	end
-end)
-
-client.connect_signal("unfocus", function(c)
-	c.border_color = beautiful.border_normal
 end)
 
 client.connect_signal("untagged", function(c)
@@ -288,3 +313,4 @@ end)
 -- Autostart Applications
 awful.spawn.with_shell("xrandr --output DisplayPort-2 --primary --mode 3440x1440 --rate 100")
 awful.spawn.with_shell("nitrogen --restore")
+startup_sound()

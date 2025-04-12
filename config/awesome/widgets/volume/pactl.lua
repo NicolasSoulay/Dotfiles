@@ -1,5 +1,5 @@
 local spawn = require("awful.spawn")
-local utils = require("widgets.utils")
+local utils = require("widgets.volume.utils")
 
 local pactl = {}
 
