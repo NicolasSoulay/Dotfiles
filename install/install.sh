@@ -148,6 +148,18 @@ install_applications() {
     sudo make install
     cd ~
 
+    # lua-language-server
+    cd ~/Sources
+    git clone https://github.com/LuaLS/lua-language-server
+    cd lua-language-server
+    ./make.sh
+    ln -sf ~/Sources/lua-language-server/bin/lua-language-server ~/.local/bin/lua-language-server
+    cd ~
+
+    # stylua + rustfmt + rustanalyzer
+    cargo install stylua --features luajit
+    rustup component add rustfmt rust-analyzer
+
     # Wine
     echo "==== Installing Wine ===="
     sudo dpkg --add-architecture i386 && sudo apt update
