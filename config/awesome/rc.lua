@@ -45,6 +45,12 @@ end
 local close = function()
 	awful.spawn.with_shell("paplay " .. sound_folder .. "close.wav")
 end
+local navigation_left = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_left.wav")
+end
+local navigation_right = function()
+	awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_right.wav")
+end
 -- local screenshot = function()
 -- 	awful.spawn.with_shell("paplay " .. sound_folder .. "screenshot.wav")
 -- end
@@ -78,8 +84,10 @@ local mysystray = wibox.widget.systray()
 -- Volume control widget
 local volume_widget = require("widgets.volume")
 local myvolume = volume_widget({
-	widget_type = "horizontal_bar",
+	widget_type = "arc",
 })
+
+local fs_widget = require("widgets.fs")
 
 local taglist_buttons = gears.table.join(
 	awful.button({}, 1, function(t)
@@ -87,9 +95,11 @@ local taglist_buttons = gears.table.join(
 	end),
 	awful.button({}, 4, function(t)
 		awful.tag.viewnext(t.screen)
+        navigation_right()
 	end),
 	awful.button({}, 5, function(t)
 		awful.tag.viewprev(t.screen)
+        navigation_left()
 	end)
 )
 
@@ -145,6 +155,7 @@ awful.screen.connect_for_each_screen(function(s)
 			layout = wibox.layout.fixed.horizontal,
 			mytextclock,
 			myvolume,
+            fs_widget(),
 			wibox.container.margin(mysystray, 0, 10, 0, 0),
 		},
 	})
@@ -280,6 +291,15 @@ client.connect_signal("focus", function(c)
 	local t = awful.tag.selected(c.screen)
 	if #t:clients() > 1 then
 		c.border_color = beautiful.border_focus
+	end
+	local x = 0
+	for _, cl in pairs(t:clients()) do
+		if not cl.floating then
+			x = x + 1
+		end
+	end
+	if x > 1 then
+		t.master_width_factor = 0.5
 	end
 end)
 
