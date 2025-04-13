@@ -35,59 +35,57 @@ do
 end
 -- }}}
 local sound_folder = "~/.config/awesome/themes/default/sounds/"
-
-local startup_sound = function()
-	awful.spawn.with_shell("paplay " .. sound_folder .. "startup.wav")
-end
-local notification = function()
-	awful.spawn.with_shell("paplay " .. sound_folder .. "notification.wav")
-end
-local close = function()
-	awful.spawn.with_shell("paplay " .. sound_folder .. "close.wav")
-end
-local navigation_left = function()
-	awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_left.wav")
-end
-local navigation_right = function()
-	awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_right.wav")
-end
--- local screenshot = function()
--- 	awful.spawn.with_shell("paplay " .. sound_folder .. "screenshot.wav")
--- end
+SOUND = {
+	startup = function()
+		awful.spawn.with_shell("paplay " .. sound_folder .. "startup.wav")
+	end,
+	notification = function()
+		awful.spawn.with_shell("paplay " .. sound_folder .. "notification.wav")
+	end,
+	close = function()
+		awful.spawn.with_shell("paplay " .. sound_folder .. "close.wav")
+	end,
+	navigation_left = function()
+		awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_left.wav")
+	end,
+	navigation_right = function()
+		awful.spawn.with_shell("paplay " .. sound_folder .. "navigation_right.wav")
+	end,
+	screenshot = function()
+		awful.spawn.with_shell("paplay " .. sound_folder .. "screenshot.wav")
+	end,
+	volume_change = function()
+		awful.spawn.with_shell("paplay " .. sound_folder .. "volume_change.wav")
+	end,
+}
 
 function naughty.config.notify_callback(args)
-    notification()
-    return args
+	SOUND.notification()
+	return args
 end
-
 
 -- {{{ Variable definitions
 beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
-terminal = "wezterm"
-editor = os.getenv("EDITOR") or "editor"
-editor_cmd = terminal .. " -e " .. editor
-file_manager_gui = "thunar"
-web_browser = "firefox"
+TERMINAL = "wezterm"
+EDITOR = os.getenv("EDITOR") or "editor"
+EDITOR_CMD = TERMINAL .. " -e " .. EDITOR
+FILE_MANAGER_GUI = "thunar"
+WEB_BROWSER = "firefox"
 
-modkey = "Mod4"
+MODKEY = "Mod4"
 
 awful.layout.layouts = {
 	awful.layout.suit.tile.left,
 }
 
 -- {{{ Wibar
--- Create a textclock widget
 local mytextclock = wibox.widget.textclock()
 local mysystray = wibox.widget.systray()
-
--- Volume control widget
-local volume_widget = require("widgets.volume")
-local myvolume = volume_widget({
+local fs_widget = require("widgets.fs")
+local myvolume = require("widgets.volume")({
 	widget_type = "arc",
 })
-
-local fs_widget = require("widgets.fs")
 
 local taglist_buttons = gears.table.join(
 	awful.button({}, 1, function(t)
@@ -95,11 +93,11 @@ local taglist_buttons = gears.table.join(
 	end),
 	awful.button({}, 4, function(t)
 		awful.tag.viewnext(t.screen)
-        navigation_right()
+		SOUND.navigation_right()
 	end),
 	awful.button({}, 5, function(t)
 		awful.tag.viewprev(t.screen)
-        navigation_left()
+		SOUND.navigation_left()
 	end)
 )
 
@@ -113,7 +111,7 @@ local tasklist_buttons = gears.table.join(
 	end),
 	awful.button({}, 2, function(c)
 		c:kill()
-        close()
+		SOUND.close()
 	end)
 )
 
@@ -155,7 +153,7 @@ awful.screen.connect_for_each_screen(function(s)
 			layout = wibox.layout.fixed.horizontal,
 			mytextclock,
 			myvolume,
-            fs_widget(),
+			fs_widget(),
 			wibox.container.margin(mysystray, 0, 10, 0, 0),
 		},
 	})
@@ -166,18 +164,18 @@ local clientbuttons = gears.table.join(
 	awful.button({}, 1, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 	end),
-	awful.button({ modkey }, 1, function(c)
+	awful.button({ MODKEY }, 1, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 		awful.mouse.client.move(c)
 	end),
-	awful.button({ modkey }, 3, function(c)
+	awful.button({ MODKEY }, 3, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 		awful.mouse.client.resize(c)
 	end),
-	awful.button({ modkey }, 2, function(c)
+	awful.button({ MODKEY }, 2, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 		c:kill()
-        close()
+		SOUND.close()
 	end)
 )
 
@@ -323,7 +321,6 @@ end)
 client.connect_signal("untagged", function(c)
 	local t = awful.tag.selected(c.screen)
 	if #t:clients() <= 1 then
-		c.border_color = beautiful.border_focus
 		t.master_width_factor = beautiful.master_width_factor
 	end
 end)
@@ -333,4 +330,4 @@ end)
 -- Autostart Applications
 awful.spawn.with_shell("xrandr --output DisplayPort-2 --primary --mode 3440x1440 --rate 100")
 awful.spawn.with_shell("nitrogen --restore")
-startup_sound()
+SOUND.startup()
