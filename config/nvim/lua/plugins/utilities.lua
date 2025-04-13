@@ -5,16 +5,6 @@ return {
 		config = true,
 	},
 	{
-		"FerretDetective/oil-git-signs.nvim",
-		ft = "oil",
-		---@module "oil_git_signs"
-		---@type oil_git_signs.Config
-		opts = {},
-	},
-	{
-		"tpope/vim-fugitive",
-	},
-	{
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "VeryLazy",
 		priority = 1000,

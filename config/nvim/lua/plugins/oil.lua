@@ -1,6 +1,15 @@
 return {
 	"stevearc/oil.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+		{ "nvim-tree/nvim-web-devicons" },
+		{
+			"FerretDetective/oil-git-signs.nvim",
+			ft = "oil",
+			---@module "oil_git_signs"
+			---@type oil_git_signs.Config
+			opts = {},
+		},
+	},
 	config = function()
 		local oil = require("oil")
 		local keymap = vim.keymap.set
@@ -15,10 +24,10 @@ return {
 			view_options = {
 				show_hidden = true,
 			},
-            win_options = {
-                signcolumn = "yes:2",
-                statuscolumn = "",
-            }
+			win_options = {
+				signcolumn = "yes:2",
+				statuscolumn = "",
+			},
 		})
 
 		keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open Oil.nvim in parent directory" })

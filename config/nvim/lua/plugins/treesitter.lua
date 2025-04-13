@@ -3,18 +3,9 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	build = ":TSUpdate",
 	config = function()
-		local configs = require("nvim-treesitter.configs")
-
-		configs.setup({
+		require("nvim-treesitter.configs").setup({
 			ensure_installed = {
-				"bash",
-				"comment",
-				"gitignore",
-				"git_config",
-				"git_rebase",
 				"lua",
-				"markdown",
-				"markdown_inline",
 				"rust",
 				"vim",
 				"vimdoc",

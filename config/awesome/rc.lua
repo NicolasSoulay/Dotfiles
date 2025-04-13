@@ -1,12 +1,12 @@
 local gears = require("gears")
 local awful = require("awful")
-require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
+require("awful.autofocus")
 require("awful.hotkeys_popup.keys")
 
--- {{{ Error handling
+-- Error handling
 if awesome.startup_errors then
 	naughty.notify({
 		preset = naughty.config.presets.critical,
@@ -33,7 +33,8 @@ do
 		in_error = false
 	end)
 end
--- }}}
+
+-- Sounds related functions
 local sound_folder = "~/.config/awesome/themes/default/sounds/"
 SOUND = {
 	startup = function()
@@ -58,28 +59,25 @@ SOUND = {
 		awful.spawn.with_shell("paplay " .. sound_folder .. "volume_change.wav")
 	end,
 }
-
 function naughty.config.notify_callback(args)
 	SOUND.notification()
 	return args
 end
 
--- {{{ Variable definitions
+-- Variable definitions
 beautiful.init("~/.config/awesome/themes/default/theme.lua")
-
 TERMINAL = "wezterm"
 EDITOR = os.getenv("EDITOR") or "editor"
 EDITOR_CMD = TERMINAL .. " -e " .. EDITOR
 FILE_MANAGER_GUI = "thunar"
 WEB_BROWSER = "firefox"
-
 MODKEY = "Mod4"
 
 awful.layout.layouts = {
 	awful.layout.suit.tile.left,
 }
 
--- {{{ Wibar
+-- Wibar
 local mytextclock = wibox.widget.textclock()
 local mysystray = wibox.widget.systray()
 local fs_widget = require("widgets.fs")
@@ -158,7 +156,6 @@ awful.screen.connect_for_each_screen(function(s)
 		},
 	})
 end)
--- }}}
 
 local clientbuttons = gears.table.join(
 	awful.button({}, 1, function(c)
@@ -183,9 +180,7 @@ local clientbuttons = gears.table.join(
 local globalkeys = require("keybinds.global")
 root.keys(globalkeys)
 local clientkeys = require("keybinds.client")
--- }}}
 
--- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
 	-- All clients will match this rule.

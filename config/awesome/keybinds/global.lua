@@ -8,12 +8,12 @@ local globalkeys = gears.table.join(
 
 	awful.key({ MODKEY, "Control" }, "h", function()
 		awful.tag.viewprev()
-        SOUND.navigation_left()
+		SOUND.navigation_left()
 	end, { description = "view previous tag", group = "tag" }),
 
 	awful.key({ MODKEY, "Control" }, "l", function()
 		awful.tag.viewnext()
-        SOUND.navigation_right()
+		SOUND.navigation_right()
 	end, { description = "view next tag", group = "tag" }),
 
 	awful.key({ MODKEY }, "l", function()
@@ -71,17 +71,17 @@ local globalkeys = gears.table.join(
 
 	awful.key({}, "XF86AudioRaiseVolume", function()
 		volume:inc()
-        SOUND.volume_change()
+		SOUND.volume_change()
 	end, { description = "raise volume", group = "launcher" }),
 
 	awful.key({}, "XF86AudioLowerVolume", function()
 		volume:dec()
-        SOUND.volume_change()
+		SOUND.volume_change()
 	end, { description = "lower volume", group = "launcher" }),
 
 	awful.key({}, "XF86AudioMute", function()
 		volume:toggle()
-        SOUND.volume_change()
+		SOUND.volume_change()
 	end, { description = "mute volume", group = "launcher" })
 )
 
@@ -94,6 +94,7 @@ for i = 1, 9 do
 			local tag = screen.tags[i]
 			if tag then
 				tag:view_only()
+				SOUND:navigation_right()
 			end
 		end, { description = "view tag #" .. i, group = "tag" }),
 
@@ -103,6 +104,8 @@ for i = 1, 9 do
 				local tag = client.focus.screen.tags[i]
 				if tag then
 					client.focus:move_to_tag(tag)
+                    tag:view_only()
+					SOUND:navigation_right()
 				end
 			end
 		end, { description = "move focused client to tag #" .. i, group = "tag" })
