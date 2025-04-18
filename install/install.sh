@@ -225,6 +225,28 @@ install_applications() {
 install_themes() {
     echo "==== Installing custom themes ===="
 
+    # Gtk theme
+    echo "==== Installing gtk theme ===="
+    sudo apt install gtk2-engines-murrine -y
+    cd ~/Sources
+    git clone https://github.com/guillaumeboehm/Nordzy-cursors
+    cd Nordzy-cursors
+    ./install.sh
+    cd ~
+
+    cd ~/Sources
+    git clone https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme
+    cd Gruvbox-GTK-Theme/themes
+    ./install.sh -d ~/.local/share/themes -c dark -l
+    cd ~
+
+    git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git ~/Sources/gruvbox-plus-icon-pack
+    ln -sf ~/Sources/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/Gruvbox-Plus-Dark
+    chmod +x ~/Sources/gruvbox-plus-icon-pack/scripts/folders-color-chooser.sh
+    cd ~/Sources/gruvbox-plus-icon-pack/scripts/
+    ./folders-color-chooser -c gold
+    cd ~
+
     # Bat config
     echo "==== Installing bat theme ===="
     mkdir ~/.config/bat
