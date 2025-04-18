@@ -255,16 +255,44 @@ awful.rules.rules = {
 -- }}}
 
 -- {{{ Signals
+local manage_width_factor = function(c)
+	local t = awful.tag.selected(c.screen)
+	local x = 0
+	for _, cl in pairs(t:clients()) do
+		if not (cl.floating or cl.fullscreen or cl.maximised) then
+			x = x + 1
+		end
+	end
+	if x > 1 then
+		t.master_width_factor = 0.5
+	else
+		t.master_width_factor = beautiful.master_width_factor
+	end
+end
+
+local manage_corners = function(c)
+	if c.maximized or c.fullscreen then
+		c.shape = gears.shape.rectangle
+	else
+		c.shape = gears.shape.rounded_rect
+	end
+end
+
+local manage_border = function(c)
+	local t = awful.tag.selected(c.screen)
+	if #t:clients() > 1 then
+		c.border_color = beautiful.border_focus
+	else
+		c.border_color = beautiful.border_normal
+	end
+end
+
 client.connect_signal("manage", function(c)
 	if not awesome.startup then
 		awful.client.setslave(c)
 	end
 
-	if c.maximized then
-		c.shape = gears.shape.rectangle
-	else
-		c.shape = gears.shape.rounded_rect
-	end
+	manage_corners(c)
 
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
 		-- Prevent clients from being unreachable after screen count changes.
@@ -273,27 +301,11 @@ client.connect_signal("manage", function(c)
 end)
 
 client.connect_signal("property::size", function(c)
-	if c.maximized then
-		c.shape = gears.shape.rectangle
-	else
-		c.shape = gears.shape.rounded_rect
-	end
+	manage_corners(c)
 end)
 
 client.connect_signal("focus", function(c)
-	local t = awful.tag.selected(c.screen)
-	if #t:clients() > 1 then
-		c.border_color = beautiful.border_focus
-	end
-	local x = 0
-	for _, cl in pairs(t:clients()) do
-		if not cl.floating then
-			x = x + 1
-		end
-	end
-	if x > 1 then
-		t.master_width_factor = 0.5
-	end
+	manage_border(c)
 end)
 
 client.connect_signal("unfocus", function(c)
@@ -301,23 +313,11 @@ client.connect_signal("unfocus", function(c)
 end)
 
 client.connect_signal("tagged", function(c)
-	local t = awful.tag.selected(c.screen)
-	local x = 0
-	for _, cl in pairs(t:clients()) do
-		if not cl.floating then
-			x = x + 1
-		end
-	end
-	if x > 1 then
-		t.master_width_factor = 0.5
-	end
+	manage_width_factor(c)
 end)
 
 client.connect_signal("untagged", function(c)
-	local t = awful.tag.selected(c.screen)
-	if #t:clients() <= 1 then
-		t.master_width_factor = beautiful.master_width_factor
-	end
+	manage_width_factor(c)
 end)
 
 -- }}}
