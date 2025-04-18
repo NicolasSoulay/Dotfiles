@@ -42,11 +42,11 @@ local globalkeys = gears.table.join(
 
 	awful.key({ MODKEY, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
 
-	awful.key({ MODKEY }, "Left", function()
+	awful.key({ MODKEY }, "Right", function()
 		awful.tag.incmwfact(0.05)
 	end, { description = "increase master width factor", group = "layout" }),
 
-	awful.key({ MODKEY }, "Right", function()
+	awful.key({ MODKEY }, "Left", function()
 		awful.tag.incmwfact(-0.05)
 	end, { description = "decrease master width factor", group = "layout" }),
 
@@ -104,7 +104,7 @@ for i = 1, 9 do
 				local tag = client.focus.screen.tags[i]
 				if tag then
 					client.focus:move_to_tag(tag)
-                    tag:view_only()
+					tag:view_only()
 					SOUND:navigation_right()
 				end
 			end

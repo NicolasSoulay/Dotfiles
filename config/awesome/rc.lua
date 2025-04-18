@@ -74,44 +74,15 @@ WEB_BROWSER = "firefox"
 MODKEY = "Mod4"
 
 awful.layout.layouts = {
-	awful.layout.suit.tile.left,
+	awful.layout.suit.tile.right,
 }
 
 -- Wibar
 local mytextclock = wibox.widget.textclock()
 local mysystray = wibox.widget.systray()
-local fs_widget = require("widgets.fs")
 local myvolume = require("widgets.volume")({
 	widget_type = "arc",
 })
-
-local taglist_buttons = gears.table.join(
-	awful.button({}, 1, function(t)
-		t:view_only()
-	end),
-	awful.button({}, 4, function(t)
-		awful.tag.viewnext(t.screen)
-		SOUND.navigation_right()
-	end),
-	awful.button({}, 5, function(t)
-		awful.tag.viewprev(t.screen)
-		SOUND.navigation_left()
-	end)
-)
-
-local tasklist_buttons = gears.table.join(
-	awful.button({}, 1, function(c)
-		if c == client.focus then
-			c.minimized = true
-		else
-			c:emit_signal("request::activate", "tasklist", { raise = true })
-		end
-	end),
-	awful.button({}, 2, function(c)
-		c:kill()
-		SOUND.close()
-	end)
-)
 
 awful.screen.connect_for_each_screen(function(s)
 	-- Each screen has its own tag table.
@@ -121,38 +92,59 @@ awful.screen.connect_for_each_screen(function(s)
 	s.mytaglist = awful.widget.taglist({
 		screen = s,
 		filter = awful.widget.taglist.filter.all,
-		buttons = taglist_buttons,
+		buttons = {
+			awful.button({}, 1, function(t)
+				t:view_only()
+			end),
+			awful.button({}, 4, function(t)
+				awful.tag.viewnext(t.screen)
+				SOUND.navigation_right()
+			end),
+			awful.button({}, 5, function(t)
+				awful.tag.viewprev(t.screen)
+				SOUND.navigation_left()
+			end),
+		},
 	})
+
+	s.mypromptbox = awful.widget.prompt()
 
 	-- Create a tasklist widget
 	s.mytasklist = awful.widget.tasklist({
 		screen = s,
 		filter = awful.widget.tasklist.filter.currenttags,
-		buttons = tasklist_buttons,
+		buttons = {
+			awful.button({}, 1, function(c)
+				if c == client.focus then
+					c.minimized = true
+				else
+					c:emit_signal("request::activate", "tasklist", { raise = true })
+				end
+			end),
+			awful.button({}, 2, function(c)
+				c:kill()
+				SOUND.close()
+			end),
+		},
 	})
 
 	-- Create the wibox
-	s.mywibox = awful.wibar({ position = "bottom", height = 30, screen = s })
+	s.mywibox = awful.wibar({ position = beautiful.wibar_position, height = beautiful.wibar_heigth, screen = s })
 
 	-- Add widgets to the wibox
 	s.mywibox:setup({
 		layout = wibox.layout.align.horizontal,
-		expand = "none",
-		{ -- Left widgets
+		{
 			layout = wibox.layout.fixed.horizontal,
 			spacing = 10,
-			wibox.container.margin(s.mytaglist, 8, 0, 0, 0),
-			s.mytasklist,
+			wibox.container.margin(s.mytaglist, 5, 5, 0, 0),
 		},
-		{ -- Middle widget
-			layout = wibox.layout.align.horizontal,
-		},
-		{ -- Right widgets
+		s.mytasklist,
+		{
 			layout = wibox.layout.fixed.horizontal,
-			mytextclock,
+			mysystray,
 			myvolume,
-			fs_widget(),
-			wibox.container.margin(mysystray, 0, 10, 0, 0),
+			wibox.container.margin(mytextclock, 0, 10, 0, 0),
 		},
 	})
 end)
@@ -201,32 +193,13 @@ awful.rules.rules = {
 	-- Floating clients.
 	{
 		rule_any = {
-			instance = {
-				"DTA", -- Firefox addon DownThemAll.
-				"copyq", -- Includes session name in class.
-				"pinentry",
+			instance = { "copyq", "pinentry", },
+			class = { "Arandr", "Blueman-manager", "Gpick", "Kruler",
+				"MessageWin", "Sxiv", "Tor Browser", "Wpa_gui",
+				"veromix", "xtightvncviewer",
 			},
-			class = {
-				"Arandr",
-				"Blueman-manager",
-				"Gpick",
-				"Kruler",
-				"MessageWin", -- kalarm.
-				"Sxiv",
-				"Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-				"Wpa_gui",
-				"veromix",
-				"xtightvncviewer",
-			},
-
-			-- Note that the name property shown in xprop might be set slightly after creation of the client
-			-- and the name shown there might not match defined rules here.
-			name = {
-				"Event Tester", -- xev.
-				"Thunar",
-				"doublecmd",
-				"Volume Control",
-				"Shutter",
+			name = { "Event Tester", "Thunar", "doublecmd",
+				"Volume Control", "Shutter",
 			},
 			role = {
 				"AlarmWindow", -- Thunderbird's calendar.
@@ -305,6 +278,7 @@ client.connect_signal("property::size", function(c)
 end)
 
 client.connect_signal("focus", function(c)
+	manage_width_factor(c)
 	manage_border(c)
 end)
 
