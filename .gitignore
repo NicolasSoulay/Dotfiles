@@ -1,4 +1,5 @@
 /bin/pyfa
 /bin/ani-cli
+/bin/forecaster
 bin/lua-language-server
 bin/stylua

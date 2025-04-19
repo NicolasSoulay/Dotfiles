@@ -79,6 +79,7 @@ awful.layout.layouts = {
 
 -- Wibar
 local mytextclock = wibox.widget.textclock()
+mytextclock.format=' %a %b %d | %H:%M'
 local mysystray = wibox.widget.systray()
 local myweather = require('widgets.weather')
 local myvolume = require("widgets.volume")({
