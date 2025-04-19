@@ -80,6 +80,7 @@ awful.layout.layouts = {
 -- Wibar
 local mytextclock = wibox.widget.textclock()
 local mysystray = wibox.widget.systray()
+local myweather = require('widgets.weather')
 local myvolume = require("widgets.volume")({
 	widget_type = "arc",
 })
@@ -142,8 +143,9 @@ awful.screen.connect_for_each_screen(function(s)
 		s.mytasklist,
 		{
 			layout = wibox.layout.fixed.horizontal,
-			mysystray,
-			myvolume,
+			wibox.container.margin(mysystray, 10, 10, 0, 0),
+			wibox.container.margin(myvolume, 0, 15, 0, 0),
+			myweather,
 			wibox.container.margin(mytextclock, 0, 10, 0, 0),
 		},
 	})
@@ -193,14 +195,20 @@ awful.rules.rules = {
 	-- Floating clients.
 	{
 		rule_any = {
-			instance = { "copyq", "pinentry", },
-			class = { "Arandr", "Blueman-manager", "Gpick", "Kruler",
-				"MessageWin", "Sxiv", "Tor Browser", "Wpa_gui",
-				"veromix", "xtightvncviewer",
+			instance = { "copyq", "pinentry" },
+			class = {
+				"Arandr",
+				"Blueman-manager",
+				"Gpick",
+				"Kruler",
+				"MessageWin",
+				"Sxiv",
+				"Tor Browser",
+				"Wpa_gui",
+				"veromix",
+				"xtightvncviewer",
 			},
-			name = { "Event Tester", "Thunar", "doublecmd",
-				"Volume Control", "Shutter",
-			},
+			name = { "Event Tester", "Thunar", "doublecmd", "Volume Control", "Shutter" },
 			role = {
 				"AlarmWindow", -- Thunderbird's calendar.
 				"ConfigManager", -- Thunderbird's about:config.
