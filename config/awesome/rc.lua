@@ -139,7 +139,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{
 			layout = wibox.layout.fixed.horizontal,
 			spacing = 10,
-			wibox.container.margin(s.mytaglist, 5, 5, 0, 0),
+			wibox.container.margin(s.mytaglist, 2, 15, 0, 0),
 		},
 		s.mytasklist,
 		{
