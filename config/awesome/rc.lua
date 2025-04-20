@@ -209,7 +209,7 @@ awful.rules.rules = {
 				"veromix",
 				"xtightvncviewer",
 			},
-			name = { "Event Tester", "Thunar", "doublecmd", "Volume Control", "Shutter" },
+			name = { "Event Tester", "Thunar", "doublecmd", "Volume Control", "Shutter", "Friends List" },
 			role = {
 				"AlarmWindow", -- Thunderbird's calendar.
 				"ConfigManager", -- Thunderbird's about:config.
