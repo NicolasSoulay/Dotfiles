@@ -13,7 +13,7 @@ local weather_widget = wibox.widget({
 				id = "weather",
 				widget = wibox.widget.textbox,
 				text = "?",
-				font = "JetBrainsMono NFP 30",
+				font = "JetBrainsMono NFP 20",
 			},
 		},
 		{
