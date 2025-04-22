@@ -54,7 +54,7 @@ link_dotfiles() {
     cp ~/Dotfiles/install/conf-files/general/.bashrc ~/.bashrc
     cp ~/Dotfiles/install/conf-files/general/.bash_aliases ~/.bash_aliases
 
-    ln -sf ~/Dotfiles/config/{awesome,nvim,rofi,starship,wezterm,zathura} ~/.config/
+    ln -sf ~/Dotfiles/config/{awesome,bottom,nvim,rofi,starship,wezterm,zathura} ~/.config/
     ln -sf ~/Dotfiles/Wallpapers ~/Pictures/Wallpapers
     ln -sf ~/Dotfiles/bin ~/.local/bin
     ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
@@ -95,6 +95,7 @@ install_desktop_environment() {
     sudo extrepo enable librewolf
     sudo apt update && sudo apt install librewolf -y
     tldr --update
+    cargo install bottom --locked
 
     mkdir -p ~/.config/xfce4
     touch ~/.config/xfce4/helpers.rc
@@ -151,7 +152,6 @@ install_applications() {
     cd ~
 
     # rustfmt + rustanalyzer
-    cargo install bottom --locked
     rustup component add rustfmt rust-analyzer
 
     # Wine
@@ -201,6 +201,33 @@ install_applications() {
 # Function: Install custom themes
 install_themes() {
     echo "==== Installing custom themes ===="
+
+    mkdir -p ~/.config/gtk-2.0
+    cat > ~/.config/gtk-2.0/gtkrc <<EOF
+gtk-theme-name="Gruvbox-Dark-Medium"
+gtk-icon-theme-name="Gruvbox-Plus-Dark"
+gtk-cursor-theme-name="Nordzy-cursors-white"
+gtk-cursor-theme-size=0
+EOF
+    mkdir -p ~/.config/gtk-3.0
+    cat > ~/.config/gtk-3.0/settings.ini <<EOF
+[Settings]
+gtk-theme-name=Gruvbox-Dark
+gtk-icon-theme-name=Gruvbox-Plus-Dark
+gtk-font-name=Sans 10
+gtk-cursor-theme-name=Nordzy-cursors-white
+gtk-cursor-theme-size=0
+EOF
+
+    mkdir -p ~/.config/gtk-4.0
+    cat > ~/.config/gtk-4.0/settings.ini <<EOF
+[Settings]
+gtk-theme-name=Gruvbox-Dark
+gtk-icon-theme-name=Gruvbox-Plus-Dark
+gtk-font-name=Sans 10
+gtk-cursor-theme-name=Nordzy-cursors-white
+gtk-cursor-theme-size=0
+EOF
 
     # Gtk theme TODO: pb install cursor
     echo "==== Installing gtk theme ===="
