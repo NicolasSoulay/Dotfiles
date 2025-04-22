@@ -5,12 +5,18 @@ return {
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = {
+                "bash",
+                "c",
+                "cmake",
+                "comment",
+                "cpp",
 				"lua",
+                "make",
+                "regex",
 				"rust",
+                "toml",
 				"vim",
 				"vimdoc",
-				"toml",
-				"regex",
 			},
 			ignore_install = {},
 			sync_install = false,

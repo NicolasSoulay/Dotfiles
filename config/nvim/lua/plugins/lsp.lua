@@ -1,18 +1,6 @@
-
-local servers_to_install = {
-	"lua_ls",
-	"clangd",
-}
-
-local installed_servers = {
-    "rust_analyzer",
-}
-
-local tools = {
-	"clang-format",
-	"stylua",
-}
-
+local servers_to_install = { "lua_ls", "clangd" }
+local installed_servers = { "rust_analyzer" }
+local tools = { "clang-format", "stylua" }
 
 return {
 	"neovim/nvim-lspconfig",
