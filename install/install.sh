@@ -186,16 +186,6 @@ install_applications() {
     # Starship
     echo "==== Installing Starship ===="
     curl -sS https://starship.rs/install.sh | sh -s -- -y
-
-    # # Gog downloader
-    # echo "==== Installing Gog Downloader ===="
-    # sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
-    # cd ~/Sources
-    # git clone https://github.com/Sude-/lgogdownloader
-    # cd lgogdownloader
-    # cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
-    # sudo ninja -C build install
-    # cd ~
 }
 
 # Function: Install custom themes
