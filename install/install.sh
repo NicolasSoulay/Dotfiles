@@ -54,7 +54,7 @@ link_dotfiles() {
     cp ~/Dotfiles/install/conf-files/general/.bashrc ~/.bashrc
     cp ~/Dotfiles/install/conf-files/general/.bash_aliases ~/.bash_aliases
 
-    ln -sf ~/Dotfiles/config/{awesome,nvim,rofi,starship,wikiman,wezterm,zathura} ~/.config/
+    ln -sf ~/Dotfiles/config/{awesome,nvim,rofi,starship,wezterm,zathura} ~/.config/
     ln -sf ~/Dotfiles/Wallpapers ~/Pictures/Wallpapers
     ln -sf ~/Dotfiles/bin ~/.local/bin
     ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
@@ -158,23 +158,6 @@ install_applications() {
     echo "==== Installing Wine ===="
     sudo dpkg --add-architecture i386 && sudo apt update
     sudo apt install wine wine64 libwine libwine:i386 fonts-wine -y
-
-    # # Wikiman
-    # echo "==== Installing Wikiman ===="
-    # sudo apt install parallel -y 
-    # cd ~/Sources/
-    # git clone 'https://github.com/filiparag/wikiman'
-    # cd ./wikiman
-    # git checkout $(git describe --tags | cut -d'-' -f1)
-    # make all
-    # sudo make install
-    # cd ~/Sources
-    # curl -L 'https://raw.githubusercontent.com/filiparag/wikiman/master/Makefile' -o 'wikiman-makefile'
-    # make -f ./wikiman-makefile source-arch
-    # sudo make -f ./wikiman-makefile source-install
-    # sudo make -f ./wikiman-makefile clean
-    # sudo rm ./wikiman-makefile
-    # cd ~
 
     # TUIGreet
     echo "==== Installing TUIGreet ===="
