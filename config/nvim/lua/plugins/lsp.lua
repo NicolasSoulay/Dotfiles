@@ -1,7 +1,26 @@
+
+local servers_to_install = {
+	"lua_ls",
+	"clangd",
+}
+
+local installed_servers = {
+    "rust_analyzer",
+}
+
+local tools = {
+	"clang-format",
+	"stylua",
+}
+
+
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
+		{ "williamboman/mason.nvim", lazy = false, opts = { ui = { border = "rounded" } } },
+		{ "williamboman/mason-lspconfig.nvim", opts = { ensure_installed = servers_to_install } },
+		{ "WhoIsSethDaniel/mason-tool-installer.nvim", opts = { ensure_installed = tools } },
 		{ "folke/snacks.nvim" },
 		{ "saghen/blink.cmp" },
 	},
@@ -9,10 +28,8 @@ return {
 		local lspconfig = require("lspconfig")
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-		local servers = {
-			"lua_ls",
-			"rust_analyzer",
-		}
+		local servers = vim.tbl_deep_extend("force", servers_to_install, installed_servers)
+
 		for _, server in pairs(servers) do
 			local opts = {
 				on_attach = function(client, bufnr)
