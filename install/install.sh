@@ -56,7 +56,6 @@ link_dotfiles() {
 
     ln -sf ~/Dotfiles/config/{awesome,nvim,rofi,starship,wikiman,wezterm,zathura} ~/.config/
     ln -sf ~/Dotfiles/Wallpapers ~/Pictures/Wallpapers
-    ln -sf ~/Dotfiles/Screenshots ~/Pictures/Screenshots
     ln -sf ~/Dotfiles/bin ~/.local/bin
     ln -sf ~/Dotfiles/fonts ~/.local/share/fonts
     fc-cache -f -v
@@ -90,8 +89,11 @@ install_desktop_environment() {
     echo "==== Installing desktop environment ===="
     sudo apt install rofi picom awesome eza xorg -y
     sudo apt install zathura nitrogen greetd mpv cmus tealdeer -y
-    sudo apt install thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin thunar-vcs-plugin -y
-    sudo apt install thunderbird firefox-esr -y
+    sudo apt install thunar thunar-volman thunar-archive-plugin -y
+    sudo apt install thunderbird -y
+    sudo apt update && sudo apt install extrepo -y
+    sudo extrepo enable librewolf
+    sudo apt update && sudo apt install librewolf -y
     tldr --update
 
     mkdir -p ~/.config/xfce4
@@ -104,7 +106,7 @@ setup_flatpak() {
     echo "=== Installing Flatpak ==="
     sudo apt install flatpak -y
     flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    flatpak install --user flathub com.discordapp.Discord org.duckstation.DuckStation org.kde.krita net.pcsx2.PCSX2 -y
+    flatpak install --user flathub org.duckstation.DuckStation net.pcsx2.PCSX2 -y
 
     # Dossier pour emulateurs
     echo "==== Creating emulator directories ===="
@@ -134,7 +136,7 @@ configure_git() {
 # Function: Install applications
 install_applications() {
     echo "==== Installing applications ===="
-    sudo apt install steam-installer libreoffice deluge -y
+    sudo apt install steam-installer libreoffice -y
 
     # Install de neovim stable depuis les sources
     echo "==== Installing Neovim ===="
@@ -158,6 +160,7 @@ install_applications() {
 
     # stylua + rustfmt + rustanalyzer
     cargo install stylua --features luajit
+    cargo install bottom --locked
     rustup component add rustfmt rust-analyzer
 
     # Wine
@@ -165,22 +168,22 @@ install_applications() {
     sudo dpkg --add-architecture i386 && sudo apt update
     sudo apt install wine wine64 libwine libwine:i386 fonts-wine -y
 
-    # Wikiman
-    echo "==== Installing Wikiman ===="
-    sudo apt install parallel -y 
-    cd ~/Sources/
-    git clone 'https://github.com/filiparag/wikiman'
-    cd ./wikiman
-    git checkout $(git describe --tags | cut -d'-' -f1)
-    make all
-    sudo make install
-    cd ~/Sources
-    curl -L 'https://raw.githubusercontent.com/filiparag/wikiman/master/Makefile' -o 'wikiman-makefile'
-    make -f ./wikiman-makefile source-arch
-    sudo make -f ./wikiman-makefile source-install
-    sudo make -f ./wikiman-makefile clean
-    sudo rm ./wikiman-makefile
-    cd ~
+    # # Wikiman
+    # echo "==== Installing Wikiman ===="
+    # sudo apt install parallel -y 
+    # cd ~/Sources/
+    # git clone 'https://github.com/filiparag/wikiman'
+    # cd ./wikiman
+    # git checkout $(git describe --tags | cut -d'-' -f1)
+    # make all
+    # sudo make install
+    # cd ~/Sources
+    # curl -L 'https://raw.githubusercontent.com/filiparag/wikiman/master/Makefile' -o 'wikiman-makefile'
+    # make -f ./wikiman-makefile source-arch
+    # sudo make -f ./wikiman-makefile source-install
+    # sudo make -f ./wikiman-makefile clean
+    # sudo rm ./wikiman-makefile
+    # cd ~
 
     # TUIGreet
     echo "==== Installing TUIGreet ===="
@@ -210,22 +213,22 @@ install_applications() {
     echo "==== Installing Starship ===="
     curl -sS https://starship.rs/install.sh | sh -s -- -y
 
-    # Gog downloader
-    echo "==== Installing Gog Downloader ===="
-    sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
-    cd ~/Sources
-    git clone https://github.com/Sude-/lgogdownloader
-    cd lgogdownloader
-    cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
-    sudo ninja -C build install
-    cd ~
+    # # Gog downloader
+    # echo "==== Installing Gog Downloader ===="
+    # sudo apt install build-essential libcurl4-openssl-dev libboost-regex-dev libjsoncpp-dev librhash-dev libtinyxml2-dev libtidy-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-date-time-dev libboost-iostreams-dev cmake pkg-config zlib1g-dev qtwebengine5-dev ninja-build -y
+    # cd ~/Sources
+    # git clone https://github.com/Sude-/lgogdownloader
+    # cd lgogdownloader
+    # cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_QT_GUI=ON -GNinja
+    # sudo ninja -C build install
+    # cd ~
 }
 
 # Function: Install custom themes
 install_themes() {
     echo "==== Installing custom themes ===="
 
-    # Gtk theme
+    # Gtk theme TODO: pb install cursor
     echo "==== Installing gtk theme ===="
     sudo apt install gtk2-engines-murrine -y
     cd ~/Sources
@@ -244,7 +247,7 @@ install_themes() {
     ln -sf ~/Sources/gruvbox-plus-icon-pack/Gruvbox-Plus-Dark ~/.local/share/icons/Gruvbox-Plus-Dark
     chmod +x ~/Sources/gruvbox-plus-icon-pack/scripts/folders-color-chooser.sh
     cd ~/Sources/gruvbox-plus-icon-pack/scripts/
-    ./folders-color-chooser -c gold
+    ./folders-color-chooser -c yellow
     cd ~
 
     # Bat config
@@ -256,21 +259,17 @@ install_themes() {
     batcat cache --build
     cd ~
 
-    # Custom Firefox
+    # Custom Librewolf
     echo "==== Installing Firefox theme & config ===="
-    firefox --headless &
+    librewolf --headless &
     sleep 5
-    pkill firefox
-    FIREFOX_PROFILE_DIR=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default-esr*" | head -n 1)
+    pkill librewolf
+    LIBREWOLF_PROFILE_DIR=$(find ~/.librewolf -maxdepth 1 -type d -name "*.default-default*" | head -n 1)
     cd ~/Sources
     git clone https://github.com/adriankarlen/textfox
-    git clone https://github.com/arkenfox/user.js
-    ln -sf ~/Sources/textfox/chrome  "$FIREFOX_PROFILE_DIR/chrome"
-    cp ~/Sources/user.js/updater.sh "$FIREFOX_PROFILE_DIR/updater.sh"
-    ln -sf ~/Dotfiles/install/conf-files/firefox/user-overrides.js "$FIREFOX_PROFILE_DIR/user-overrides.js"
+    ln -sf ~/Sources/textfox/chrome  "$LIBREWOLF_PROFILE_DIR/chrome"
     ln -sf ~/Dotfiles/install/conf-files/firefox/config.css ~/Sources/textfox/chrome/config.css
     cd ~
-    (exec $FIREFOX_PROFILE_DIR/updater.sh -es)
 }
 
 # Function: Greeter and keyboard configuration

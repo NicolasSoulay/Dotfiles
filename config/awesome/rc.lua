@@ -70,7 +70,7 @@ TERMINAL = "wezterm"
 EDITOR = os.getenv("EDITOR") or "editor"
 EDITOR_CMD = TERMINAL .. " -e " .. EDITOR
 FILE_MANAGER_GUI = "thunar"
-WEB_BROWSER = "firefox"
+WEB_BROWSER = "librewolf"
 MODKEY = "Mod4"
 
 awful.layout.layouts = {
