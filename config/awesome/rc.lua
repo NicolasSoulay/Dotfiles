@@ -308,4 +308,6 @@ end)
 -- Autostart Applications
 awful.spawn.with_shell("xrandr --output DisplayPort-2 --primary --mode 3440x1440 --rate 100")
 awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell("blueman-applet")
+awful.spawn.with_shell("nm-applet")
 SOUND.startup()
