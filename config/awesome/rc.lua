@@ -79,9 +79,9 @@ awful.layout.layouts = {
 
 -- Wibar
 local mytextclock = wibox.widget.textclock()
-mytextclock.format=' %a %b %d | %H:%M'
+mytextclock.format = " %a %b %d | %H:%M"
 local mysystray = wibox.widget.systray()
-local myweather = require('widgets.weather')
+local myweather = require("widgets.weather")
 local myvolume = require("widgets.volume")({
 	widget_type = "arc",
 })
@@ -218,21 +218,11 @@ awful.rules.rules = {
 		},
 		properties = { floating = true },
 	},
-
-	{
-		rule = { name = "Mozilla Firefox" },
-		properties = { tag = "󰈹" },
-	},
-
-	{
-		rule_any = { name = { "EVE Launcher" } },
-		properties = { tag = "", floating = true },
-	},
-
-	{
-		rule_any = { name = "Steam", "EVE" },
-		properties = { tag = "", fullscreen = true },
-	},
+	{ rule = { name = "Mozilla Firefox" }, properties = { tag = "󰈹" } },
+	{ rule = { name = "LibreWolf" }, properties = { tag = "󰈹" } },
+	{ rule_any = { name = "EVE Launcher" }, properties = { tag = "", floating = true } },
+	{ rule_any = { name = "Steam" }, properties = { tag = "", fullscreen = true } },
+	{ rule_any = { name = "EVE" }, properties = { tag = "", fullscreen = true } },
 }
 -- }}}
 
