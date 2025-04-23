@@ -216,9 +216,10 @@ awful.rules.rules = {
 	},
 	{ rule = { name = "Mozilla Firefox" }, properties = { tag = "󰈹" } },
 	{ rule = { name = "LibreWolf" }, properties = { tag = "󰈹" } },
-	{ rule_any = { name = "EVE Launcher" }, properties = { tag = "", floating = true } },
-	{ rule_any = { name = "Steam" }, properties = { tag = "", fullscreen = true } },
-	{ rule_any = { name = "EVE" }, properties = { tag = "", fullscreen = true } },
+	{ rule = { name = "EVE Launcher" }, properties = { tag = "", floating = true } },
+	{ rule = { name = "Steam" }, properties = { tag = "" } },
+	{ rule = { name = "Minecraft Launcher" }, properties = { tag = "" } },
+	{ rule = { name = "EVE" }, properties = { tag = "", fullscreen = true } },
 }
 -- }}}
 
