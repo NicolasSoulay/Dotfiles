@@ -210,11 +210,7 @@ awful.rules.rules = {
 				"xtightvncviewer",
 			},
 			name = { "Event Tester", "Thunar", "doublecmd", "Volume Control", "Shutter", "Friends List" },
-			role = {
-				"AlarmWindow", -- Thunderbird's calendar.
-				"ConfigManager", -- Thunderbird's about:config.
-				"pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
-			},
+			role = { "AlarmWindow", "ConfigManager", "pop-up" },
 		},
 		properties = { floating = true },
 	},
