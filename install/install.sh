@@ -147,6 +147,8 @@ install_applications() {
     echo "==== Installing Neovim ===="
     # dependencies
     sudo apt install ninja-build gettext cmake unzip curl -y
+    # for clang-format
+    sudo apt install python3.13-venv -y
     cd ~/Sources
     git clone https://github.com/neovim/neovim.git
     cd neovim
