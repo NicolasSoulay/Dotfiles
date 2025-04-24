@@ -29,3 +29,6 @@ shopt -s globstar
 
 # case insensitive auto complete
 bind 'set completion-ignore-case on'
+
+# Starship prompt
+eval "$(starship init bash)"
