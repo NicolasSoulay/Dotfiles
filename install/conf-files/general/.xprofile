@@ -40,4 +40,4 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Cargo (Rust)
-[ -f "$HOME/.local/share/cargo/env" ] && . "$HOME/.local/share/cargo/env"
+[ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"

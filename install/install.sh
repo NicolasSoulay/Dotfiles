@@ -50,7 +50,11 @@ create_user_directories() {
 # Function: Link dotfiles and config files
 link_dotfiles() {
     echo "==== Linking dotfiles and config files ===="
-    rm -f ~/.bashrc ~/.bash_aliases  
+    rm -f ~/.bashrc ~/.bash_aliases ~/.Xresources ~/.xsession ~/.profile ~/.xprofile
+    cp ~/Dotfiles/install/conf-files/general/.xsession ~/.xsession
+    cp ~/Dotfiles/install/conf-files/general/.Xresources ~/.Xresources
+    cp ~/Dotfiles/install/conf-files/general/.profile ~/.profile
+    cp ~/Dotfiles/install/conf-files/general/.xprofile ~/.xprofile
     cp ~/Dotfiles/install/conf-files/general/.bashrc ~/.bashrc
     cp ~/Dotfiles/install/conf-files/general/.bash_aliases ~/.bash_aliases
 
@@ -67,7 +71,7 @@ link_dotfiles() {
 # Function: Install essential tools
 install_essential_tools() {
     echo "==== Installing essential tools ===="
-    sudo apt install wget fzf bat jq man gawk coreutils parallel findutils fd-find gettext unzip curl ripgrep xsel playerctl build-essential -y
+    sudo apt install wget fzf bat jq man gawk coreutils findutils fd-find gettext unzip curl ripgrep xsel playerctl build-essential -y
     sudo apt install pipewire-audio pipewire-jack wireplumber pulseaudio-utils pavucontrol -y
 }
 
@@ -87,7 +91,7 @@ install_code_tools() {
 # Function: Install desktop environment
 install_desktop_environment() {
     echo "==== Installing desktop environment ===="
-    sudo apt install rofi picom awesome eza xorg -y
+    sudo apt install rofi blueman network-manager-applet awesome eza xorg -y
     sudo apt install zathura nitrogen greetd mpv cmus tealdeer -y
     sudo apt install thunar thunar-volman thunar-archive-plugin -y
     sudo apt install thunderbird -y
