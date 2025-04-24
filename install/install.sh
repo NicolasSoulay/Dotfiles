@@ -141,7 +141,6 @@ configure_git() {
 # Function: Install applications
 install_applications() {
     echo "==== Installing applications ===="
-    sudo apt install steam-installer libreoffice -y
 
     # Install de neovim stable depuis les sources
     echo "==== Installing Neovim ===="
@@ -164,6 +163,9 @@ install_applications() {
     echo "==== Installing Wine ===="
     sudo dpkg --add-architecture i386 && sudo apt update
     sudo apt install wine wine64 libwine libwine:i386 fonts-wine -y
+
+    # Steam + Office
+    sudo apt install steam-installer libreoffice -y
 
     # TUIGreet
     echo "==== Installing TUIGreet ===="
