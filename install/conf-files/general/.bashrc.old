@@ -28,6 +28,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship/starship.toml
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export XCURSOR_THEME="Nordzy-cursors-white xclock" 
 export XCURSOR_PATH=/usr/share/icons:$XDG_DATA_HOME/icons
 
 export PATH="$HOME/.local/bin:$PATH"
