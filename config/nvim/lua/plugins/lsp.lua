@@ -9,7 +9,6 @@ local servers = {
 	"bashls",
 	"csharp_ls",
 	"jsonls",
-	"rust_analyzer",
 	"clangd",
 	"marksman",
 }

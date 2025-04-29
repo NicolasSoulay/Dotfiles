@@ -3,11 +3,9 @@ return {
 	lazy = false,
 	priority = 1000,
 	opts = {
-		gitbrowse = { enabled = true },
 		indent = { animate = { enabled = false } },
 		lazygit = { enabled = true },
 		picker = { enabled = true },
-        zen = { toggles = { dim = false } },
 	},
 	keys = {
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files", },
@@ -21,7 +19,6 @@ return {
         { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
         { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
         { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-        { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
         { "<S-q>", function() Snacks.bufdelete() end, desc = "Close current buffer" },
         { "<leader>co", function() Snacks.bufdelete.other() end, desc = "Close current buffer" },
 	},
