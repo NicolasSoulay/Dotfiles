@@ -209,7 +209,7 @@ awful.rules.rules = {
 				"veromix",
 				"xtightvncviewer",
 			},
-			name = { "Event Tester", "Thunar", "doublecmd", "Volume Control", "Shutter", "Friends List" },
+			name = { "Event Tester", "Thunar", "doublecmd", "Volume Control", "Shutter", "Friends List", "Pentablet" },
 			role = { "AlarmWindow", "ConfigManager", "pop-up" },
 		},
 		properties = { floating = true },

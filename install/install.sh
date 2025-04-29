@@ -227,7 +227,6 @@ gtk-cursor-theme-name=Nordzy-cursors-white
 gtk-cursor-theme-size=0
 EOF
 
-    # Gtk theme TODO: pb install cursor qui s'affiche pas
     echo "==== Installing gtk theme ===="
     sudo apt install gtk2-engines-murrine -y
     cd ~/Sources
