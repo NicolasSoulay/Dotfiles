@@ -36,7 +36,11 @@
 # yay -S nordzy-hyprcursors
 
 # file manager
-# pacman -S thunar thunar-archive-plugin thunar-volman
+# pacman -S nemo nemo-fileroller nemo-preview nemo-terminal
+# xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+# gsettings set org.nemo.desktop show-desktop-icons false
+# gsettings set org.cinnamon.desktop.default-applications.terminal exec wezterm
+# gsettings set org.cinnamon.desktop.default-applications.terminal exec-arg wezterm -e
 
 # wezterm 
 # yay -S wezterm-git
