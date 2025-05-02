@@ -1,19 +1,23 @@
 return {
 	"mfussenegger/nvim-lint",
-    event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local lint = require("lint")
 
-        lint.linters_by_ft = {
-            javascript = { "eslint_d" },
-            typescript = { "eslint_d" },
-            php = { "phpstan", "php" },
-            rust = { "clippy" },
-        }
+		lint.linters_by_ft = {
+			php = { "phpstan" },
+		}
 
-		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+		local phpstan = lint.linters.phpstan
+		phpstan.args = {
+			"analyze",
+			"--error-format=json",
+			"--no-progress",
+			"--level=10",
+		}
+
+		vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
 			callback = function()
-				lint.try_lint()
+				require("lint").try_lint()
 			end,
 		})
 	end,
